@@ -394,6 +394,85 @@ h1, h2, h3, h4 {
     text-decoration: underline;
 }
 
+/* ===== PLACES TO VISIT (Qué Visitar) ===== */
+.places-to-visit-section {
+    margin-bottom: 4rem;
+}
+
+.places-section-title {
+    font-size: 2rem;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 3rem;
+    color: var(--deep-blue);
+}
+
+.places-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+.place-card {
+    background: white;
+    border-radius: 16px;
+    padding: 2.5rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    text-align: center;
+    border: 2px solid transparent;
+    position: relative;
+    overflow: hidden;
+}
+
+.place-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--warm-orange), var(--bright-yellow));
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+
+.place-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+    border-color: var(--warm-orange);
+}
+
+.place-card:hover::before {
+    transform: scaleX(1);
+}
+
+.place-icon {
+    font-size: 4rem;
+    margin-bottom: 1.5rem;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.place-card:hover .place-icon {
+    transform: scale(1.1) rotate(5deg);
+}
+
+.place-card h4 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--deep-blue);
+    margin-bottom: 1rem;
+    font-family: 'Playfair Display', serif;
+}
+
+.place-card p {
+    color: var(--gray-600);
+    line-height: 1.8;
+    font-size: 1rem;
+}
+
 /* ===== RECOMMENDATIONS ===== */
 .recommendations-grid {
     display: grid;
@@ -1247,6 +1326,18 @@ h1, h2, h3, h4 {
 
     .recommendation-content {
         grid-template-columns: 1fr;
+    }
+
+    .places-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .place-card {
+        padding: 2rem;
+    }
+
+    .place-icon {
+        font-size: 3rem;
     }
 
     .gallery-grid {
