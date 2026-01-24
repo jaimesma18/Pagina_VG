@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Destination Wedding Cartagena 2026</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Lato:wght@300;400;700&family=Dancing+Script:wght@400;600;700&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav id="navbar" class="navbar">
+        <div class="container">
+            <a href="#inicio" class="navbar-brand">V&G</a>
+            <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="navbar-menu" id="navbarMenu">
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#itinerario">Itinerario</a></li>
+                <li><a href="#hotel">Hotel</a></li>
+                <li><a href="#cartagena">Cartagena</a></li>
+                <li><a href="#fotos">Fotos</a></li>
+                <li><a href="#historia">Historia</a></li>
+                <li><a href="#faq">FAQ</a></li>
+                <li><a href="#regalos">Mesa de Regalos</a></li>
+                <li><a href="#maquillistas">Maquillistas</a></li>
+                <li><a href="#rsvp">RSVP</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Flying Macaw Animation -->
+    <div class="flying-macaw" id="flyingMacaw">
+        <div class="macaw-extracted"></div>
+    </div>
+
+    <!-- Hero Section -->
+    <section id="inicio" class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title script-font">Vicky & Guido</h1>
+            <div class="hero-divider"></div>
+            <p class="hero-date">17 de Mayo, 2026</p>
+            <p class="hero-location">Cartagena, Colombia</p>
+            
+            <div class="countdown" id="countdown">
+                <div class="countdown-item">
+                    <div class="countdown-number" id="days">00</div>
+                    <div class="countdown-label">Días</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-number" id="hours">00</div>
+                    <div class="countdown-label">Horas</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-number" id="minutes">00</div>
+                    <div class="countdown-label">Minutos</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-number" id="seconds">00</div>
+                    <div class="countdown-label">Segundos</div>
+                </div>
+            </div>
+
+            <div class="hero-buttons">
+                <a href="#rsvp" class="btn btn-primary">Confirmar Asistencia</a>
+                <a href="#itinerario" class="btn btn-secondary">Ver Itinerario</a>
+            </div>
+
+            <a href="#itinerario" class="scroll-down" aria-label="Scroll down">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M19 14l-7 7m0 0l-7-7m7 7V3"/>
+                </svg>
+            </a>
+        </div>
+    </section>
+
+    <!-- Schedule Section -->
+    <section id="itinerario" class="section">
+        <div class="container">
+            <h2 class="section-title">Itinerario</h2>
+            <p class="section-subtitle">Aquí encontrarás todos los detalles de nuestra celebración. Te esperamos en cada momento especial.</p>
+
+            <div class="schedule-grid">
+                <!-- Viernes -->
+                <div class="schedule-card">
+                    <div class="schedule-header">
+                        <h3>Viernes</h3>
+                        <p class="schedule-date">16 de Mayo</p>
+                    </div>
+                    <div class="schedule-events">
+                        <div class="event-item">
+                            <div class="event-time-icon">
+                                <span class="event-icon">🏊</span>
+                                <span class="event-time">10:00 AM</span>
+                            </div>
+                            <div class="event-content">
+                                <h4>Pool Party</h4>
+                                <p>Comienza la celebración con un pool party relajado. Trae tu traje de baño y disfruta del sol de Cartagena.</p>
+                            </div>
+                        </div>
+                        <div class="event-item">
+                            <div class="event-time-icon">
+                                <span class="event-icon">🕯️</span>
+                                <span class="event-time">7:00 PM</span>
+                            </div>
+                            <div class="event-content">
+                                <h4>Cena de Shabat</h4>
+                                <p>Una cena especial para recibir el Shabat juntos. Un momento íntimo antes del gran día.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sábado -->
+                <div class="schedule-card">
+                    <div class="schedule-header">
+                        <h3>Sábado</h3>
+                        <p class="schedule-date">17 de Mayo</p>
+                    </div>
+                    <div class="schedule-events">
+                        <div class="event-item">
+                            <div class="event-time-icon">
+                                <span class="event-icon">💍</span>
+                                <span class="event-time">6:00 PM</span>
+                            </div>
+                            <div class="event-content">
+                                <h4>Ceremonia de Boda</h4>
+                                <p>El momento más importante. Nos casamos al atardecer con el mar Caribe como testigo.</p>
+                            </div>
+                        </div>
+                        <div class="event-item">
+                            <div class="event-time-icon">
+                                <span class="event-icon">🎉</span>
+                                <span class="event-time">7:30 PM</span>
+                            </div>
+                            <div class="event-content">
+                                <h4>Recepción</h4>
+                                <p>Celebración con cena, música y baile. Una noche inolvidable bajo las estrellas.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Hotel/Map Section -->
+    <section id="hotel" class="section bg-white">
+        <div class="container">
+            <h2 class="section-title">Nuestro Hotel</h2>
+            <p class="section-subtitle">Nos hospedaremos en <strong>Karibana Dreams</strong>, un hermoso lugar que será nuestro hogar durante esta celebración especial.</p>
+            
+            <div class="map-container">
+                <iframe
+                    src="https://www.google.com/maps?q=10.539091388154167,-75.49116459873322&hl=es&z=15&output=embed"
+                    width="100%"
+                    height="450"
+                    style="border:0;"
+                    allowfullscreen=""
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"
+                    title="Ubicación del hotel Karibana Dreams">
+                </iframe>
+            </div>
+            
+            <div class="text-center mt-4">
+                <a href="https://www.google.com/maps?q=10.539091388154167,-75.49116459873322" target="_blank" rel="noopener noreferrer" class="link-gold">
+                    Ver en Google Maps →
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Recommendations Section -->
+    <section id="cartagena" class="section">
+        <div class="container">
+            <h2 class="section-title">Cartagena</h2>
+            <p class="section-subtitle">Guía completa para disfrutar al máximo tu estancia en la Heroica. Hemos preparado recomendaciones basadas en nuestra experiencia.</p>
+
+            <div class="recommendations-grid">
+                <!-- Qué Visitar -->
+                <div class="recommendation-card">
+                    <div class="recommendation-header">
+                        <span class="recommendation-icon">📍</span>
+                        <h3>Qué Visitar</h3>
+                    </div>
+                    <div class="recommendation-content">
+                        <div class="recommendation-item">
+                            <h4>Ciudad Amurallada</h4>
+                            <p>El corazón histórico de Cartagena. Pasea por sus calles coloridas, visita las plazas y disfruta de la arquitectura colonial.</p>
+                        </div>
+                        <div class="recommendation-item">
+                            <h4>Getsemaní</h4>
+                            <p>Barrio bohemio lleno de arte callejero, restaurantes y vida nocturna. Perfecto para explorar durante el día.</p>
+                        </div>
+                        <div class="recommendation-item">
+                            <h4>Castillo San Felipe de Barajas</h4>
+                            <p>Fortaleza histórica con vistas impresionantes. Ideal para una visita temprano en la mañana.</p>
+                        </div>
+                        <div class="recommendation-item">
+                            <h4>Islas del Rosario</h4>
+                            <p>Excursión de día completo a estas islas paradisíacas. Agua cristalina y playas de ensueño.</p>
+                        </div>
+                        <div class="recommendation-item">
+                            <h4>Bocagrande</h4>
+                            <p>Zona moderna con playas, hoteles y restaurantes. Perfecta para relajarse.</p>
+                        </div>
+                        <div class="recommendation-item">
+                            <h4>Café del Mar</h4>
+                            <p>El mejor lugar para ver el atardecer con una bebida en la mano. Reserva con anticipación.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dónde Comer -->
+                <div class="recommendation-card">
+                    <div class="recommendation-header">
+                        <span class="recommendation-icon">🍽️</span>
+                        <h3>Dónde Comer</h3>
+                    </div>
+                    <div class="recommendation-content">
+                        <div class="recommendation-item">
+                            <h4>Restaurantes en la Ciudad Amurallada</h4>
+                            <p>Carmen, La Vitrola, Don Juan, y Cande son excelentes opciones para una cena especial.</p>
+                        </div>
+                        <div class="recommendation-item">
+                            <h4>Comida Local</h4>
+                            <p>Prueba los arepas, ceviche, y pescado frito en los puestos locales. El Mercado de Bazurto es una experiencia auténtica.</p>
+                        </div>
+                        <div class="recommendation-item">
+                            <h4>Cafés y Helados</h4>
+                            <p>Epoca Espresso Bar y Gelateria Paradiso son perfectos para un descanso durante el día.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Qué Empacar -->
+                <div class="recommendation-card">
+                    <div class="recommendation-header">
+                        <span class="recommendation-icon">🧳</span>
+                        <h3>Qué Empacar</h3>
+                    </div>
+                    <div class="recommendation-content">
+                        <div class="recommendation-item">
+                            <h4>Dress Code</h4>
+                            <p>Ropa ligera y fresca. Para la boda: elegante casual (hombres: guayabera o camisa y pantalón; mujeres: vestido o conjunto elegante). Colores sugeridos: tonos claros, beige, blanco, pasteles.</p>
+                        </div>
+                        <div class="recommendation-item">
+                            <h4>Esenciales</h4>
+                            <p>Bloqueador solar (SPF alto), repelente de mosquitos, sombrero, gafas de sol, zapatos cómodos para caminar, y un par de zapatos elegantes para la boda.</p>
+                        </div>
+                        <div class="recommendation-item">
+                            <h4>Clima</h4>
+                            <p>Mayo es caluroso y húmedo. Trae ropa de algodón o lino, traje de baño, y una chaqueta ligera para lugares con aire acondicionado.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Seguridad -->
+                <div class="recommendation-card">
+                    <div class="recommendation-header">
+                        <span class="recommendation-icon">🛡️</span>
+                        <h3>Seguridad</h3>
+                    </div>
+                    <div class="recommendation-content">
+                        <div class="recommendation-item">
+                            <h4>Movilidad</h4>
+                            <p>Muévete en grupo, especialmente de noche. Usa aplicaciones confiables como Uber o taxis oficiales del hotel. Evita taxis en la calle sin confirmar precio.</p>
+                        </div>
+                        <div class="recommendation-item">
+                            <h4>Precauciones</h4>
+                            <p>No muestres joyas o objetos de valor en público. Guarda documentos importantes en el hotel. Mantén tu teléfono cargado y comparte tu ubicación con alguien de confianza.</p>
+                        </div>
+                        <div class="recommendation-item">
+                            <h4>Zonas Seguras</h4>
+                            <p>La Ciudad Amurallada y Getsemaní son generalmente seguras durante el día. Evita zonas desconocidas de noche y siempre pregunta en el hotel sobre áreas a evitar.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tips Prácticos -->
+                <div class="recommendation-card">
+                    <div class="recommendation-header">
+                        <span class="recommendation-icon">💡</span>
+                        <h3>Tips Prácticos</h3>
+                    </div>
+                    <div class="recommendation-content">
+                        <div class="recommendation-item">
+                            <h4>Moneda</h4>
+                            <p>La moneda es el Peso Colombiano (COP). Muchos lugares aceptan tarjetas, pero lleva efectivo para propinas y mercados. Cambia dinero en casas de cambio oficiales.</p>
+                        </div>
+                        <div class="recommendation-item">
+                            <h4>Clima</h4>
+                            <p>Mayo: temperatura promedio 28-32°C, alta humedad. Lluvias ocasionales. Protégete del sol y mantente hidratado.</p>
+                        </div>
+                        <div class="recommendation-item">
+                            <h4>Transporte</h4>
+                            <p>Desde el aeropuerto: taxi oficial o transfer del hotel (más seguro). En la ciudad: caminar en la zona amurallada, Uber para distancias mayores.</p>
+                        </div>
+                        <div class="recommendation-item">
+                            <h4>Horarios</h4>
+                            <p>Restaurantes: almuerzo 12:00-15:00, cena 19:00-22:00. Tiendas: generalmente 9:00-20:00. Muchos lugares cierran temprano los domingos.</p>
+                        </div>
+                        <div class="recommendation-item">
+                            <h4>Electricidad</h4>
+                            <p>110V, enchufes tipo A y B (como en USA). Trae adaptador si es necesario.</p>
+                        </div>
+                        <div class="recommendation-item">
+                            <h4>Idioma</h4>
+                            <p>Español es el idioma principal. En zonas turísticas se habla inglés básico, pero aprender algunas frases en español será apreciado.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="fotos" class="section">
+        <div class="container">
+            <h2 class="section-title">Galería</h2>
+            <p class="section-subtitle">Algunos momentos y lugares especiales que compartiremos juntos en Cartagena.</p>
+
+            <div class="gallery-grid" id="galleryGrid">
+                <!-- Las fotos se cargarán dinámicamente desde JavaScript -->
+            </div>
+
+            <p class="text-center text-sm text-gray-500 mt-6">
+                * Fotos de referencia. Las fotos reales del evento se actualizarán después de la boda.
+            </p>
+        </div>
+    </section>
+
+    <!-- Story Section -->
+    <section id="historia" class="section bg-white">
+        <div class="container">
+            <h2 class="section-title">Nuestra Historia</h2>
+            <p class="section-subtitle">Cada historia de amor es única. Aquí compartimos la nuestra contigo.</p>
+
+            <div class="story-container">
+                <div class="story-card">
+                    <div class="story-placeholder">
+                        <div class="placeholder-badge">⚠️ PLACEHOLDER - CONTENIDO TEMPORAL</div>
+                        
+                        <h3>Cómo nos conocimos</h3>
+                        <p class="story-text">
+                            [Este es un texto placeholder. Por favor, reemplaza este contenido con la historia real 
+                            de cómo se conocieron. Puedes incluir detalles sobre el primer encuentro, momentos especiales, 
+                            y lo que los llevó a este día tan importante.]
+                        </p>
+
+                        <div class="story-divider"></div>
+
+                        <h3>El momento de la propuesta</h3>
+                        <p class="story-text">
+                            [Aquí va la historia de la propuesta. Describe dónde fue, cómo sucedió, y los sentimientos 
+                            de ese momento especial. Este texto será reemplazado con la historia real.]
+                        </p>
+
+                        <div class="story-divider"></div>
+
+                        <h3>Por qué Cartagena</h3>
+                        <p class="story-text">
+                            [Explica por qué eligieron Cartagena como destino para su boda. Qué significa este lugar 
+                            para ustedes y por qué es el lugar perfecto para comenzar esta nueva etapa juntos.]
+                        </p>
+
+                        <div class="story-note">
+                            <strong>Nota para edición:</strong> Este bloque está claramente marcado como placeholder. 
+                            Cuando tengas la historia real lista, simplemente reemplaza todo el contenido dentro de este 
+                            bloque, manteniendo la estructura de títulos y subtítulos si lo deseas.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="section">
+        <div class="container">
+            <h2 class="section-title">Preguntas Frecuentes</h2>
+            <p class="section-subtitle">Resolvemos las dudas más comunes para que puedas prepararte sin preocupaciones.</p>
+
+            <div class="faq-container">
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFAQ(this)">
+                        <span>¿Cómo es el clima en Cartagena en mayo?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Mayo en Cartagena es caluroso y húmedo, con temperaturas promedio entre 28-32°C. Puede haber lluvias ocasionales, pero generalmente son cortas. Te recomendamos traer ropa ligera, bloqueador solar, y un paraguas pequeño por si acaso.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFAQ(this)">
+                        <span>¿Cómo llego a Cartagena?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>El aeropuerto internacional Rafael Núñez (CTG) recibe vuelos desde varias ciudades. Desde el aeropuerto al hotel, te recomendamos usar taxi oficial del aeropuerto o coordinar un transfer con el hotel. El trayecto es aproximadamente 15-20 minutos.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFAQ(this)">
+                        <span>¿Dónde me puedo hospedar?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Nosotros nos hospedaremos en Karibana Dreams, pero puedes elegir cualquier hotel en Cartagena. Las zonas más recomendadas son: la Ciudad Amurallada (histórica), Getsemaní (bohemia), y Bocagrande (moderna con playa). Si necesitas recomendaciones específicas, contáctanos.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFAQ(this)">
+                        <span>¿Cómo me muevo por Cartagena?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>La Ciudad Amurallada es perfecta para caminar. Para distancias mayores, usa Uber (muy común y seguro) o taxis oficiales del hotel. Evita taxis en la calle sin confirmar precio primero. El transporte público existe pero no es la opción más cómoda para turistas.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFAQ(this)">
+                        <span>¿Cuál es el dress code para la boda?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Elegante casual. Para hombres: guayabera o camisa elegante con pantalón. Para mujeres: vestido o conjunto elegante. Colores sugeridos: tonos claros, beige, blanco, pasteles. Evita negro completo. Zapatos cómodos pero elegantes (considera que puede haber caminar en áreas con adoquines).</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFAQ(this)">
+                        <span>¿Necesito visa para viajar a Colombia?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Depende de tu nacionalidad. Ciudadanos de muchos países (incluyendo USA, Canadá, UE, y varios países latinoamericanos) no necesitan visa para estancias turísticas de hasta 90 días. Verifica con la embajada colombiana en tu país para estar seguro.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFAQ(this)">
+                        <span>¿Qué moneda se usa?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Peso Colombiano (COP). Muchos lugares aceptan tarjetas de crédito, pero es bueno tener efectivo para propinas, mercados y lugares pequeños. Puedes cambiar dinero en el aeropuerto o en casas de cambio oficiales en la ciudad.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFAQ(this)">
+                        <span>¿Es seguro Cartagena?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Las zonas turísticas de Cartagena son generalmente seguras. Como en cualquier destino turístico, usa sentido común: no muestres objetos de valor, muévete en grupo de noche, usa aplicaciones confiables para transporte, y guarda documentos importantes en el hotel. La Ciudad Amurallada y Getsemaní son seguras durante el día.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFAQ(this)">
+                        <span>¿Hay algún código de vestimenta para otros eventos?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Pool Party (viernes AM): traje de baño y ropa cómoda de playa. Cena de Shabat (viernes PM): elegante casual, similar a la boda pero un poco más relajado. Boda (sábado): elegante casual como se describió anteriormente.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFAQ(this)">
+                        <span>¿A quién contacto si tengo preguntas?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Puedes contactar a nuestro wedding planner o escribirnos directamente. Los detalles de contacto están en el footer de esta página. Estamos aquí para ayudarte con cualquier duda que tengas.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mesa de Regalos Section -->
+    <section id="regalos" class="section bg-white">
+        <div class="container">
+            <h2 class="section-title">Mesa de Regalos</h2>
+            <p class="section-subtitle">Tu presencia es el mejor regalo, pero si deseas celebrar con nosotros de otra manera, aquí encontrarás nuestras opciones de mesa de regalos.</p>
+
+            <div class="gift-registry-container">
+                <div class="gift-registry-card">
+                    <div class="gift-registry-header">
+                        <span class="gift-icon">🎁</span>
+                        <h3>Tiendas Asociadas</h3>
+                    </div>
+                    <div class="gift-registry-content">
+                        <p class="gift-description">
+                            Hemos seleccionado algunas tiendas donde puedes encontrar regalos para nuestra nueva vida juntos. 
+                            Puedes buscar nuestra lista de bodas en cualquiera de estas tiendas.
+                        </p>
+                        
+                        <div class="gift-stores">
+                            <div class="gift-store-item">
+                                <h4>Liverpool</h4>
+                                <p>Lista de bodas: <strong>Vicky & Guido</strong></p>
+                                <p>Número de evento: <strong>[Número por confirmar]</strong></p>
+                                <a href="https://www.liverpool.com.mx" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-small">
+                                    Ver Lista
+                                </a>
+                            </div>
+                            
+                            <div class="gift-store-item">
+                                <h4>Palacio de Hierro</h4>
+                                <p>Lista de bodas: <strong>Vicky & Guido</strong></p>
+                                <p>Número de evento: <strong>[Número por confirmar]</strong></p>
+                                <a href="https://www.palaciodehierro.com" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-small">
+                                    Ver Lista
+                                </a>
+                            </div>
+                            
+                            <div class="gift-store-item">
+                                <h4>Amazon</h4>
+                                <p>Lista de deseos: <strong>Vicky & Guido Wedding</strong></p>
+                                <a href="#" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-small">
+                                    Ver Lista
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="gift-note">
+                            <p><strong>Nota:</strong> Los números de evento y enlaces se actualizarán próximamente. Si tienes dudas, contáctanos directamente.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gift-registry-card">
+                    <div class="gift-registry-header">
+                        <span class="gift-icon">💝</span>
+                        <h3>Fondo de Luna de Miel</h3>
+                    </div>
+                    <div class="gift-registry-content">
+                        <p class="gift-description">
+                            Si prefieres contribuir a nuestra luna de miel, también puedes hacerlo a través de nuestro fondo especial.
+                        </p>
+                        <div class="gift-account">
+                            <p><strong>Cuenta:</strong> [Información por confirmar]</p>
+                            <p><strong>Banco:</strong> [Banco por confirmar]</p>
+                            <p><strong>CLABE:</strong> [CLABE por confirmar]</p>
+                        </div>
+                        <p class="text-sm text-gray-500 mt-4">
+                            * La información bancaria se actualizará próximamente. Contáctanos si necesitas más detalles.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Maquillistas Section -->
+    <section id="maquillistas" class="section">
+        <div class="container">
+            <h2 class="section-title">Maquillistas Recomendados</h2>
+            <p class="section-subtitle">Si necesitas servicios de maquillaje y peinado para la boda, aquí te compartimos nuestras recomendaciones en Cartagena.</p>
+
+            <div class="makeup-artists-container">
+                <div class="makeup-artist-card">
+                    <div class="makeup-artist-header">
+                        <span class="makeup-icon">💄</span>
+                        <h3>Opciones Recomendadas</h3>
+                    </div>
+                    <div class="makeup-artist-content">
+                        <p class="makeup-description">
+                            Hemos investigado y contactado a varios maquillistas profesionales en Cartagena. 
+                            Aquí te compartimos nuestras recomendaciones para que puedas reservar con anticipación.
+                        </p>
+
+                        <div class="makeup-artists-list">
+                            <div class="makeup-artist-item">
+                                <h4>Maquillista 1</h4>
+                                <p class="makeup-contact">
+                                    <strong>Contacto:</strong> [Nombre y teléfono por confirmar]<br>
+                                    <strong>Instagram:</strong> <a href="#" target="_blank" rel="noopener noreferrer" class="link-gold">@maquillista1</a><br>
+                                    <strong>Especialidad:</strong> Maquillaje de novia y eventos
+                                </p>
+                                <a href="https://wa.me/573001234567" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-small">
+                                    Contactar por WhatsApp
+                                </a>
+                            </div>
+
+                            <div class="makeup-artist-item">
+                                <h4>Maquillista 2</h4>
+                                <p class="makeup-contact">
+                                    <strong>Contacto:</strong> [Nombre y teléfono por confirmar]<br>
+                                    <strong>Instagram:</strong> <a href="#" target="_blank" rel="noopener noreferrer" class="link-gold">@maquillista2</a><br>
+                                    <strong>Especialidad:</strong> Maquillaje natural y glamour
+                                </p>
+                                <a href="https://wa.me/573001234567" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-small">
+                                    Contactar por WhatsApp
+                                </a>
+                            </div>
+
+                            <div class="makeup-artist-item">
+                                <h4>Maquillista 3</h4>
+                                <p class="makeup-contact">
+                                    <strong>Contacto:</strong> [Nombre y teléfono por confirmar]<br>
+                                    <strong>Instagram:</strong> <a href="#" target="_blank" rel="noopener noreferrer" class="link-gold">@maquillista3</a><br>
+                                    <strong>Especialidad:</strong> Maquillaje y peinado completo
+                                </p>
+                                <a href="https://wa.me/573001234567" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-small">
+                                    Contactar por WhatsApp
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="makeup-tips">
+                            <h4>💡 Consejos para reservar:</h4>
+                            <ul class="makeup-tips-list">
+                                <li>Reserva con al menos 2-3 meses de anticipación, especialmente para fechas especiales</li>
+                                <li>Pide ver portfolios o trabajos anteriores antes de confirmar</li>
+                                <li>Consulta sobre paquetes que incluyan prueba de maquillaje</li>
+                                <li>Pregunta sobre disponibilidad para el día de la boda y horarios</li>
+                                <li>Verifica si ofrecen servicios de peinado también</li>
+                                <li>Confirma precios y métodos de pago antes de reservar</li>
+                            </ul>
+                        </div>
+
+                        <div class="makeup-note">
+                            <p><strong>Nota:</strong> Los contactos y enlaces se actualizarán con la información real de los maquillistas confirmados. 
+                            Si necesitas ayuda para contactar a alguno, escríbenos y te ayudamos.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- RSVP Section -->
+    <section id="rsvp" class="section bg-white">
+        <div class="container">
+            <div class="rsvp-container">
+                <h2 class="section-title">Confirma tu Asistencia</h2>
+                <p class="section-subtitle">Tu presencia es el mejor regalo. Por favor, confirma tu asistencia antes del 1 de abril de 2026.</p>
+                <button class="btn btn-primary" onclick="openRSVPModal()">RSVP</button>
+                <p class="text-sm text-gray-500 mt-4">
+                    O contáctanos directamente: <a href="mailto:wedding@example.com" class="link-gold">wedding@example.com</a>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- RSVP Modal -->
+    <div id="rsvpModal" class="modal">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <div class="modal-header">
+                <h3>Confirma tu Asistencia</h3>
+                <button class="modal-close" onclick="closeRSVPModal()" aria-label="Cerrar">×</button>
+            </div>
+            <form id="rsvpForm" onsubmit="handleRSVPSubmit(event)">
+                <div class="form-group">
+                    <label for="rsvpName">Nombre completo *</label>
+                    <input type="text" id="rsvpName" required>
+                </div>
+                <div class="form-group">
+                    <label for="rsvpEmail">Email *</label>
+                    <input type="email" id="rsvpEmail" required>
+                </div>
+                <div class="form-group">
+                    <label for="rsvpGuests">Número de invitados *</label>
+                    <select id="rsvpGuests" required>
+                        <option value="1">1 invitado</option>
+                        <option value="2">2 invitados</option>
+                        <option value="3">3 invitados</option>
+                        <option value="4">4 invitados</option>
+                        <option value="5">5 invitados</option>
+                        <option value="6">6 invitados</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="rsvpMessage">Mensaje (opcional)</label>
+                    <textarea id="rsvpMessage" rows="4" placeholder="Déjanos saber si tienes alguna restricción alimentaria o comentario especial..."></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary btn-full">Confirmar Asistencia</button>
+                <p class="text-xs text-gray-500 text-center mt-4">
+                    * Este es un formulario de ejemplo. Conecta este formulario con tu servicio de email 
+                    preferido (como EmailJS, Formspree, o tu backend) para recibir las confirmaciones.
+                </p>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <h3>Nuestra Boda</h3>
+                    <p>17 de Mayo, 2026<br>Cartagena, Colombia</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Contacto</h3>
+                    <p>
+                        <a href="mailto:wedding@example.com">wedding@example.com</a><br>
+                        <a href="tel:+573001234567">+57 300 123 4567</a>
+                    </p>
+                    <p class="text-sm text-gray-400 mt-2">
+                        * Reemplaza estos datos de contacto con la información real
+                    </p>
+                </div>
+                <div class="footer-column">
+                    <h3>Síguenos</h3>
+                    <div class="social-links">
+                        <a href="#" aria-label="Instagram">📷</a>
+                        <a href="#" aria-label="Facebook">👥</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>Hecho con ❤️ para nuestra boda especial | 2026</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
