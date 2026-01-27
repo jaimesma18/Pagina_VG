@@ -156,6 +156,15 @@ h1, h2, h3, h4 {
     font-size: 4.5rem;
 }
 
+.hero-title-image {
+    max-width: 600px;
+    width: 100%;
+    height: auto;
+    margin: 0 auto 1rem;
+    display: block;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.15));
+}
+
 .hero-divider {
     width: 100px;
     height: 3px;
@@ -295,26 +304,37 @@ h1, h2, h3, h4 {
 /* ===== SCHEDULE ===== */
 .schedule-grid {
     display: grid;
+    grid-template-columns: repeat(3, 1fr);
     gap: 2rem;
 }
 
 .schedule-card {
-    background: white;
-    border-radius: 12px;
-    padding: 2rem;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background: rgba(255, 248, 240, 0.6);
+    backdrop-filter: blur(10px);
+    border-radius: 16px;
+    padding: 0;
+    border: 2px solid rgba(255, 140, 66, 0.2);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
 }
 
 .schedule-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+    border-color: rgba(255, 140, 66, 0.4);
+    background: rgba(255, 248, 240, 0.8);
 }
 
 .schedule-header {
     border-bottom: 2px solid var(--warm-orange);
-    padding-bottom: 1rem;
-    margin-bottom: 1.5rem;
+    padding: 1.5rem 2rem;
+    margin-bottom: 0;
+    background: linear-gradient(135deg, rgba(255, 140, 66, 0.15), rgba(255, 215, 0, 0.15));
+    border-radius: 14px 14px 0 0;
+    text-align: center;
 }
 
 .schedule-header h3 {
@@ -331,19 +351,30 @@ h1, h2, h3, h4 {
 .schedule-events {
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
+    gap: 1rem;
+    padding: 1.5rem;
+    flex: 1;
 }
 
 .event-item {
     display: flex;
-    gap: 1.5rem;
-    padding-bottom: 1.5rem;
-    border-bottom: 1px solid var(--gray-200);
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1.25rem;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 12px;
+    border-left: 4px solid var(--warm-orange);
+    transition: all 0.3s ease;
+}
+
+.event-item:hover {
+    background: rgba(255, 255, 255, 0.7);
+    transform: translateX(5px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
 .event-item:last-child {
-    border-bottom: none;
-    padding-bottom: 0;
+    margin-bottom: 0;
 }
 
 .event-time-icon {
@@ -351,6 +382,7 @@ h1, h2, h3, h4 {
     align-items: center;
     gap: 0.75rem;
     flex-shrink: 0;
+    margin-bottom: 0.5rem;
 }
 
 .event-icon {
@@ -365,13 +397,39 @@ h1, h2, h3, h4 {
 
 .event-content h4 {
     font-size: 1.3rem;
-    margin-bottom: 0.5rem;
+    margin-bottom: 1rem;
     color: var(--gray-800);
 }
 
-.event-content p {
+.event-details {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.event-details p {
     color: var(--gray-600);
     line-height: 1.7;
+    margin: 0;
+}
+
+.event-when,
+.event-where,
+.event-dresscode {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.event-dresscode {
+    margin-top: 0.5rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid rgba(255, 140, 66, 0.2);
+}
+
+.pinterest-link {
+    margin-top: 0.5rem;
+    font-size: 0.95rem;
 }
 
 /* ===== MAP ===== */
@@ -1128,18 +1186,20 @@ h1, h2, h3, h4 {
     animation: flyAcross 25s infinite ease-in-out;
     opacity: 0.85;
     will-change: transform;
+    background: transparent;
 }
 
 /* Macaw image */
 .macaw-extracted {
     width: 150px;
     height: 150px;
-    background-image: url('assets/macaw.png');
-    background-repeat: no-repeat;
-    background-size: contain;
-    background-position: center;
+    object-fit: contain;
+    display: block;
     filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.25));
     animation: wingFlap 0.5s ease-in-out infinite;
+    background: transparent;
+    mix-blend-mode: darken;
+    /* Elimina el fondo blanco - darken solo muestra los píxeles más oscuros */
 }
 
 @keyframes wingFlap {
@@ -1299,6 +1359,11 @@ h1, h2, h3, h4 {
         font-size: 3rem;
     }
 
+    .hero-title-image {
+        max-width: 90%;
+        max-width: 400px;
+    }
+
     .hero-date {
         font-size: 1.5rem;
     }
@@ -1322,6 +1387,10 @@ h1, h2, h3, h4 {
 
     .event-item {
         flex-direction: column;
+    }
+
+    .schedule-grid {
+        grid-template-columns: 1fr;
     }
 
     .recommendation-content {

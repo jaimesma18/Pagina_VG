@@ -1,7 +1,7 @@
 // ===== COUNTDOWN =====
 function updateCountdown() {
-    // Fecha del evento: 17 de mayo de 2026, 18:00 hora de Cartagena (America/Bogota, UTC-5)
-    const eventDate = new Date('2026-05-17T18:00:00-05:00').getTime();
+    // Fecha del evento: 17 de mayo de 2026, 16:30 (4:30 PM) hora de Cartagena (America/Bogota, UTC-5)
+    const eventDate = new Date('2026-05-17T16:30:00-05:00').getTime();
     const now = new Date().getTime();
     const difference = eventDate - now;
 
