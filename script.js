@@ -193,6 +193,8 @@ window.addEventListener('resize', function() {
         // Restaurar scroll normal del body
         document.body.style.overflow = '';
         document.body.style.height = '';
+        document.documentElement.style.overflow = '';
+        document.documentElement.style.height = '';
     } else {
         // En móvil, mostrar solo la sección actual
         const currentHash = window.location.hash.substring(1) || 'inicio';
