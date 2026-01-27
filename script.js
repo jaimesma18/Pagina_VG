@@ -125,11 +125,19 @@ function handleRSVPSubmit(event) {
     // Opciones: EmailJS, Formspree, o crear una API route en tu backend
 }
 
-// ===== SMOOTH SCROLL =====
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
+// ===== SECCIONES INDEPENDIENTES =====
+const mainContent = document.getElementById('mainContent');
+
+// Función para verificar si estamos en móvil
+function isMobile() {
+    return window.innerWidth <= 768;
+}
+
+// Función para mostrar una sección específica
+function showSection(sectionId) {
+    if (!isMobile()) {
+        // En desktop, usar scroll normal
+        const target = document.getElementById(sectionId);
         if (target) {
             const offsetTop = target.offsetTop - 80;
             window.scrollTo({
@@ -137,5 +145,57 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 behavior: 'smooth'
             });
         }
+        return;
+    }
+    
+    // En móvil: mostrar solo la sección seleccionada
+    // Ocultar todas las secciones
+    document.querySelectorAll('.section-wrapper').forEach(wrapper => {
+        wrapper.classList.remove('active');
     });
+    
+    // Mostrar la sección seleccionada
+    const targetSection = document.querySelector(`.section-wrapper[data-section="${sectionId}"]`);
+    if (targetSection) {
+        targetSection.classList.add('active');
+        // Hacer scroll al inicio de la sección
+        targetSection.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    }
+}
+
+// Inicializar: mostrar la primera sección en móvil
+window.addEventListener('DOMContentLoaded', function() {
+    if (isMobile()) {
+        const currentHash = window.location.hash.substring(1) || 'inicio';
+        showSection(currentHash);
+    }
+});
+
+// ===== SMOOTH SCROLL =====
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href').substring(1);
+        showSection(targetId);
+    });
+});
+
+// Manejar cambios de tamaño de ventana
+window.addEventListener('resize', function() {
+    if (!isMobile()) {
+        // En desktop, mostrar todas las secciones
+        document.querySelectorAll('.section-wrapper').forEach(wrapper => {
+            wrapper.classList.add('active');
+        });
+        // Restaurar scroll normal del body
+        document.body.style.overflow = '';
+        document.body.style.height = '';
+    } else {
+        // En móvil, mostrar solo la sección actual
+        const currentHash = window.location.hash.substring(1) || 'inicio';
+        showSection(currentHash);
+    }
 });
