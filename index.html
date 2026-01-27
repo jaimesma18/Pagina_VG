@@ -13,7 +13,9 @@
     <!-- Navbar -->
     <nav id="navbar" class="navbar">
         <div class="container">
-            <a href="#inicio" class="navbar-brand">V&G</a>
+            <a href="#inicio" class="navbar-brand">
+                <img src="assets/logos/v&g.png" alt="V&G" class="navbar-logo">
+            </a>
             <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu">
                 <span></span>
                 <span></span>
@@ -94,12 +96,10 @@
                     </div>
                     <div class="schedule-events">
                         <div class="event-item">
-                            <div class="event-time-icon">
-                                <span class="event-icon">🏖️</span>
-                                <span class="event-time">11:00 AM</span>
-                            </div>
                             <div class="event-content">
-                                <h4>Beach Party</h4>
+                                <div class="event-header">
+                                    <h4>Beach Party</h4>
+                                </div>
                                 <div class="event-details">
                                     <p class="event-when"><strong>Cuándo:</strong> Viernes 15 de Mayo, 11:00 AM</p>
                                     <p class="event-where"><strong>Dónde:</strong> Beach Club Kiosco Oceana</p>
@@ -109,12 +109,10 @@
                             </div>
                         </div>
                         <div class="event-item">
-                            <div class="event-time-icon">
-                                <span class="event-icon">🕯️</span>
-                                <span class="event-time">8:00 PM</span>
-                            </div>
                             <div class="event-content">
-                                <h4>Cena de Shabat</h4>
+                                <div class="event-header">
+                                    <h4>Cena de Shabat</h4>
+                                </div>
                                 <div class="event-details">
                                     <p class="event-when"><strong>Cuándo:</strong> Viernes 15 de Mayo, 8:00 PM</p>
                                     <p class="event-where"><strong>Dónde:</strong> Restaurante World Cafe</p>
@@ -134,12 +132,10 @@
                     </div>
                     <div class="schedule-events">
                         <div class="event-item">
-                            <div class="event-time-icon">
-                                <span class="event-icon">🕯️</span>
-                                <span class="event-time">9:00 AM</span>
-                            </div>
                             <div class="event-content">
-                                <h4>Shabat Jatan</h4>
+                                <div class="event-header">
+                                    <h4>Shabat Jatan</h4>
+                                </div>
                                 <div class="event-details">
                                     <p class="event-when"><strong>Cuándo:</strong> Sábado 16 de Mayo, 9:00 AM</p>
                                     <p class="event-where"><strong>Dónde:</strong> Salón Torres</p>
@@ -149,12 +145,10 @@
                             </div>
                         </div>
                         <div class="event-item">
-                            <div class="event-time-icon">
-                                <span class="event-icon">🍷</span>
-                                <span class="event-time">12:30 PM</span>
-                            </div>
                             <div class="event-content">
-                                <h4>Kidush Shabat</h4>
+                                <div class="event-header">
+                                    <h4>Kidush Shabat</h4>
+                                </div>
                                 <div class="event-details">
                                     <p class="event-when"><strong>Cuándo:</strong> Sábado 16 de Mayo, 12:30 PM</p>
                                     <p class="event-where"><strong>Dónde:</strong> Restaurante Portofino</p>
@@ -174,12 +168,10 @@
                     </div>
                     <div class="schedule-events">
                         <div class="event-item">
-                            <div class="event-time-icon">
-                                <span class="event-icon">💍</span>
-                                <span class="event-time">4:30 PM</span>
-                            </div>
                             <div class="event-content">
-                                <h4>Jupa</h4>
+                                <div class="event-header">
+                                    <h4>Jupa</h4>
+                                </div>
                                 <div class="event-details">
                                     <p class="event-when"><strong>Cuándo:</strong> Domingo 17 de Mayo, 4:30 PM</p>
                                     <p class="event-where"><strong>Dónde:</strong> Jardín Alcázar</p>
@@ -195,28 +187,37 @@
     </section>
 
     <!-- Hotel/Map Section -->
-    <section id="hotel" class="section bg-white">
+    <section id="hotel" class="section">
         <div class="container">
             <h2 class="section-title">Nuestro Hotel</h2>
-            <p class="section-subtitle">Nos hospedaremos en <strong>Karibana Dreams</strong>, un hermoso lugar que será nuestro hogar durante esta celebración especial.</p>
+            <p class="section-subtitle">Nos hospedaremos en <strong>Dreams Karibana Cartagena Golf & Spa Resort</strong>, un hermoso lugar que será nuestro hogar durante esta celebración especial.</p>
             
-            <div class="map-container">
-                <iframe
-                    src="https://www.google.com/maps?q=10.539091388154167,-75.49116459873322&hl=es&z=15&output=embed"
-                    width="100%"
-                    height="450"
-                    style="border:0;"
-                    allowfullscreen=""
-                    loading="lazy"
-                    referrerpolicy="no-referrer-when-downgrade"
-                    title="Ubicación del hotel Karibana Dreams">
-                </iframe>
-            </div>
-            
-            <div class="text-center mt-4">
-                <a href="https://www.google.com/maps?q=10.539091388154167,-75.49116459873322" target="_blank" rel="noopener noreferrer" class="link-gold">
-                    Ver en Google Maps →
-                </a>
+            <div class="hotel-info-container">
+                <div class="hotel-discount">
+                    <h4>Descuento Especial para Invitados</h4>
+                    <p>Tenemos un descuento especial disponible para todos nuestros invitados. Para activar tu código de descuento, descarga el archivo con las instrucciones:</p>
+                    <a href="support_files/activacion_codigos_boda.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+                        Descargar Códigos de Activación
+                    </a>
+                    <div class="text-center mt-4">
+                        <a href="https://www.google.com/maps/place/Dreams+Karibana+Cartagena+Golf+%26+Spa+Resort/@10.5391179,-75.4938525,17z/data=!3m1!4b1!4m6!3m5!1s0x8ef63b25ecf7a6e3:0x6625ea2ddd301392!8m2!3d10.5391179!4d-75.4912776!16s%2Fg%2F11c0vxqj5j?entry=ttu" target="_blank" rel="noopener noreferrer" class="link-gold">
+                            Ver en Google Maps →
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="map-container-small">
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3922.51112001693!2d-75.4938525249615!3d10.539117989595635!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8ef63b25ecf7a6e3%3A0x6625ea2ddd301392!2sDreams%20Karibana%20Cartagena%20Golf%20%26%20Spa%20Resort!5e0!3m2!1sen!2smx!4v1769490177438!5m2!1sen!2smx" 
+                        width="100%" 
+                        height="400" 
+                        style="border:0;" 
+                        allowfullscreen="" 
+                        loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade"
+                        title="Ubicación del hotel Dreams Karibana Cartagena Golf & Spa Resort">
+                    </iframe>
+                </div>
             </div>
         </div>
     </section>
@@ -229,35 +230,35 @@
 
             <!-- Qué Visitar - Cuadros Grandes -->
             <div class="places-to-visit-section">
-                <h3 class="places-section-title">📍 Qué Visitar</h3>
+                <h3 class="places-section-title">Qué Visitar</h3>
                 <div class="places-grid">
                     <div class="place-card">
-                        <div class="place-icon">🏛️</div>
+                        <img src="https://images.unsplash.com/photo-1587330979470-3585a3e40a18?w=800&h=600&fit=crop" alt="Ciudad Amurallada" class="place-image">
                         <h4>Ciudad Amurallada</h4>
                         <p>El corazón histórico de Cartagena. Pasea por sus calles coloridas, visita las plazas y disfruta de la arquitectura colonial.</p>
                     </div>
                     <div class="place-card">
-                        <div class="place-icon">🎨</div>
+                        <img src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=800&h=600&fit=crop" alt="Getsemaní" class="place-image">
                         <h4>Getsemaní</h4>
                         <p>Barrio bohemio lleno de arte callejero, restaurantes y vida nocturna. Perfecto para explorar durante el día.</p>
                     </div>
                     <div class="place-card">
-                        <div class="place-icon">🏰</div>
+                        <img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=800&h=600&fit=crop" alt="Castillo San Felipe" class="place-image">
                         <h4>Castillo San Felipe</h4>
                         <p>Fortaleza histórica con vistas impresionantes. Ideal para una visita temprano en la mañana.</p>
                     </div>
                     <div class="place-card">
-                        <div class="place-icon">🏝️</div>
+                        <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=800&h=600&fit=crop" alt="Islas del Rosario" class="place-image">
                         <h4>Islas del Rosario</h4>
                         <p>Excursión de día completo a estas islas paradisíacas. Agua cristalina y playas de ensueño.</p>
                     </div>
                     <div class="place-card">
-                        <div class="place-icon">🏖️</div>
+                        <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&h=600&fit=crop" alt="Bocagrande" class="place-image">
                         <h4>Bocagrande</h4>
                         <p>Zona moderna con playas, hoteles y restaurantes. Perfecta para relajarse.</p>
                     </div>
                     <div class="place-card">
-                        <div class="place-icon">🌅</div>
+                        <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop" alt="Café del Mar" class="place-image">
                         <h4>Café del Mar</h4>
                         <p>El mejor lugar para ver el atardecer con una bebida en la mano. Reserva con anticipación.</p>
                     </div>
@@ -269,7 +270,6 @@
                 <!-- Dónde Comer -->
                 <div class="recommendation-card">
                     <div class="recommendation-header">
-                        <span class="recommendation-icon">🍽️</span>
                         <h3>Dónde Comer</h3>
                     </div>
                     <div class="recommendation-content">
@@ -291,7 +291,6 @@
                 <!-- Qué Empacar -->
                 <div class="recommendation-card">
                     <div class="recommendation-header">
-                        <span class="recommendation-icon">🧳</span>
                         <h3>Qué Empacar</h3>
                     </div>
                     <div class="recommendation-content">
@@ -313,7 +312,6 @@
                 <!-- Seguridad -->
                 <div class="recommendation-card">
                     <div class="recommendation-header">
-                        <span class="recommendation-icon">🛡️</span>
                         <h3>Seguridad</h3>
                     </div>
                     <div class="recommendation-content">
@@ -335,7 +333,6 @@
                 <!-- Tips Prácticos -->
                 <div class="recommendation-card">
                     <div class="recommendation-header">
-                        <span class="recommendation-icon">💡</span>
                         <h3>Tips Prácticos</h3>
                     </div>
                     <div class="recommendation-content">
@@ -624,7 +621,6 @@
             <div class="makeup-artists-container">
                 <div class="makeup-artist-card">
                     <div class="makeup-artist-header">
-                        <span class="makeup-icon">💄</span>
                         <h3>Opciones Recomendadas</h3>
                     </div>
                     <div class="makeup-artist-content">
@@ -672,7 +668,7 @@
                         </div>
 
                         <div class="makeup-tips">
-                            <h4>💡 Consejos para reservar:</h4>
+                            <h4>Consejos para reservar:</h4>
                             <ul class="makeup-tips-list">
                                 <li>Reserva con al menos 2-3 meses de anticipación, especialmente para fechas especiales</li>
                                 <li>Pide ver portfolios o trabajos anteriores antes de confirmar</li>
@@ -768,13 +764,13 @@
                 <div class="footer-column">
                     <h3>Síguenos</h3>
                     <div class="social-links">
-                        <a href="#" aria-label="Instagram">📷</a>
-                        <a href="#" aria-label="Facebook">👥</a>
+                        <a href="#" aria-label="Instagram">Instagram</a>
+                        <a href="#" aria-label="Facebook">Facebook</a>
                     </div>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>Hecho con ❤️ para nuestra boda especial | 2026</p>
+                <p>Hecho con amor para nuestra boda especial | 2026</p>
             </div>
         </div>
     </footer>

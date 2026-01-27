@@ -7,17 +7,25 @@
 
 :root {
     /* Brandbook Color Palette */
-    --deep-blue: #1a3a5c;
-    --light-blue: #5a9bb8;
-    --dark-green: #2d5016;
-    --olive-green: #6b8e5a;
-    --bright-yellow: #ffd700;
-    --warm-orange: #ff8c42;
+    --azul-marino: #2d2d8c;
+    --celeste: #acbec7;
+    --verde: #5d8a64;
+    --verde-limon: #95a75b;
+    --amarillo: #ffde59;
+    --naranja: #ff914d;
+    
+    /* Legacy colors for compatibility - mapped to new palette */
+    --deep-blue: #2d2d8c;
+    --light-blue: #acbec7;
+    --dark-green: #5d8a64;
+    --olive-green: #95a75b;
+    --bright-yellow: #ffde59;
+    --warm-orange: #ff914d;
     
     /* Legacy colors for compatibility */
-    --wedding-gold: #ffd700;
+    --wedding-gold: #ffde59;
     --wedding-sand: #f5e6d3;
-    --wedding-palm: #2d5016;
+    --wedding-palm: #5d8a64;
     --wedding-cream: #fff8f0;
     
     /* Grays */
@@ -38,7 +46,7 @@ html {
 body {
     font-family: 'Montserrat', sans-serif;
     background-color: var(--wedding-cream);
-    color: var(--gray-800);
+    color: var(--azul-marino);
     line-height: 1.6;
 }
 
@@ -82,11 +90,15 @@ h1, h2, h3, h4 {
 }
 
 .navbar-brand {
-    font-family: 'Dancing Script', cursive;
-    font-size: 1.8rem;
-    font-weight: 600;
-    color: var(--deep-blue);
+    display: flex;
+    align-items: center;
     text-decoration: none;
+}
+
+.navbar-logo {
+    height: 50px;
+    width: auto;
+    object-fit: contain;
 }
 
 .navbar-menu {
@@ -96,14 +108,14 @@ h1, h2, h3, h4 {
 }
 
 .navbar-menu a {
-    color: var(--gray-700);
+    color: var(--azul-marino);
     text-decoration: none;
     font-weight: 500;
     transition: color 0.3s ease;
 }
 
 .navbar-menu a:hover {
-    color: var(--warm-orange);
+    color: var(--azul-marino);
 }
 
 .mobile-menu-btn {
@@ -174,13 +186,13 @@ h1, h2, h3, h4 {
 
 .hero-date {
     font-size: 2rem;
-    color: var(--gray-700);
+    color: var(--azul-marino);
     margin-bottom: 0.5rem;
 }
 
 .hero-location {
     font-size: 1.5rem;
-    color: var(--gray-600);
+    color: var(--azul-marino);
     margin-bottom: 3rem;
 }
 
@@ -212,7 +224,7 @@ h1, h2, h3, h4 {
 
 .countdown-label {
     font-size: 0.9rem;
-    color: var(--gray-600);
+    color: var(--azul-marino);
     font-weight: 500;
 }
 
@@ -246,7 +258,7 @@ h1, h2, h3, h4 {
 
 .btn-primary {
     background: linear-gradient(135deg, var(--warm-orange), var(--bright-yellow));
-    color: white;
+    color: var(--azul-marino);
     box-shadow: 0 4px 15px rgba(255, 140, 66, 0.3);
 }
 
@@ -263,7 +275,7 @@ h1, h2, h3, h4 {
 
 .btn-secondary:hover {
     background-color: var(--deep-blue);
-    color: white;
+    color: var(--azul-marino);
 }
 
 .btn-full {
@@ -289,13 +301,13 @@ h1, h2, h3, h4 {
     font-weight: 600;
     text-align: center;
     margin-bottom: 1rem;
-    color: var(--gray-800);
+    color: var(--azul-marino);
 }
 
 .section-subtitle {
     text-align: center;
     font-size: 1.1rem;
-    color: var(--gray-700);
+    color: var(--azul-marino);
     max-width: 600px;
     margin: 0 auto 3rem;
     line-height: 1.8;
@@ -339,7 +351,7 @@ h1, h2, h3, h4 {
 
 .schedule-header h3 {
     font-size: 2rem;
-    color: var(--gray-800);
+    color: var(--azul-marino);
     margin-bottom: 0.5rem;
 }
 
@@ -377,28 +389,21 @@ h1, h2, h3, h4 {
     margin-bottom: 0;
 }
 
-.event-time-icon {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    flex-shrink: 0;
-    margin-bottom: 0.5rem;
+.event-content {
+    width: 100%;
 }
 
-.event-icon {
-    font-size: 2rem;
-}
-
-.event-time {
-    font-weight: 600;
-    color: var(--warm-orange);
-    font-size: 1.1rem;
+.event-header {
+    margin-bottom: 1rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 2px solid rgba(255, 140, 66, 0.2);
 }
 
 .event-content h4 {
-    font-size: 1.3rem;
-    margin-bottom: 1rem;
-    color: var(--gray-800);
+    font-size: 1.4rem;
+    margin: 0;
+    color: var(--azul-marino);
+    font-weight: 600;
 }
 
 .event-details {
@@ -408,7 +413,7 @@ h1, h2, h3, h4 {
 }
 
 .event-details p {
-    color: var(--gray-600);
+    color: var(--azul-marino);
     line-height: 1.7;
     margin: 0;
 }
@@ -432,12 +437,56 @@ h1, h2, h3, h4 {
     font-size: 0.95rem;
 }
 
+/* ===== HOTEL INFO ===== */
+.hotel-info-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: start;
+    margin-top: 2rem;
+}
+
+.hotel-discount {
+    background: rgba(255, 222, 89, 0.15);
+    padding: 2rem;
+    border-radius: 12px;
+    border: 2px solid var(--amarillo);
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.hotel-discount h4 {
+    color: var(--azul-marino);
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+}
+
+.hotel-discount p {
+    color: var(--azul-marino);
+    margin-bottom: 1rem;
+}
+
 /* ===== MAP ===== */
 .map-container {
     border-radius: 12px;
     overflow: hidden;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     margin: 2rem 0;
+    background: transparent;
+}
+
+.map-container-small {
+    border-radius: 12px;
+    overflow: hidden;
+    background: transparent;
+    height: 400px;
+    display: flex;
+    align-items: stretch;
+}
+
+.map-container-small iframe {
+    height: 100%;
 }
 
 .link-gold {
@@ -448,7 +497,7 @@ h1, h2, h3, h4 {
 }
 
 .link-gold:hover {
-    color: var(--warm-orange);
+    color: var(--azul-marino);
     text-decoration: underline;
 }
 
@@ -475,13 +524,15 @@ h1, h2, h3, h4 {
 .place-card {
     background: white;
     border-radius: 16px;
-    padding: 2.5rem;
+    padding: 0;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
     text-align: center;
     border: 2px solid transparent;
     position: relative;
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
 }
 
 .place-card::before {
@@ -506,15 +557,33 @@ h1, h2, h3, h4 {
     transform: scaleX(1);
 }
 
-.place-icon {
-    font-size: 4rem;
-    margin-bottom: 1.5rem;
-    display: block;
-    transition: transform 0.3s ease;
+.place-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 16px 16px 0 0;
+    margin-bottom: 0;
+    filter: sepia(40%) contrast(1.1);
+    transition: all 0.3s ease;
 }
 
-.place-card:hover .place-icon {
-    transform: scale(1.1) rotate(5deg);
+.place-card:hover .place-image {
+    transform: scale(1.02);
+    filter: sepia(30%) contrast(1.15);
+}
+
+.place-card h4,
+.place-card p {
+    padding: 0 2rem;
+}
+
+.place-card h4 {
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.place-card p {
+    padding-bottom: 2rem;
 }
 
 .place-card h4 {
@@ -526,7 +595,7 @@ h1, h2, h3, h4 {
 }
 
 .place-card p {
-    color: var(--gray-600);
+    color: var(--azul-marino);
     line-height: 1.8;
     font-size: 1rem;
 }
@@ -554,12 +623,12 @@ h1, h2, h3, h4 {
 }
 
 .recommendation-icon {
-    font-size: 2rem;
+    display: none;
 }
 
 .recommendation-header h3 {
     font-size: 1.8rem;
-    color: var(--gray-800);
+    color: var(--azul-marino);
 }
 
 .recommendation-content {
@@ -574,7 +643,7 @@ h1, h2, h3, h4 {
 }
 
 .recommendation-item p {
-    color: var(--gray-600);
+    color: var(--azul-marino);
     line-height: 1.7;
 }
 
@@ -651,7 +720,7 @@ h1, h2, h3, h4 {
     right: 0;
     background: none;
     border: none;
-    color: white;
+    color: var(--azul-marino);
     font-size: 2.5rem;
     cursor: pointer;
     padding: 0;
@@ -680,7 +749,7 @@ h1, h2, h3, h4 {
 .placeholder-badge {
     display: inline-block;
     background: rgba(255, 140, 66, 0.1);
-    color: var(--warm-orange);
+    color: var(--azul-marino);
     padding: 0.5rem 1rem;
     border-radius: 50px;
     font-weight: 600;
@@ -691,11 +760,11 @@ h1, h2, h3, h4 {
 .story-placeholder h3 {
     font-size: 1.8rem;
     margin-bottom: 1rem;
-    color: var(--gray-800);
+    color: var(--azul-marino);
 }
 
 .story-text {
-    color: var(--gray-600);
+    color: var(--azul-marino);
     font-style: italic;
     line-height: 1.8;
     margin-bottom: 2rem;
@@ -715,7 +784,7 @@ h1, h2, h3, h4 {
     border-radius: 4px;
     margin-top: 2rem;
     font-size: 0.9rem;
-    color: var(--gray-700);
+    color: var(--azul-marino);
 }
 
 /* ===== FAQ ===== */
@@ -744,7 +813,7 @@ h1, h2, h3, h4 {
     cursor: pointer;
     font-size: 1.1rem;
     font-weight: 600;
-    color: var(--gray-800);
+    color: var(--azul-marino);
     transition: background 0.3s ease;
 }
 
@@ -754,7 +823,7 @@ h1, h2, h3, h4 {
 
 .faq-icon {
     font-size: 1.5rem;
-    color: var(--warm-orange);
+    color: var(--azul-marino);
     transition: transform 0.3s ease;
 }
 
@@ -774,7 +843,7 @@ h1, h2, h3, h4 {
 
 .faq-answer p {
     padding: 0 1.5rem 1.5rem;
-    color: var(--gray-600);
+    color: var(--azul-marino);
     line-height: 1.8;
 }
 
@@ -808,11 +877,11 @@ h1, h2, h3, h4 {
 
 .gift-registry-header h3 {
     font-size: 1.8rem;
-    color: var(--gray-800);
+    color: var(--azul-marino);
 }
 
 .gift-description {
-    color: var(--gray-600);
+    color: var(--azul-marino);
     line-height: 1.8;
     margin-bottom: 1.5rem;
 }
@@ -837,7 +906,7 @@ h1, h2, h3, h4 {
 }
 
 .gift-store-item p {
-    color: var(--gray-600);
+    color: var(--azul-marino);
     margin-bottom: 0.5rem;
     line-height: 1.7;
 }
@@ -857,7 +926,7 @@ h1, h2, h3, h4 {
 }
 
 .gift-account p {
-    color: var(--gray-700);
+    color: var(--azul-marino);
     margin-bottom: 0.5rem;
     line-height: 1.7;
 }
@@ -871,7 +940,7 @@ h1, h2, h3, h4 {
 }
 
 .gift-note p {
-    color: var(--gray-700);
+    color: var(--azul-marino);
     font-size: 0.9rem;
     line-height: 1.6;
 }
@@ -899,16 +968,16 @@ h1, h2, h3, h4 {
 }
 
 .makeup-icon {
-    font-size: 2rem;
+    display: none;
 }
 
 .makeup-artist-header h3 {
     font-size: 1.8rem;
-    color: var(--gray-800);
+    color: var(--azul-marino);
 }
 
 .makeup-description {
-    color: var(--gray-600);
+    color: var(--azul-marino);
     line-height: 1.8;
     margin-bottom: 2rem;
 }
@@ -933,7 +1002,7 @@ h1, h2, h3, h4 {
 }
 
 .makeup-contact {
-    color: var(--gray-600);
+    color: var(--azul-marino);
     line-height: 1.8;
     margin-bottom: 0.75rem;
 }
@@ -957,7 +1026,7 @@ h1, h2, h3, h4 {
 }
 
 .makeup-tips h4 {
-    color: var(--gray-800);
+    color: var(--azul-marino);
     font-size: 1.2rem;
     margin-bottom: 1rem;
 }
@@ -968,7 +1037,7 @@ h1, h2, h3, h4 {
 }
 
 .makeup-tips-list li {
-    color: var(--gray-600);
+    color: var(--azul-marino);
     line-height: 1.8;
     margin-bottom: 0.75rem;
     padding-left: 1.5rem;
@@ -977,7 +1046,7 @@ h1, h2, h3, h4 {
 
 .makeup-tips-list li::before {
     content: "•";
-    color: var(--warm-orange);
+    color: var(--azul-marino);
     font-weight: bold;
     position: absolute;
     left: 0;
@@ -992,7 +1061,7 @@ h1, h2, h3, h4 {
 }
 
 .makeup-note p {
-    color: var(--gray-700);
+    color: var(--azul-marino);
     font-size: 0.9rem;
     line-height: 1.6;
 }
@@ -1042,14 +1111,14 @@ h1, h2, h3, h4 {
 
 .modal-header h3 {
     font-size: 1.8rem;
-    color: var(--gray-800);
+    color: var(--azul-marino);
 }
 
 .modal-close {
     background: none;
     border: none;
     font-size: 2rem;
-    color: var(--gray-500);
+    color: var(--azul-marino);
     cursor: pointer;
     padding: 0;
     width: 30px;
@@ -1059,7 +1128,7 @@ h1, h2, h3, h4 {
 }
 
 .modal-close:hover {
-    color: var(--gray-800);
+    color: var(--azul-marino);
 }
 
 .form-group {
@@ -1070,7 +1139,7 @@ h1, h2, h3, h4 {
     display: block;
     margin-bottom: 0.5rem;
     font-weight: 500;
-    color: var(--gray-700);
+    color: var(--azul-marino);
 }
 
 .form-group input,
@@ -1099,8 +1168,8 @@ h1, h2, h3, h4 {
 
 /* ===== FOOTER ===== */
 .footer {
-    background: var(--gray-800);
-    color: white;
+    background: var(--wedding-cream);
+    color: var(--azul-marino);
     padding: 3rem 1rem 1.5rem;
 }
 
@@ -1112,24 +1181,24 @@ h1, h2, h3, h4 {
 }
 
 .footer-column h3 {
-    color: var(--bright-yellow);
+    color: var(--azul-marino);
     margin-bottom: 1rem;
     font-size: 1.3rem;
 }
 
 .footer-column p {
-    color: rgba(255, 255, 255, 0.8);
+    color: var(--azul-marino);
     line-height: 1.8;
 }
 
 .footer-column a {
-    color: rgba(255, 255, 255, 0.8);
+    color: var(--azul-marino);
     text-decoration: none;
     transition: color 0.3s ease;
 }
 
 .footer-column a:hover {
-    color: var(--bright-yellow);
+    color: var(--naranja);
 }
 
 .social-links {
@@ -1147,7 +1216,7 @@ h1, h2, h3, h4 {
     text-align: center;
     padding-top: 2rem;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
-    color: rgba(255, 255, 255, 0.6);
+    color: var(--azul-marino);
 }
 
 /* ===== UTILITIES ===== */
@@ -1419,6 +1488,19 @@ h1, h2, h3, h4 {
         grid-template-columns: 1fr;
     }
 
+    .hotel-info-container {
+        grid-template-columns: 1fr;
+    }
+
+    .hotel-discount {
+        height: auto;
+        min-height: 300px;
+    }
+
+    .map-container-small {
+        height: 300px;
+    }
+
     .gift-store-item,
     .makeup-artist-item {
         padding: 1rem;
@@ -1426,6 +1508,19 @@ h1, h2, h3, h4 {
 
     .makeup-tips-list li {
         padding-left: 1rem;
+    }
+
+    .hotel-info-container {
+        grid-template-columns: 1fr;
+    }
+
+    .hotel-discount {
+        height: auto;
+        min-height: 300px;
+    }
+
+    .map-container-small {
+        height: 300px;
     }
 }
 
