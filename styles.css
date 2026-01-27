@@ -1368,12 +1368,6 @@ h1, h2, h3, h4 {
     }
 }
 
-/* Hide on mobile to avoid performance issues */
-@media (max-width: 768px) {
-    .flying-macaw {
-        display: none;
-    }
-}
 
 /* ===== ANIMATIONS ===== */
 @keyframes fadeIn {
@@ -1398,6 +1392,16 @@ h1, h2, h3, h4 {
 
 /* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
+    .flying-macaw {
+        width: 80px;
+        height: 80px;
+    }
+
+    .macaw-extracted {
+        width: 80px;
+        height: 80px;
+    }
+
     .navbar-menu {
         position: fixed;
         top: 70px;
