@@ -149,15 +149,35 @@ function showSection(sectionId) {
     }
     
     // En móvil: mostrar solo la sección seleccionada
-    // Ocultar todas las secciones
+    // Ocultar todas las secciones y resetear sus alturas
     document.querySelectorAll('.section-wrapper').forEach(wrapper => {
         wrapper.classList.remove('active');
+        // Resetear altura para que se recalcule en la próxima activación
+        wrapper.style.height = '';
+        wrapper.style.maxHeight = '';
     });
     
     // Mostrar la sección seleccionada
     const targetSection = document.querySelector(`.section-wrapper[data-section="${sectionId}"]`);
     if (targetSection) {
         targetSection.classList.add('active');
+        
+        // Ajustar la altura del wrapper al contenido real
+        setTimeout(() => {
+            const contentHeight = targetSection.scrollHeight;
+            const viewportHeight = window.innerHeight;
+            
+            // Si el contenido es más corto que el viewport, ajustar la altura
+            if (contentHeight < viewportHeight) {
+                targetSection.style.height = `${contentHeight}px`;
+                targetSection.style.maxHeight = `${contentHeight}px`;
+            } else {
+                // Si el contenido es más largo, usar 100vh para permitir scroll
+                targetSection.style.height = '100vh';
+                targetSection.style.maxHeight = '100vh';
+            }
+        }, 100);
+        
         // Hacer scroll al inicio de la sección
         targetSection.scrollTo({
             top: 0,

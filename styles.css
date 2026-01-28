@@ -192,6 +192,7 @@ h1, h2, h3, h4 {
         flex: 0 0 100%;
         width: 100%;
         height: 100vh;
+        max-height: 100vh;
         overflow-y: auto;
         overflow-x: hidden;
         -webkit-overflow-scrolling: touch;
@@ -205,9 +206,33 @@ h1, h2, h3, h4 {
         display: block;
     }
     
+    /* Ajustar el hero para que respete el navbar y no tenga espacio extra */
     .main-content .section-wrapper:first-child .hero {
-        min-height: 100vh;
-        height: 100vh;
+        min-height: calc(100vh - 80px);
+        height: auto;
+        padding-top: 80px;
+        padding-bottom: 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    /* Ajustar padding de las secciones para que respeten el navbar */
+    .main-content .section-wrapper.active .section {
+        padding-top: calc(80px + 2rem);
+        padding-bottom: 1rem;
+    }
+    
+    /* Eliminar márgenes extra al final de las secciones y contenedores */
+    .main-content .section-wrapper.active .section > *:last-child,
+    .main-content .section-wrapper.active .section .container > *:last-child {
+        margin-bottom: 0;
+    }
+    
+    /* Asegurar que el footer no tenga espacio extra */
+    .main-content .section-wrapper.active .footer {
+        padding-bottom: 1rem;
+        margin-bottom: 0;
     }
 }
 
