@@ -38,20 +38,23 @@ window.addEventListener('scroll', function() {
 });
 
 // ===== MOBILE MENU =====
-const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-const navbarMenu = document.getElementById('navbarMenu');
+function setupMobileMenu() {
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const navbarMenu = document.getElementById('navbarMenu');
+    
+    if (mobileMenuBtn && navbarMenu) {
+        mobileMenuBtn.addEventListener('click', function() {
+            navbarMenu.classList.toggle('active');
+        });
+    }
+}
 
-mobileMenuBtn.addEventListener('click', function() {
-    navbarMenu.classList.toggle('active');
-});
-
-// Cerrar menú móvil al hacer clic en un link
-const navLinks = document.querySelectorAll('.navbar-menu a');
-navLinks.forEach(link => {
-    link.addEventListener('click', function() {
-        navbarMenu.classList.remove('active');
-    });
-});
+// Inicializar menú móvil cuando el DOM esté listo
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', setupMobileMenu);
+} else {
+    setupMobileMenu();
+}
 
 
 // ===== FAQ TOGGLE =====
@@ -125,17 +128,208 @@ function handleRSVPSubmit(event) {
     // Opciones: EmailJS, Formspree, o crear una API route en tu backend
 }
 
-// ===== SMOOTH SCROLL =====
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
+// ===== MOBILE ACCORDION =====
+let accordionInitialized = false;
+
+function initAccordion() {
+    // Solo en móvil
+    if (window.innerWidth >= 768) {
+        // En desktop, asegurar que todo esté visible
+        document.querySelectorAll('.accordion-content').forEach(content => {
+            content.classList.add('accordion-open');
+        });
+        accordionInitialized = false; // Reset para que se reinicialice si vuelve a móvil
+        return;
+    }
+
+    const accordionHeaders = document.querySelectorAll('.accordion-header');
+    const accordionContents = document.querySelectorAll('.accordion-content');
+    
+    // Función para manejar el click en un header
+    function handleAccordionClick(e) {
         e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-            const offsetTop = target.offsetTop - 80;
+        
+        const contentId = this.getAttribute('aria-controls');
+        const content = document.getElementById(contentId);
+        const isExpanded = this.getAttribute('aria-expanded') === 'true';
+
+        // Cerrar todas las secciones
+        accordionContents.forEach(accContent => {
+            accContent.classList.remove('accordion-open');
+        });
+        accordionHeaders.forEach(accHeader => {
+            accHeader.setAttribute('aria-expanded', 'false');
+        });
+
+        // Si estaba cerrada, abrirla
+        if (!isExpanded && content) {
+            content.classList.add('accordion-open');
+            this.setAttribute('aria-expanded', 'true');
+            
+            // Scroll suave solo si el header no está completamente visible
+            setTimeout(() => {
+                const headerRect = this.getBoundingClientRect();
+                const viewportTop = window.pageYOffset;
+                const viewportBottom = viewportTop + window.innerHeight;
+                const headerTop = viewportTop + headerRect.top;
+                const headerBottom = headerTop + headerRect.height;
+                const offset = 80; // altura del navbar
+                
+                // Solo hacer scroll si el header no está visible o está parcialmente oculto
+                if (headerTop < viewportTop + offset || headerBottom > viewportBottom) {
+                    const targetPosition = headerTop - offset;
+                    window.scrollTo({
+                        top: Math.max(0, targetPosition),
+                        behavior: 'smooth'
+                    });
+                }
+            }, 150);
+        }
+    }
+
+    // Solo agregar event listeners una vez
+    if (!accordionInitialized) {
+        accordionHeaders.forEach(header => {
+            header.removeEventListener('click', handleAccordionClick); // Limpiar por si acaso
+            header.addEventListener('click', handleAccordionClick);
+        });
+        accordionInitialized = true;
+    }
+    
+    // Abrir RSVP por defecto (o primera sección si no existe RSVP)
+    const rsvpSection = document.getElementById('accordion-rsvp');
+    const firstSection = accordionContents[0];
+    
+    // Cerrar todas primero
+    accordionContents.forEach(accContent => {
+        accContent.classList.remove('accordion-open');
+    });
+    accordionHeaders.forEach(accHeader => {
+        accHeader.setAttribute('aria-expanded', 'false');
+    });
+    
+    if (rsvpSection) {
+        rsvpSection.classList.add('accordion-open');
+        const rsvpHeader = document.querySelector('[aria-controls="accordion-rsvp"]');
+        if (rsvpHeader) {
+            rsvpHeader.setAttribute('aria-expanded', 'true');
+        }
+    } else if (firstSection) {
+        firstSection.classList.add('accordion-open');
+        const firstHeader = document.querySelector(`[aria-controls="${firstSection.id}"]`);
+        if (firstHeader) {
+            firstHeader.setAttribute('aria-expanded', 'true');
+        }
+    }
+}
+
+// Inicializar acordeón al cargar y al redimensionar
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initAccordion);
+} else {
+    initAccordion();
+}
+
+let resizeTimeout;
+window.addEventListener('resize', function() {
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(function() {
+        // Si cambia a desktop, mostrar todo; si cambia a móvil, inicializar acordeón
+        if (window.innerWidth >= 768) {
+            // Desktop: mostrar todo
+            document.querySelectorAll('.accordion-content').forEach(content => {
+                content.classList.add('accordion-open');
+            });
+            document.querySelectorAll('.accordion-header').forEach(header => {
+                header.setAttribute('aria-expanded', 'false');
+            });
+            accordionInitialized = false; // Reset para que se reinicialice si vuelve a móvil
+        } else {
+            // Móvil: reinicializar acordeón
+            accordionInitialized = false; // Reset para reinicializar
+            initAccordion();
+        }
+    }, 250);
+});
+
+// ===== SMOOTH SCROLL =====
+function setupSmoothScroll() {
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            const href = this.getAttribute('href');
+            if (!href || href === '#') return;
+            
+            e.preventDefault();
+            e.stopPropagation();
+            
+            const target = document.querySelector(href);
+            if (!target) {
+                return;
+            }
+            
+            // Cerrar menú móvil si está abierto
+            const navbarMenu = document.getElementById('navbarMenu');
+            if (navbarMenu) {
+                navbarMenu.classList.remove('active');
+            }
+            
+            // En móvil, si es una sección de acordeón, abrirla primero
+            if (window.innerWidth < 768 && target.classList.contains('accordion-section')) {
+                const sectionId = target.id;
+                const contentId = `accordion-${sectionId}`;
+                const content = document.getElementById(contentId);
+                const header = document.querySelector(`[aria-controls="${contentId}"]`);
+                
+                if (content && header) {
+                    // Cerrar todas las secciones primero
+                    document.querySelectorAll('.accordion-content').forEach(accContent => {
+                        accContent.classList.remove('accordion-open');
+                    });
+                    document.querySelectorAll('.accordion-header').forEach(accHeader => {
+                        accHeader.setAttribute('aria-expanded', 'false');
+                    });
+                    
+                    // Forzar reflow
+                    void document.body.offsetHeight;
+                    
+                    // Abrir la sección objetivo
+                    content.classList.add('accordion-open');
+                    header.setAttribute('aria-expanded', 'true');
+                    
+                    // Scroll al header después de que el DOM se actualice
+                    setTimeout(() => {
+                        const rect = header.getBoundingClientRect();
+                        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                        const offset = 80;
+                        const targetPosition = rect.top + scrollTop - offset;
+                        
+                        window.scrollTo({
+                            top: targetPosition,
+                            behavior: 'smooth'
+                        });
+                    }, 300);
+                    
+                    return;
+                }
+            }
+            
+            // Comportamiento normal de scroll (desktop o secciones sin acordeón)
+            const rect = target.getBoundingClientRect();
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            const offset = 80;
+            const targetPosition = rect.top + scrollTop - offset;
+            
             window.scrollTo({
-                top: offsetTop,
+                top: targetPosition,
                 behavior: 'smooth'
             });
-        }
+        });
     });
-});
+}
+
+// Inicializar smooth scroll cuando el DOM esté listo
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', setupSmoothScroll);
+} else {
+    setupSmoothScroll();
+}

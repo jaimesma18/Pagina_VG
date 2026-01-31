@@ -40,7 +40,7 @@
 
 html {
     scroll-behavior: smooth;
-    scroll-padding-top: 80px;
+    /* scroll-padding-top se maneja manualmente en JS */
 }
 
 body {
@@ -285,6 +285,13 @@ h1, h2, h3, h4 {
 /* ===== SECTIONS ===== */
 .section {
     padding: 4rem 1rem;
+}
+
+/* En móvil, las secciones con acordeón no deben tener padding vertical */
+@media (max-width: 767px) {
+    .accordion-section.section {
+        padding: 0;
+    }
 }
 
 .section.bg-white {
@@ -1387,6 +1394,118 @@ h1, h2, h3, h4 {
     }
     50% {
         transform: translateY(10px);
+    }
+}
+
+/* ===== ACCORDION MOBILE ===== */
+.mobile-only {
+    display: none;
+}
+
+.desktop-only {
+    display: block;
+}
+
+.accordion-section {
+    position: relative;
+}
+
+.accordion-header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem;
+    background: rgba(255, 248, 240, 0.6);
+    border: none;
+    border-bottom: 2px solid var(--naranja);
+    cursor: pointer;
+    text-align: left;
+    transition: background 0.3s ease;
+}
+
+.accordion-header:hover {
+    background: rgba(255, 248, 240, 0.8);
+}
+
+.accordion-header h2 {
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+.accordion-chevron {
+    flex-shrink: 0;
+    transition: transform 0.3s ease;
+    color: var(--azul-marino);
+}
+
+.accordion-header[aria-expanded="true"] .accordion-chevron {
+    transform: rotate(180deg);
+}
+
+.accordion-content {
+    /* NO usar overflow aquí - el contenido fluye naturalmente */
+    transition: max-height 0.4s ease, opacity 0.3s ease;
+}
+
+/* En móvil, ocultar contenido por defecto */
+@media (max-width: 767px) {
+    .mobile-only {
+        display: flex;
+    }
+
+    .desktop-only {
+        display: none;
+    }
+
+    .accordion-content {
+        max-height: 0;
+        opacity: 0;
+        overflow: hidden;
+        padding-top: 0 !important;
+        padding-bottom: 0 !important;
+        margin: 0;
+        transition: max-height 0.4s ease, opacity 0.3s ease, padding 0.4s ease;
+    }
+
+    .accordion-content.accordion-open {
+        max-height: 5000px; /* Valor grande pero no infinito para animación */
+        opacity: 1;
+        padding-top: 2rem !important;
+        padding-bottom: 2rem !important;
+    }
+    
+    /* Ajustar padding del container dentro del acordeón */
+    .accordion-content.accordion-open .container {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+
+    /* Asegurar que no haya scroll interno - CRÍTICO */
+    .accordion-content,
+    .accordion-section,
+    .section {
+        overflow: visible !important;
+    }
+
+    /* Asegurar que el body tenga scroll natural */
+    body {
+        overflow-x: hidden;
+        overflow-y: auto;
+    }
+}
+
+/* Desktop: mostrar todo normalmente */
+@media (min-width: 768px) {
+    .accordion-header {
+        display: none;
+    }
+
+    .accordion-content {
+        max-height: none !important;
+        opacity: 1 !important;
+        padding-top: 0 !important;
+        padding-bottom: 0 !important;
     }
 }
 
