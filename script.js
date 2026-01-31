@@ -289,25 +289,27 @@ function setupSmoothScroll() {
                         accHeader.setAttribute('aria-expanded', 'false');
                     });
                     
-                    // Forzar reflow
+                    // Forzar reflow para que el DOM se actualice
                     void document.body.offsetHeight;
+                    
+                    // Calcular posición del header cuando está cerrado
+                    const headerRect = header.getBoundingClientRect();
+                    const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+                    const headerTop = headerRect.top + currentScroll;
+                    const offset = 80;
+                    const targetPosition = headerTop - offset;
                     
                     // Abrir la sección objetivo
                     content.classList.add('accordion-open');
                     header.setAttribute('aria-expanded', 'true');
                     
-                    // Scroll al header después de que el DOM se actualice
+                    // Scroll al header - usar la posición calculada
                     setTimeout(() => {
-                        const rect = header.getBoundingClientRect();
-                        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-                        const offset = 80;
-                        const targetPosition = rect.top + scrollTop - offset;
-                        
                         window.scrollTo({
-                            top: targetPosition,
+                            top: Math.max(0, targetPosition),
                             behavior: 'smooth'
                         });
-                    }, 300);
+                    }, 200);
                     
                     return;
                 }
