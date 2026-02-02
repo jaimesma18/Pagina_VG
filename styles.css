@@ -1489,8 +1489,7 @@ h1, h2, h3, h4 {
         padding-right: 1rem;
     }
 
-    /* Asegurar que no haya scroll interno - CRÍTICO */
-    .accordion-content,
+    /* Asegurar que no haya scroll interno */
     .accordion-section,
     .section {
         overflow: visible !important;
