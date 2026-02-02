@@ -168,114 +168,63 @@ function initAccordion() {
     const accordionContents = document.querySelectorAll('.accordion-content');
     
     // Función para manejar el click en un header
+    // MOBILE ONLY: Only open/close accordion, NO scroll, NO hash updates, NO focus scroll
     function handleAccordionClick(e) {
-        // ALWAYS preventDefault en mobile - NO permitir scroll nativo
         const isMobile = window.innerWidth < 768;
+        const header = this;
+        
+        // ALWAYS preventDefault en mobile - NO permitir scroll nativo ni focus scroll
         if (isMobile) {
             e.preventDefault();
             e.stopPropagation();
             e.stopImmediatePropagation();
+            
+            // Prevent focus-triggered scrolling by removing focus immediately
+            // Blur immediately to prevent browser from scrolling to focused element
+            header.blur();
+            
+            // Also blur in next frame as backup
+            requestAnimationFrame(() => {
+                header.blur();
+            });
         } else {
             e.preventDefault();
         }
         
-        const contentId = this.getAttribute('aria-controls');
+        const contentId = header.getAttribute('aria-controls');
         const content = document.getElementById(contentId);
-        const isExpanded = this.getAttribute('aria-expanded') === 'true';
+        const isExpanded = header.getAttribute('aria-expanded') === 'true';
 
         // Si estaba abierta, cerrarla
         if (isExpanded && content) {
             content.classList.remove('accordion-open');
-            this.setAttribute('aria-expanded', 'false');
+            header.setAttribute('aria-expanded', 'false');
+            console.log('[ACCORDION] Collapsed section via header click:', contentId);
             return;
         }
 
-        // Si estaba cerrada, abrirla
-        if (!isExpanded && content) {
-            // Guardar referencia al header (this se pierde en funciones anidadas)
-            const header = this;
-            const sectionId = content.id.replace('accordion-', '');
-            const targetHash = `#${sectionId}`;
-            
-            console.log('[ACCORDION-CLICK] Opening section');
-            
-            // Deshabilitar scroll-behavior smooth temporalmente para que cualquier scroll automático sea instantáneo (menos visible)
-            const html = document.documentElement;
-            const originalScrollBehavior = html.style.scrollBehavior;
-            html.style.scrollBehavior = 'auto';
-            
-            // Identificar sección que se va a cerrar (si hay una)
-            const currentlyOpen = Array.from(accordionContents).find(acc => acc.classList.contains('accordion-open'));
-            
-            // Cerrar solo la sección actualmente abierta (si hay una)
-            if (currentlyOpen && currentlyOpen !== content) {
-                console.log('[ACCORDION-CLICK] Closing currently open section');
-                
-                currentlyOpen.classList.remove('accordion-open');
-                const openHeader = document.querySelector(`[aria-controls="${currentlyOpen.id}"]`);
-                if (openHeader) {
-                    openHeader.setAttribute('aria-expanded', 'false');
-                }
-                
-                // Esperar a que termine la animación de cierre (transitionend max-height)
-                waitForTransition(currentlyOpen).then(() => {
-                    // Abrir la sección objetivo
-                    content.classList.add('accordion-open');
-                    header.setAttribute('aria-expanded', 'true');
-                    
-                    // Esperar a que termine la animación de apertura (transitionend max-height)
-                    waitForTransition(content).then(() => {
-                        // Restaurar scroll-behavior smooth antes del scroll final
-                        html.style.scrollBehavior = originalScrollBehavior || '';
-                        
-                        // Esperar a que el layout esté completamente estable
-                        requestAnimationFrame(() => {
-                            requestAnimationFrame(() => {
-                                // UN SOLO scrollIntoView() al header de la sección destino
-                                // El scroll-margin-top en CSS maneja el offset del navbar sticky
-                                console.log('[ACCORDION-CLICK] Scrolling to header');
-                                
-                                // Marcar que este scroll es nuestro ANTES de llamar scrollIntoView
-                                isOurScroll = true;
-                                scrollSource = 'scrollIntoView-accordion-click';
-                                
-                                header.scrollIntoView({
-                                    behavior: 'smooth',
-                                    block: 'start'
-                                });
-                                
-                                // Mantener el flag durante la animación smooth (puede durar ~500-1000ms)
-                                // Actualizar hash DESPUÉS de que termine la animación smooth para evitar scroll nativo
-                                setTimeout(() => {
-                                    isOurScroll = false;
-                                    scrollSource = 'unknown';
-                                    // Actualizar hash DESPUÉS del scroll final - NO usar location.hash
-                                    history.replaceState(null, '', targetHash);
-                                    console.log('[ACCORDION-CLICK] Hash updated (AFTER scroll):', targetHash);
-                                }, 1200); // Reset después de que termine la animación smooth
-                            });
-                        });
-                    });
-                });
-            } else {
-                // No hay sección abierta, abrir directamente
-                // NO hacer scroll porque el usuario ya está ahí (hizo clic directo en el header)
-                content.classList.add('accordion-open');
-                header.setAttribute('aria-expanded', 'true');
-                
-                // Restaurar scroll-behavior smooth
-                html.style.scrollBehavior = originalScrollBehavior || '';
-                
-                // Actualizar hash (sin scroll)
-                history.replaceState(null, '', targetHash);
-                console.log('[ACCORDION-CLICK] Hash updated (no scroll needed):', targetHash);
-            }
+        // Si estaba abierta, cerrarla
+        if (isExpanded && content) {
+            content.classList.remove('accordion-open');
+            header.setAttribute('aria-expanded', 'false');
+            console.log('[ACCORDION] Collapsed section via header click:', contentId);
+        } 
+        // Si estaba cerrada, abrirla (SIN cerrar otras)
+        else if (content) {
+            console.log('[ACCORDION] Opening section:', contentId);
+            content.classList.add('accordion-open');
+            header.setAttribute('aria-expanded', 'true');
         }
     }
 
     // Solo agregar event listeners una vez
     if (!accordionInitialized) {
         accordionHeaders.forEach(header => {
+            // Prevent focus scroll by setting tabindex to -1 on mobile
+            if (window.innerWidth < 768) {
+                header.setAttribute('tabindex', '-1');
+            }
+            
             header.removeEventListener('click', handleAccordionClick); // Limpiar por si acaso
             header.addEventListener('click', handleAccordionClick);
         });
