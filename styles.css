@@ -488,12 +488,15 @@ h1, h2, h3, h4 {
     overflow: hidden;
     background: transparent;
     height: 400px;
+    aspect-ratio: 16 / 9; /* Prevenir layout shift */
     display: flex;
     align-items: stretch;
 }
 
 .map-container-small iframe {
     height: 100%;
+    width: 100%;
+    aspect-ratio: 16 / 9; /* Prevenir layout shift */
 }
 
 .link-gold {
@@ -567,6 +570,7 @@ h1, h2, h3, h4 {
 .place-image {
     width: 100%;
     height: 200px;
+    aspect-ratio: 4 / 3; /* Prevenir layout shift */
     object-fit: cover;
     border-radius: 16px 16px 0 0;
     margin-bottom: 0;
@@ -1422,6 +1426,7 @@ h1, h2, h3, h4 {
     cursor: pointer;
     text-align: left;
     transition: background 0.3s ease;
+    scroll-margin-top: 80px; /* Offset para el navbar sticky */
 }
 
 .accordion-header:hover {
@@ -1446,6 +1451,8 @@ h1, h2, h3, h4 {
 .accordion-content {
     /* NO usar overflow aquí - el contenido fluye naturalmente */
     transition: max-height 0.4s ease, opacity 0.3s ease;
+    /* Desactivar scroll anchoring del navegador para evitar scroll automático al cerrar secciones */
+    overflow-anchor: none;
 }
 
 /* En móvil, ocultar contenido por defecto */
@@ -1489,6 +1496,15 @@ h1, h2, h3, h4 {
     }
 
     /* Asegurar que el body tenga scroll natural */
+    /* Force visibility for all accordion sections in any container - CRITICAL */
+    .container .accordion-section,
+    .section .accordion-section,
+    div .accordion-section {
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+    }
+
     body {
         overflow-x: hidden;
         overflow-y: auto;

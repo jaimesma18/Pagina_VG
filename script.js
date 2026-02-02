@@ -1,3 +1,25 @@
+// ===== SCROLL DEBUGGING =====
+// Wrap scrollIntoView to log all calls with stack traces
+const originalScrollIntoView = Element.prototype.scrollIntoView;
+Element.prototype.scrollIntoView = function(...args) {
+    console.log('[SCROLL-DEBUG] scrollIntoView called:', {
+        element: this.tagName + (this.id ? '#' + this.id : '') + (this.className ? '.' + this.className.split(' ')[0] : ''),
+        args: args
+    });
+    console.trace('[SCROLL-DEBUG] scrollIntoView stack trace:');
+    return originalScrollIntoView.apply(this, args);
+};
+
+// Wrap window.scrollTo to log all calls with stack traces
+const originalWindowScrollTo = window.scrollTo;
+window.scrollTo = function(...args) {
+    console.log('[SCROLL-DEBUG] window.scrollTo called:', {
+        args: args
+    });
+    console.trace('[SCROLL-DEBUG] window.scrollTo stack trace:');
+    return originalWindowScrollTo.apply(window, args);
+};
+
 // ===== COUNTDOWN =====
 function updateCountdown() {
     // Fecha del evento: 17 de mayo de 2026, 16:30 (4:30 PM) hora de Cartagena (America/Bogota, UTC-5)
@@ -147,43 +169,107 @@ function initAccordion() {
     
     // Función para manejar el click en un header
     function handleAccordionClick(e) {
-        e.preventDefault();
+        // ALWAYS preventDefault en mobile - NO permitir scroll nativo
+        const isMobile = window.innerWidth < 768;
+        if (isMobile) {
+            e.preventDefault();
+            e.stopPropagation();
+            e.stopImmediatePropagation();
+        } else {
+            e.preventDefault();
+        }
         
         const contentId = this.getAttribute('aria-controls');
         const content = document.getElementById(contentId);
         const isExpanded = this.getAttribute('aria-expanded') === 'true';
 
-        // Cerrar todas las secciones
-        accordionContents.forEach(accContent => {
-            accContent.classList.remove('accordion-open');
-        });
-        accordionHeaders.forEach(accHeader => {
-            accHeader.setAttribute('aria-expanded', 'false');
-        });
+        // Si estaba abierta, cerrarla
+        if (isExpanded && content) {
+            content.classList.remove('accordion-open');
+            this.setAttribute('aria-expanded', 'false');
+            return;
+        }
 
         // Si estaba cerrada, abrirla
         if (!isExpanded && content) {
-            content.classList.add('accordion-open');
-            this.setAttribute('aria-expanded', 'true');
+            // Guardar referencia al header (this se pierde en funciones anidadas)
+            const header = this;
+            const sectionId = content.id.replace('accordion-', '');
+            const targetHash = `#${sectionId}`;
             
-            // Scroll suave solo si el header no está completamente visible
-            setTimeout(() => {
-                const headerRect = this.getBoundingClientRect();
-                const viewportTop = window.pageYOffset;
-                const viewportBottom = viewportTop + window.innerHeight;
-                const headerTop = viewportTop + headerRect.top;
-                const headerBottom = headerTop + headerRect.height;
-                const offset = 80; // altura del navbar
+            console.log('[ACCORDION-CLICK] Opening section');
+            
+            // Deshabilitar scroll-behavior smooth temporalmente para que cualquier scroll automático sea instantáneo (menos visible)
+            const html = document.documentElement;
+            const originalScrollBehavior = html.style.scrollBehavior;
+            html.style.scrollBehavior = 'auto';
+            
+            // Identificar sección que se va a cerrar (si hay una)
+            const currentlyOpen = Array.from(accordionContents).find(acc => acc.classList.contains('accordion-open'));
+            
+            // Cerrar solo la sección actualmente abierta (si hay una)
+            if (currentlyOpen && currentlyOpen !== content) {
+                console.log('[ACCORDION-CLICK] Closing currently open section');
                 
-                // Solo hacer scroll si el header no está visible o está parcialmente oculto
-                if (headerTop < viewportTop + offset || headerBottom > viewportBottom) {
-                    const targetPosition = headerTop - offset;
-                    window.scrollTo({
-                        top: Math.max(0, targetPosition),
-                        behavior: 'smooth'
-                    });
+                currentlyOpen.classList.remove('accordion-open');
+                const openHeader = document.querySelector(`[aria-controls="${currentlyOpen.id}"]`);
+                if (openHeader) {
+                    openHeader.setAttribute('aria-expanded', 'false');
                 }
-            }, 150);
+                
+                // Esperar a que termine la animación de cierre (transitionend max-height)
+                waitForTransition(currentlyOpen).then(() => {
+                    // Abrir la sección objetivo
+                    content.classList.add('accordion-open');
+                    header.setAttribute('aria-expanded', 'true');
+                    
+                    // Esperar a que termine la animación de apertura (transitionend max-height)
+                    waitForTransition(content).then(() => {
+                        // Restaurar scroll-behavior smooth antes del scroll final
+                        html.style.scrollBehavior = originalScrollBehavior || '';
+                        
+                        // Esperar a que el layout esté completamente estable
+                        requestAnimationFrame(() => {
+                            requestAnimationFrame(() => {
+                                // UN SOLO scrollIntoView() al header de la sección destino
+                                // El scroll-margin-top en CSS maneja el offset del navbar sticky
+                                console.log('[ACCORDION-CLICK] Scrolling to header');
+                                
+                                // Marcar que este scroll es nuestro ANTES de llamar scrollIntoView
+                                isOurScroll = true;
+                                scrollSource = 'scrollIntoView-accordion-click';
+                                
+                                header.scrollIntoView({
+                                    behavior: 'smooth',
+                                    block: 'start'
+                                });
+                                
+                                // Mantener el flag durante la animación smooth (puede durar ~500-1000ms)
+                                // Actualizar hash DESPUÉS de que termine la animación smooth para evitar scroll nativo
+                                setTimeout(() => {
+                                    isOurScroll = false;
+                                    scrollSource = 'unknown';
+                                    // Actualizar hash DESPUÉS del scroll final - NO usar location.hash
+                                    history.replaceState(null, '', targetHash);
+                                    console.log('[ACCORDION-CLICK] Hash updated (AFTER scroll):', targetHash);
+                                }, 1200); // Reset después de que termine la animación smooth
+                            });
+                        });
+                    });
+                });
+            } else {
+                // No hay sección abierta, abrir directamente
+                // NO hacer scroll porque el usuario ya está ahí (hizo clic directo en el header)
+                content.classList.add('accordion-open');
+                header.setAttribute('aria-expanded', 'true');
+                
+                // Restaurar scroll-behavior smooth
+                html.style.scrollBehavior = originalScrollBehavior || '';
+                
+                // Actualizar hash (sin scroll)
+                history.replaceState(null, '', targetHash);
+                console.log('[ACCORDION-CLICK] Hash updated (no scroll needed):', targetHash);
+            }
         }
     }
 
@@ -259,74 +345,253 @@ function setupSmoothScroll() {
             const href = this.getAttribute('href');
             if (!href || href === '#') return;
             
-            e.preventDefault();
-            e.stopPropagation();
+            const isMobile = window.innerWidth < 768;
+            const scrollYBefore = window.pageYOffset || window.scrollY;
+            
+            console.log('[NAV] Click detected', {
+                href,
+                isMobile,
+                scrollYBefore,
+                timestamp: Date.now()
+            });
+            
+            // ALWAYS preventDefault en mobile para navbar section links - NO permitir salto nativo
+            // Esto elimina completamente el scroll nativo de anchor/hash
+            if (isMobile) {
+                console.log('[NAV] preventDefault() called (mobile) - blocking native anchor jump completely');
+                e.preventDefault();
+                e.stopPropagation();
+                e.stopImmediatePropagation();
+            } else {
+                e.preventDefault();
+                e.stopPropagation();
+            }
             
             const target = document.querySelector(href);
             if (!target) {
+                console.log('[NAV] Target not found:', href);
                 return;
             }
             
-            // Cerrar menú móvil si está abierto
+            // Cerrar menú móvil PRIMERO antes de hacer cualquier scroll
             const navbarMenu = document.getElementById('navbarMenu');
-            if (navbarMenu) {
+            if (navbarMenu && navbarMenu.classList.contains('active')) {
                 navbarMenu.classList.remove('active');
+                // Pequeño delay para que el menú se cierre antes de calcular posiciones
+                setTimeout(() => {
+                    handleScroll(target, href, scrollYBefore);
+                }, 100);
+            } else {
+                handleScroll(target, href, scrollYBefore);
             }
-            
-            // En móvil, si es una sección de acordeón, abrirla primero
-            if (window.innerWidth < 768 && target.classList.contains('accordion-section')) {
-                const sectionId = target.id;
-                const contentId = `accordion-${sectionId}`;
-                const content = document.getElementById(contentId);
-                const header = document.querySelector(`[aria-controls="${contentId}"]`);
-                
-                if (content && header) {
-                    // Cerrar todas las secciones primero
-                    document.querySelectorAll('.accordion-content').forEach(accContent => {
-                        accContent.classList.remove('accordion-open');
-                    });
-                    document.querySelectorAll('.accordion-header').forEach(accHeader => {
-                        accHeader.setAttribute('aria-expanded', 'false');
-                    });
-                    
-                    // Forzar reflow para que el DOM se actualice
-                    void document.body.offsetHeight;
-                    
-                    // Calcular posición del header cuando está cerrado
-                    const headerRect = header.getBoundingClientRect();
-                    const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
-                    const headerTop = headerRect.top + currentScroll;
-                    const offset = 80;
-                    const targetPosition = headerTop - offset;
-                    
-                    // Abrir la sección objetivo
-                    content.classList.add('accordion-open');
-                    header.setAttribute('aria-expanded', 'true');
-                    
-                    // Scroll al header - usar la posición calculada
-                    setTimeout(() => {
-                        window.scrollTo({
-                            top: Math.max(0, targetPosition),
-                            behavior: 'smooth'
-                        });
-                    }, 200);
-                    
-                    return;
-                }
-            }
-            
-            // Comportamiento normal de scroll (desktop o secciones sin acordeón)
-            const rect = target.getBoundingClientRect();
-            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-            const offset = 80;
-            const targetPosition = rect.top + scrollTop - offset;
-            
-            window.scrollTo({
-                top: targetPosition,
-                behavior: 'smooth'
-            });
-        });
+        }, true); // Use capture phase to intercept before any other handlers
     });
+}
+
+// Logs para detectar doble scroll
+window.addEventListener('hashchange', function(e) {
+    console.log('[HASHCHANGE] Hash changed:', {
+        oldURL: e.oldURL,
+        newURL: e.newURL,
+        hash: window.location.hash,
+        scrollY: window.pageYOffset || window.scrollY,
+        timestamp: Date.now()
+    });
+    console.trace('[HASHCHANGE] hashchange stack trace:');
+});
+
+let lastScrollLog = 0;
+let lastScrollY = window.pageYOffset || window.scrollY;
+let scrollSource = 'unknown'; // Track what caused the scroll
+let isOurScroll = false; // Flag to mark our programmatic scrolls
+
+window.addEventListener('scroll', function() {
+    const now = Date.now();
+    const currentScrollY = window.pageYOffset || window.scrollY;
+    const scrollDelta = currentScrollY - lastScrollY;
+    
+    // Throttle logs a 50ms for better detection
+    if (now - lastScrollLog > 50) {
+        // Detect if this is an unexpected scroll
+        const isUnexpected = !isOurScroll && Math.abs(scrollDelta) > 10;
+        const logLevel = isUnexpected ? '⚠️ [SCROLL-ERROR]' : '[SCROLL]';
+        
+        console.log(`${logLevel} Scroll event:`, {
+            scrollY: currentScrollY,
+            scrollDelta: scrollDelta.toFixed(2),
+            source: scrollSource,
+            isOurScroll: isOurScroll,
+            isUnexpected: isUnexpected,
+            timestamp: now,
+            stack: isUnexpected ? new Error().stack : undefined
+        });
+        
+        lastScrollY = currentScrollY;
+        lastScrollLog = now;
+        isOurScroll = false; // Reset flag after logging
+        scrollSource = 'unknown';
+    }
+}, { passive: true });
+
+// Helper para esperar que termine una transición CSS
+function waitForTransition(element) {
+    return new Promise((resolve) => {
+        // Verificar si hay transición activa
+        const computedStyle = window.getComputedStyle(element);
+        const transitionDuration = computedStyle.transitionDuration;
+        const duration = parseFloat(transitionDuration) || 0;
+        
+        // Si no hay transición o duration es 0, resolver inmediatamente
+        if (duration === 0 || !transitionDuration || transitionDuration === '0s') {
+            resolve();
+            return;
+        }
+        
+        // Esperar transitionend
+        const handleTransitionEnd = (e) => {
+            // SOLO escuchar transiciones de max-height (la propiedad que animamos)
+            if (e.propertyName === 'max-height') {
+                console.log('[transitionend] max-height transition ended for', element.id || element.className);
+                element.removeEventListener('transitionend', handleTransitionEnd);
+                resolve();
+            }
+        };
+        
+        element.addEventListener('transitionend', handleTransitionEnd);
+        
+        // Fallback de seguridad: si no hay transitionend en tiempo razonable, resolver
+        setTimeout(() => {
+            element.removeEventListener('transitionend', handleTransitionEnd);
+            resolve();
+        }, (duration * 1000) + 100); // duration en ms + 100ms buffer
+    });
+}
+
+async function handleScroll(target, href, scrollYBefore) {
+    const scrollYBeforeScroll = window.pageYOffset || window.scrollY;
+    console.log('[SCROLL] handleScroll called', {
+        targetId: target.id,
+        href,
+        scrollYBefore,
+        scrollYBeforeScroll,
+        timestamp: Date.now()
+    });
+    
+    // En móvil, si es una sección de acordeón, abrirla primero
+    if (window.innerWidth < 768 && target.classList.contains('accordion-section')) {
+        const sectionId = target.id;
+        const contentId = `accordion-${sectionId}`;
+        const content = document.getElementById(contentId);
+        const header = document.querySelector(`[aria-controls="${contentId}"]`);
+        
+        if (content && header) {
+            console.log('[ACCORDION] Mobile accordion navigation started', {
+                sectionId,
+                contentId,
+                scrollYBefore: scrollYBeforeScroll
+            });
+            
+            // PASO 1: Cerrar todas las secciones primero (solo una abierta a la vez)
+            const accordionContents = document.querySelectorAll('.accordion-content');
+            const closingElements = [];
+            
+            accordionContents.forEach(accContent => {
+                if (accContent.classList.contains('accordion-open')) {
+                    closingElements.push(accContent);
+                    accContent.classList.remove('accordion-open');
+                }
+            });
+            document.querySelectorAll('.accordion-header').forEach(accHeader => {
+                accHeader.setAttribute('aria-expanded', 'false');
+            });
+            
+            console.log('[ACCORDION] Closing', closingElements.length, 'sections');
+            
+            // PASO 2: Esperar a que todas las secciones que se están cerrando terminen su transición
+            if (closingElements.length > 0) {
+                await Promise.all(closingElements.map(el => waitForTransition(el)));
+                console.log('[ACCORDION] All sections closed, scrollY:', window.pageYOffset || window.scrollY);
+            }
+            
+            // PASO 3: Esperar a que el layout se estabilice después del cierre
+            await new Promise(resolve => {
+                requestAnimationFrame(() => {
+                    requestAnimationFrame(resolve);
+                });
+            });
+            
+            // PASO 4: Abrir la sección objetivo
+            // El layout está estable después del cierre (igual que cuando está cerrada)
+            content.classList.add('accordion-open');
+            header.setAttribute('aria-expanded', 'true');
+            console.log('[ACCORDION] Opening section', sectionId);
+            
+            // PASO 5: Esperar a que termine la animación de apertura
+            await waitForTransition(content);
+            console.log('[ACCORDION] Section opened, scrollY:', window.pageYOffset || window.scrollY);
+            
+            // Esperar a que el layout esté completamente estable antes del scroll
+            await new Promise(resolve => {
+                requestAnimationFrame(() => {
+                    requestAnimationFrame(resolve);
+                });
+            });
+            
+            // UN SOLO scrollIntoView() al header - NO usar window.scrollTo
+            const scrollYBeforeScrollIntoView = window.pageYOffset || window.scrollY;
+            console.log('[SCROLL] Calling scrollIntoView (ONLY scroll call), scrollY before:', scrollYBeforeScrollIntoView);
+            
+            // Marcar que este scroll es nuestro ANTES de llamar scrollIntoView
+            isOurScroll = true;
+            scrollSource = 'scrollIntoView-mobile-accordion';
+            
+            header.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+            
+            // Mantener el flag durante la animación smooth (puede durar ~500-1000ms)
+            setTimeout(() => {
+                isOurScroll = false;
+                scrollSource = 'unknown';
+            }, 1200); // Reset después de que termine la animación smooth
+            
+            // Actualizar hash DESPUÉS del scroll final - NO usar location.hash
+            // Esperar un momento para que el scroll comience
+            setTimeout(() => {
+                const scrollYAfter = window.pageYOffset || window.scrollY;
+                console.log('[SCROLL] scrollIntoView completed, scrollY after:', scrollYAfter, 'delta:', (scrollYAfter - scrollYBeforeScrollIntoView).toFixed(2));
+                console.log('[URL] Updating URL with history.replaceState (AFTER scroll)');
+                history.replaceState(null, '', href);
+                console.log('[URL] URL updated, hash:', window.location.hash);
+            }, 100);
+            
+            return;
+        }
+    }
+    
+    // Comportamiento normal de scroll (desktop o secciones sin acordeón)
+    // En desktop, usar scrollIntoView también (NO window.scrollTo)
+    console.log('[SCROLL] Normal scroll (desktop) - using scrollIntoView');
+    
+    // Marcar que este scroll es nuestro
+    isOurScroll = true;
+    scrollSource = 'scrollIntoView-desktop';
+    
+    // Usar scrollIntoView en lugar de window.scrollTo
+    target.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+    });
+    
+    // Actualizar hash DESPUÉS del scroll final
+    setTimeout(() => {
+        const scrollYAfter = window.pageYOffset || window.scrollY;
+        console.log('[SCROLL] scrollIntoView completed, scrollY after:', scrollYAfter);
+        console.log('[URL] Updating URL with history.replaceState (AFTER scroll)');
+        history.replaceState(null, '', href);
+        console.log('[URL] URL updated, hash:', window.location.hash);
+    }, 100);
 }
 
 // Inicializar smooth scroll cuando el DOM esté listo
