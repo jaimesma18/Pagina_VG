@@ -41,6 +41,7 @@
 html {
     scroll-behavior: smooth;
     /* scroll-padding-top se maneja manualmente en JS */
+    overflow-anchor: none; /* Prevenir scroll automático del navegador */
 }
 
 body {
@@ -48,6 +49,7 @@ body {
     background-color: var(--wedding-cream);
     color: var(--azul-marino);
     line-height: 1.6;
+    overflow-anchor: none; /* Prevenir scroll automático del navegador */
 }
 
 /* ===== TYPOGRAPHY ===== */
@@ -1412,6 +1414,7 @@ h1, h2, h3, h4 {
 
 .accordion-section {
     position: relative;
+    margin-bottom: 1.5rem; /* Espacio entre secciones */
 }
 
 .accordion-header {
@@ -1420,17 +1423,19 @@ h1, h2, h3, h4 {
     justify-content: space-between;
     align-items: center;
     padding: 1.5rem;
-    background: rgba(255, 248, 240, 0.6);
+    background: rgb(255, 248, 240); /* Opaco - sin transparencia */
     border: none;
     border-bottom: 2px solid var(--naranja);
     cursor: pointer;
     text-align: left;
     transition: background 0.3s ease;
     scroll-margin-top: 80px; /* Offset para el navbar sticky */
+    position: relative; /* Asegurar que esté por encima del contenido */
+    z-index: 1; /* Por encima del contenido */
 }
 
 .accordion-header:hover {
-    background: rgba(255, 248, 240, 0.8);
+    background: rgb(255, 248, 240); /* Mismo color opaco en hover */
 }
 
 .accordion-header h2 {
@@ -1469,17 +1474,13 @@ h1, h2, h3, h4 {
         max-height: 0;
         opacity: 0;
         overflow: hidden;
-        padding-top: 0 !important;
-        padding-bottom: 0 !important;
-        margin: 0;
-        transition: max-height 0.4s ease, opacity 0.3s ease, padding 0.4s ease;
+        transition: max-height 0.4s ease, opacity 0.3s ease;
     }
 
     .accordion-content.accordion-open {
-        max-height: 5000px; /* Valor grande pero no infinito para animación */
+        max-height: 5000px; /* Valor grande para animación suave */
         opacity: 1;
-        padding-top: 2rem !important;
-        padding-bottom: 2rem !important;
+        transition: max-height 0.4s ease, opacity 0.3s ease;
     }
     
     /* Ajustar padding del container dentro del acordeón */
@@ -1666,5 +1667,23 @@ h1, h2, h3, h4 {
 @media (min-width: 769px) {
     .recommendation-content {
         grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* ===== DISABLE TRANSITIONS HELPER ===== */
+/* Clase para deshabilitar TODAS las transiciones temporalmente */
+.disable-transitions,
+.disable-transitions * {
+    transition: none !important;
+    animation: none !important;
+}
+
+/* ===== FADE IN ANIMATION ===== */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
     }
 }
