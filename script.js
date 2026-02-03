@@ -203,14 +203,8 @@ function initAccordion() {
             return;
         }
 
-        // Si estaba abierta, cerrarla
-        if (isExpanded && content) {
-            content.classList.remove('accordion-open');
-            header.setAttribute('aria-expanded', 'false');
-            console.log('[ACCORDION] Collapsed section via header click:', contentId);
-        } 
         // Si estaba cerrada, abrirla (SIN cerrar otras)
-        else if (content) {
+        if (!isExpanded && content) {
             console.log('[ACCORDION] Opening section:', contentId);
             content.classList.add('accordion-open');
             header.setAttribute('aria-expanded', 'true');
