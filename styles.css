@@ -39,7 +39,13 @@
 }
 
 html {
-    scroll-behavior: smooth;
+    scroll-behavior: auto;
+}
+
+@media (min-width: 768px) {
+    html {
+        scroll-behavior: smooth;
+    }
 }
 
 body {
@@ -136,11 +142,8 @@ h1, h2, h3, h4 {
 
 /* ===== HERO SECTION ===== */
 .hero {
-    /* Fallback para navegadores antiguos */
-    min-height: 100vh;
-    /* Unidades modernas para evitar saltos cuando la barra de URL se muestra/oculta */
+    min-height: 100vh; /* Fallback para navegadores antiguos */
     min-height: 100svh; /* Stable Viewport Height - no cambia con la barra de URL */
-    min-height: 100dvh; /* Dynamic Viewport Height - se ajusta dinámicamente */
     height: auto;
     display: flex;
     align-items: center;
@@ -1492,6 +1495,7 @@ h1, h2, h3, h4 {
     .accordion-content.accordion-open {
         max-height: 5000px;
         opacity: 1;
+        overflow: hidden; /* Contener el contenido dentro de la sección */
     }
     
     .accordion-content.accordion-open .container {
