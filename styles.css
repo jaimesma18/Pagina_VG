@@ -204,6 +204,11 @@ h1, h2, h3, h4 {
     justify-content: center;
     gap: 1rem;
     margin: 3rem 0;
+    /* Aislar el countdown del resto del layout para prevenir scroll anchoring */
+    contain: layout style paint;
+    overflow-anchor: none !important;
+    /* Forzar que los cambios en el countdown no afecten el scroll */
+    will-change: contents;
 }
 
 .countdown-item {
@@ -214,6 +219,9 @@ h1, h2, h3, h4 {
     min-width: 100px;
     text-align: center;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    /* Aislar cada item del countdown */
+    contain: layout style;
+    overflow-anchor: none !important;
 }
 
 .countdown-number {
@@ -222,6 +230,11 @@ h1, h2, h3, h4 {
     font-weight: 700;
     color: var(--deep-blue);
     margin-bottom: 0.5rem;
+    /* Prevenir que los cambios de texto causen scroll anchoring */
+    overflow-anchor: none !important;
+    /* Forzar que el texto tenga dimensiones fijas */
+    min-height: 1.2em;
+    display: inline-block;
 }
 
 .countdown-label {

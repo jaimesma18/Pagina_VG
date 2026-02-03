@@ -21,33 +21,78 @@ window.scrollTo = function(...args) {
 };
 
 // ===== COUNTDOWN =====
+// Cache de valores para evitar actualizaciones innecesarias del DOM
+let lastCountdownValues = { days: null, hours: null, minutes: null, seconds: null };
+
 function updateCountdown() {
+    const countdownEl = document.getElementById('countdown');
+    if (!countdownEl) return;
+    
     // Fecha del evento: 17 de mayo de 2026, 16:30 (4:30 PM) hora de Cartagena (America/Bogota, UTC-5)
     const eventDate = new Date('2026-05-17T16:30:00-05:00').getTime();
     const now = new Date().getTime();
     const difference = eventDate - now;
 
+    let days, hours, minutes, seconds;
+    
     if (difference > 0) {
-        const days = Math.floor(difference / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((difference % (1000 * 60)) / 1000);
-
-        document.getElementById('days').textContent = String(days).padStart(2, '0');
-        document.getElementById('hours').textContent = String(hours).padStart(2, '0');
-        document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
-        document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
+        days = Math.floor(difference / (1000 * 60 * 60 * 24));
+        hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+        seconds = Math.floor((difference % (1000 * 60)) / 1000);
     } else {
-        document.getElementById('days').textContent = '00';
-        document.getElementById('hours').textContent = '00';
-        document.getElementById('minutes').textContent = '00';
-        document.getElementById('seconds').textContent = '00';
+        days = 0;
+        hours = 0;
+        minutes = 0;
+        seconds = 0;
     }
+
+    // Solo actualizar DOM si los valores cambiaron (reduce reflows)
+    const daysEl = document.getElementById('days');
+    const hoursEl = document.getElementById('hours');
+    const minutesEl = document.getElementById('minutes');
+    const secondsEl = document.getElementById('seconds');
+    
+    // Usar requestAnimationFrame para sincronizar con el ciclo de rendering
+    // Esto simula el comportamiento cuando el screen recorder está activo
+    requestAnimationFrame(() => {
+        if (daysEl && lastCountdownValues.days !== days) {
+            daysEl.textContent = String(days).padStart(2, '0');
+            lastCountdownValues.days = days;
+        }
+        
+        if (hoursEl && lastCountdownValues.hours !== hours) {
+            hoursEl.textContent = String(hours).padStart(2, '0');
+            lastCountdownValues.hours = hours;
+        }
+        
+        if (minutesEl && lastCountdownValues.minutes !== minutes) {
+            minutesEl.textContent = String(minutes).padStart(2, '0');
+            lastCountdownValues.minutes = minutes;
+        }
+        
+        // Segundos siempre cambian, pero usar requestAnimationFrame anidado para reducir impacto
+        if (secondsEl && lastCountdownValues.seconds !== seconds) {
+            requestAnimationFrame(() => {
+                if (secondsEl) {
+                    secondsEl.textContent = String(seconds).padStart(2, '0');
+                }
+            });
+            lastCountdownValues.seconds = seconds;
+        }
+    });
 }
 
-// Actualizar countdown cada segundo
-setInterval(updateCountdown, 1000);
-updateCountdown();
+// Actualizar countdown cada segundo usando requestAnimationFrame para mejor sincronización
+let countdownInterval;
+function startCountdown() {
+    updateCountdown();
+    countdownInterval = setInterval(() => {
+        updateCountdown();
+    }, 1000);
+}
+
+startCountdown();
 
 // ===== NAVBAR SCROLL EFFECT =====
 window.addEventListener('scroll', function() {
