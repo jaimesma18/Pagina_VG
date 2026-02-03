@@ -231,31 +231,14 @@ function initAccordion() {
         accordionInitialized = true;
     }
     
-    // Abrir RSVP por defecto (o primera sección si no existe RSVP)
-    const rsvpSection = document.getElementById('accordion-rsvp');
-    const firstSection = accordionContents[0];
-    
-    // Cerrar todas primero
+    // Cerrar todas las secciones - NO abrir ninguna por defecto
+    // El usuario debe hacer click para abrir una sección (evita scroll automático)
     accordionContents.forEach(accContent => {
         accContent.classList.remove('accordion-open');
     });
     accordionHeaders.forEach(accHeader => {
         accHeader.setAttribute('aria-expanded', 'false');
     });
-    
-    if (rsvpSection) {
-        rsvpSection.classList.add('accordion-open');
-        const rsvpHeader = document.querySelector('[aria-controls="accordion-rsvp"]');
-        if (rsvpHeader) {
-            rsvpHeader.setAttribute('aria-expanded', 'true');
-        }
-    } else if (firstSection) {
-        firstSection.classList.add('accordion-open');
-        const firstHeader = document.querySelector(`[aria-controls="${firstSection.id}"]`);
-        if (firstHeader) {
-            firstHeader.setAttribute('aria-expanded', 'true');
-        }
-    }
 }
 
 // Inicializar acordeón al cargar y al redimensionar
