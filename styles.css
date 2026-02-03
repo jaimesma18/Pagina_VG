@@ -530,12 +530,19 @@ h1, h2, h3, h4 {
     aspect-ratio: 16 / 9; /* Prevenir layout shift */
     display: flex;
     align-items: stretch;
+    /* Aislar completamente del layout para prevenir recálculos */
+    contain: layout style paint;
+    overflow-anchor: none !important;
+    isolation: isolate;
 }
 
 .map-container-small iframe {
     height: 100%;
     width: 100%;
     aspect-ratio: 16 / 9; /* Prevenir layout shift */
+    /* Prevenir que el iframe cause recálculos */
+    overflow-anchor: none !important;
+    contain: layout style paint;
 }
 
 .link-gold {
@@ -614,6 +621,9 @@ h1, h2, h3, h4 {
     border-radius: 16px 16px 0 0;
     margin-bottom: 0;
     filter: sepia(40%) contrast(1.1);
+    /* Prevenir que imágenes causen recálculos */
+    overflow-anchor: none !important;
+    contain: layout style paint;
     transition: all 0.3s ease;
 }
 
@@ -1504,6 +1514,13 @@ h1, h2, h3, h4 {
 
 /* En móvil, ocultar contenido por defecto */
 @media (max-width: 767px) {
+    /* Deshabilitar scroll anchoring en TODOS los elementos en móvil */
+    *,
+    *::before,
+    *::after {
+        overflow-anchor: none !important;
+    }
+    
     .mobile-only {
         display: flex;
     }
@@ -1534,6 +1551,17 @@ h1, h2, h3, h4 {
         contain: layout style paint;
         /* Mantener el estado abierto incluso si el viewport cambia */
         will-change: auto;
+    }
+    
+    /* Aislar todos los elementos que pueden causar recálculos */
+    .schedule-card,
+    .place-card,
+    .recommendation-card,
+    .faq-item,
+    .gift-registry-card,
+    .makeup-card {
+        overflow-anchor: none !important;
+        contain: layout style;
     }
     
     .accordion-content.accordion-open .container {

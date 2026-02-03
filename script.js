@@ -447,7 +447,7 @@ if (document.readyState === 'loading') {
                 });
             }
             
-            // Restaurar secciones abiertas
+            // Restaurar secciones abiertas inmediatamente
             restoreOpenSections();
             
             // Limpiar timeout anterior
@@ -455,18 +455,38 @@ if (document.readyState === 'loading') {
                 clearTimeout(scrollRestoreTimeout);
             }
             
-            // Verificar y restaurar después de un breve delay
-            scrollRestoreTimeout = setTimeout(() => {
+            // Verificar y restaurar múltiples veces para asegurar que funcione
+            let restoreAttempts = 0;
+            const maxRestoreAttempts = 3;
+            
+            function attemptRestore() {
+                if (restoreAttempts >= maxRestoreAttempts) {
+                    viewportChangeDetected = false;
+                    return;
+                }
+                
+                restoreAttempts++;
                 const finalScrollY = window.pageYOffset || window.scrollY;
+                
                 if (Math.abs(finalScrollY - lastScrollY) > 10 && !isUserScrolling) {
                     window.scrollTo({
                         top: lastScrollY,
                         behavior: 'auto'
                     });
                 }
+                
                 restoreOpenSections();
-                viewportChangeDetected = false;
-            }, 100);
+                
+                // Intentar de nuevo después de un delay
+                scrollRestoreTimeout = setTimeout(() => {
+                    attemptRestore();
+                }, 100);
+            }
+            
+            // Primer intento después de un breve delay
+            scrollRestoreTimeout = setTimeout(() => {
+                attemptRestore();
+            }, 50);
             
             lastViewportHeight = currentViewportHeight;
         } else if (viewportDelta < 10) {
@@ -500,33 +520,55 @@ if (document.readyState === 'loading') {
     // Detectar scroll del usuario vs scroll automático
     let scrollTimeout;
     let lastScrollTime = Date.now();
+    let scrollRestoreAttempts = 0;
+    const MAX_SCROLL_RESTORE_ATTEMPTS = 3;
+    
     window.addEventListener('scroll', function() {
         const now = Date.now();
         const timeSinceLastScroll = now - lastScrollTime;
         lastScrollTime = now;
+        const currentScrollY = window.pageYOffset || window.scrollY;
         
         // Si el scroll es muy rápido (< 16ms), probablemente es automático
-        if (timeSinceLastScroll < 16) {
+        if (timeSinceLastScroll < 16 && !isUserScrolling) {
             // Scroll automático detectado
-            if (viewportChangeDetected) {
-                // Restaurar posición
+            const scrollDelta = Math.abs(currentScrollY - lastScrollY);
+            
+            // Si el scroll cambió significativamente sin interacción del usuario
+            if (scrollDelta > 10 && scrollRestoreAttempts < MAX_SCROLL_RESTORE_ATTEMPTS) {
+                scrollRestoreAttempts++;
+                // Restaurar posición de forma más agresiva
                 requestAnimationFrame(() => {
                     window.scrollTo({
                         top: lastScrollY,
                         behavior: 'auto'
+                    });
+                    
+                    // Verificar después de un frame
+                    requestAnimationFrame(() => {
+                        const finalScrollY = window.pageYOffset || window.scrollY;
+                        if (Math.abs(finalScrollY - lastScrollY) > 10) {
+                            // Aún está mal, forzar restauración
+                            window.scrollTo({
+                                top: lastScrollY,
+                                behavior: 'auto'
+                            });
+                        }
                     });
                 });
             }
         } else {
             // Scroll del usuario
             isUserScrolling = true;
-            lastScrollY = window.pageYOffset || window.scrollY;
+            lastScrollY = currentScrollY;
             saveOpenSections();
+            scrollRestoreAttempts = 0; // Reset contador
         }
         
         clearTimeout(scrollTimeout);
         scrollTimeout = setTimeout(() => {
             isUserScrolling = false;
+            scrollRestoreAttempts = 0;
         }, 150);
     }, { passive: true });
     
