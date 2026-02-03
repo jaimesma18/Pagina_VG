@@ -40,8 +40,6 @@
 
 html {
     scroll-behavior: smooth;
-    /* scroll-padding-top se maneja manualmente en JS */
-    overflow-anchor: none !important; /* Prevenir scroll automático del navegador */
 }
 
 body {
@@ -49,7 +47,6 @@ body {
     background-color: var(--wedding-cream);
     color: var(--azul-marino);
     line-height: 1.6;
-    overflow-anchor: none !important; /* Prevenir scroll automático del navegador */
 }
 
 /* ===== TYPOGRAPHY ===== */
@@ -1472,15 +1469,7 @@ h1, h2, h3, h4 {
 }
 
 .accordion-content {
-    /* NO usar overflow aquí - el contenido fluye naturalmente */
     transition: max-height 0.4s ease, opacity 0.3s ease;
-    /* Desactivar scroll anchoring del navegador para evitar scroll automático al cerrar secciones */
-    overflow-anchor: none !important;
-}
-
-.accordion-section {
-    /* Desactivar scroll anchoring también en la sección */
-    overflow-anchor: none !important;
 }
 
 /* En móvil, ocultar contenido por defecto */
@@ -1498,50 +1487,16 @@ h1, h2, h3, h4 {
         opacity: 0;
         overflow: hidden;
         transition: max-height 0.4s ease, opacity 0.3s ease;
-        /* Prevenir scroll anchoring cuando el contenido cambia */
-        overflow-anchor: none !important;
     }
 
     .accordion-content.accordion-open {
-        max-height: 5000px; /* Valor grande para animación suave */
+        max-height: 5000px;
         opacity: 1;
-        transition: max-height 0.4s ease, opacity 0.3s ease;
     }
     
-    /* Ajustar padding del container dentro del acordeón */
     .accordion-content.accordion-open .container {
         padding-left: 1rem;
         padding-right: 1rem;
-    }
-
-    /* Asegurar que no haya scroll interno */
-    .accordion-section,
-    .section {
-        overflow: visible !important;
-        /* Prevenir scroll anchoring en las secciones */
-        overflow-anchor: none !important;
-    }
-
-    /* Asegurar que el body tenga scroll natural */
-    /* Force visibility for all accordion sections in any container - CRITICAL */
-    .container .accordion-section,
-    .section .accordion-section,
-    div .accordion-section {
-        display: block !important;
-        visibility: visible !important;
-        opacity: 1 !important;
-    }
-
-    body {
-        overflow-x: hidden;
-        overflow-y: auto;
-        /* Desactivar scroll anchoring globalmente en mobile para prevenir scroll automático */
-        overflow-anchor: none !important;
-    }
-    
-    html {
-        /* Desactivar scroll anchoring también en html */
-        overflow-anchor: none !important;
     }
 }
 
