@@ -139,7 +139,12 @@ h1, h2, h3, h4 {
 
 /* ===== HERO SECTION ===== */
 .hero {
+    /* Fallback para navegadores antiguos */
     min-height: 100vh;
+    /* Unidades modernas para evitar saltos cuando la barra de URL se muestra/oculta */
+    min-height: 100svh; /* Stable Viewport Height - no cambia con la barra de URL */
+    min-height: 100dvh; /* Dynamic Viewport Height - se ajusta dinámicamente */
+    height: auto;
     display: flex;
     align-items: center;
     justify-content: center;
