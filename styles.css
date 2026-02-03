@@ -42,6 +42,8 @@ html {
     scroll-behavior: auto;
     /* Prevenir que el viewport cambie cause layout shifts en móvil */
     height: 100%;
+    /* Deshabilitar scroll anchoring completamente para prevenir saltos */
+    overflow-anchor: none !important;
 }
 
 @media (min-width: 768px) {
@@ -58,6 +60,8 @@ body {
     /* Prevenir que iOS/Android recalcule layout cuando la barra de URL se mueve */
     min-height: 100%;
     -webkit-text-size-adjust: 100%;
+    /* Deshabilitar scroll anchoring completamente */
+    overflow-anchor: none !important;
 }
 
 /* ===== TYPOGRAPHY ===== */
@@ -1498,12 +1502,19 @@ h1, h2, h3, h4 {
         opacity: 0;
         overflow: hidden;
         transition: max-height 0.4s ease, opacity 0.3s ease;
+        /* Prevenir que cambios de viewport colapsen las secciones */
+        overflow-anchor: none !important;
+        /* Forzar que el navegador no recalcule el layout cuando cambia el viewport */
+        contain: layout style;
     }
 
     .accordion-content.accordion-open {
         max-height: 5000px;
         opacity: 1;
         overflow: hidden; /* Contener el contenido dentro de la sección */
+        /* Prevenir que cambios de viewport colapsen las secciones abiertas */
+        overflow-anchor: none !important;
+        contain: layout style;
     }
     
     .accordion-content.accordion-open .container {

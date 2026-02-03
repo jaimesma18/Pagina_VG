@@ -358,3 +358,119 @@ if (document.readyState === 'loading') {
 } else {
     setupSmoothScroll();
 }
+
+// ===== PREVENIR SCROLL AUTOMÁTICO CUANDO LA BARRA DE URL CAMBIA =====
+// En móvil, cuando la barra de URL aparece/desaparece, el viewport cambia
+// y esto puede causar scroll automático o colapso de secciones
+(function() {
+    if (window.innerWidth >= 768) return; // Solo en móvil
+    
+    let lastViewportHeight = window.innerHeight;
+    let scrollLocked = false;
+    let lastScrollY = window.pageYOffset || window.scrollY;
+    
+    // Detectar cambios en el viewport (cuando la barra de URL se muestra/oculta)
+    function handleViewportChange() {
+        const currentViewportHeight = window.innerHeight;
+        const currentScrollY = window.pageYOffset || window.scrollY;
+        
+        // Si el viewport cambió significativamente (barra de URL se movió)
+        if (Math.abs(currentViewportHeight - lastViewportHeight) > 50) {
+            // Bloquear scroll temporalmente para prevenir saltos
+            scrollLocked = true;
+            
+            // Restaurar la posición de scroll anterior
+            requestAnimationFrame(() => {
+                if (scrollLocked) {
+                    window.scrollTo({
+                        top: lastScrollY,
+                        behavior: 'auto' // Sin animación
+                    });
+                    
+                    // Desbloquear después de un frame
+                    requestAnimationFrame(() => {
+                        scrollLocked = false;
+                        lastScrollY = window.pageYOffset || window.scrollY;
+                    });
+                }
+            });
+            
+            lastViewportHeight = currentViewportHeight;
+        } else {
+            // Si no hay cambio significativo, solo actualizar la posición
+            lastScrollY = currentScrollY;
+        }
+    }
+    
+    // Monitorear cambios de viewport
+    let viewportCheckInterval = setInterval(() => {
+        if (window.innerWidth < 768) {
+            handleViewportChange();
+        } else {
+            clearInterval(viewportCheckInterval);
+        }
+    }, 100);
+    
+    // También escuchar eventos de resize (más preciso)
+    let resizeTimeout;
+    window.addEventListener('resize', function() {
+        if (window.innerWidth < 768) {
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(() => {
+                handleViewportChange();
+            }, 50);
+        }
+    }, { passive: true });
+    
+    // Actualizar última posición de scroll cuando el usuario hace scroll
+    window.addEventListener('scroll', function() {
+        if (!scrollLocked && window.innerWidth < 768) {
+            lastScrollY = window.pageYOffset || window.scrollY;
+        }
+    }, { passive: true });
+    
+    // Prevenir que las secciones del acordeón se colapsen por cambios de viewport
+    function setupAccordionProtection() {
+        const accordionContents = document.querySelectorAll('.accordion-content');
+        if (accordionContents.length === 0) return;
+        
+        accordionContents.forEach(function(section) {
+            // Guardar el estado de cada sección
+            let wasOpen = section.classList.contains('accordion-open');
+            
+            // Observar cambios en el estado de la sección
+            const observer = new MutationObserver(function(mutations) {
+                if (scrollLocked) return;
+                
+                mutations.forEach(function(mutation) {
+                    if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
+                        const isNowOpen = section.classList.contains('accordion-open');
+                        // Si estaba abierta y se cerró inesperadamente (sin interacción del usuario)
+                        if (wasOpen && !isNowOpen) {
+                            // Verificar si fue un cambio legítimo (click del usuario) o un bug del navegador
+                            // Si no hay scroll lock activo, podría ser un bug, restaurar
+                            requestAnimationFrame(() => {
+                                if (!scrollLocked && wasOpen) {
+                                    section.classList.add('accordion-open');
+                                }
+                            });
+                        }
+                        wasOpen = isNowOpen;
+                    }
+                });
+            });
+            
+            observer.observe(section, {
+                attributes: true,
+                attributeFilter: ['class']
+            });
+        });
+    }
+    
+    // Configurar protección cuando el DOM esté listo
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', setupAccordionProtection);
+    } else {
+        setupAccordionProtection();
+    }
+})();
