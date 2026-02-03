@@ -62,6 +62,9 @@ body {
     -webkit-text-size-adjust: 100%;
     /* Deshabilitar scroll anchoring completamente */
     overflow-anchor: none !important;
+    /* Prevenir comportamientos de scroll nativos del navegador */
+    overscroll-behavior-y: contain;
+    -webkit-overflow-scrolling: touch;
 }
 
 /* ===== TYPOGRAPHY ===== */
@@ -1505,7 +1508,9 @@ h1, h2, h3, h4 {
         /* Prevenir que cambios de viewport colapsen las secciones */
         overflow-anchor: none !important;
         /* Forzar que el navegador no recalcule el layout cuando cambia el viewport */
-        contain: layout style;
+        contain: layout style paint;
+        /* Prevenir que el navegador ajuste el scroll cuando cambia el contenido */
+        will-change: max-height;
     }
 
     .accordion-content.accordion-open {
@@ -1514,7 +1519,9 @@ h1, h2, h3, h4 {
         overflow: hidden; /* Contener el contenido dentro de la sección */
         /* Prevenir que cambios de viewport colapsen las secciones abiertas */
         overflow-anchor: none !important;
-        contain: layout style;
+        contain: layout style paint;
+        /* Mantener el estado abierto incluso si el viewport cambia */
+        will-change: auto;
     }
     
     .accordion-content.accordion-open .container {

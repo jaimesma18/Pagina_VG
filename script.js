@@ -360,102 +360,160 @@ if (document.readyState === 'loading') {
 }
 
 // ===== PREVENIR SCROLL AUTOMÁTICO CUANDO LA BARRA DE URL CAMBIA =====
-// En móvil, cuando la barra de URL aparece/desaparece, el viewport cambia
-// y esto puede causar scroll automático o colapso de secciones
+// Solución agresiva para prevenir scroll automático y colapso de secciones
 (function() {
     if (window.innerWidth >= 768) return; // Solo en móvil
     
     let lastViewportHeight = window.innerHeight;
-    let scrollLocked = false;
     let lastScrollY = window.pageYOffset || window.scrollY;
+    let isUserScrolling = false;
+    let scrollRestoreTimeout = null;
+    let viewportChangeDetected = false;
     
-    // Detectar cambios en el viewport (cuando la barra de URL se muestra/oculta)
+    // Guardar estado de secciones abiertas
+    const openSections = new Set();
+    
+    function saveOpenSections() {
+        openSections.clear();
+        document.querySelectorAll('.accordion-content.accordion-open').forEach(section => {
+            openSections.add(section);
+        });
+    }
+    
+    function restoreOpenSections() {
+        openSections.forEach(section => {
+            if (section && !section.classList.contains('accordion-open')) {
+                section.classList.add('accordion-open');
+            }
+        });
+    }
+    
+    // Detectar cambios en el viewport de forma más agresiva
     function handleViewportChange() {
         const currentViewportHeight = window.innerHeight;
         const currentScrollY = window.pageYOffset || window.scrollY;
+        const viewportDelta = Math.abs(currentViewportHeight - lastViewportHeight);
         
         // Si el viewport cambió significativamente (barra de URL se movió)
-        if (Math.abs(currentViewportHeight - lastViewportHeight) > 50) {
-            // Bloquear scroll temporalmente para prevenir saltos
-            scrollLocked = true;
+        if (viewportDelta > 30 && !isUserScrolling) {
+            viewportChangeDetected = true;
             
-            // Restaurar la posición de scroll anterior
-            requestAnimationFrame(() => {
-                if (scrollLocked) {
+            // Restaurar posición de scroll inmediatamente
+            if (Math.abs(currentScrollY - lastScrollY) > 10) {
+                // El scroll cambió sin interacción del usuario, restaurarlo
+                window.scrollTo({
+                    top: lastScrollY,
+                    behavior: 'auto'
+                });
+            }
+            
+            // Restaurar secciones abiertas
+            restoreOpenSections();
+            
+            // Limpiar timeout anterior
+            if (scrollRestoreTimeout) {
+                clearTimeout(scrollRestoreTimeout);
+            }
+            
+            // Verificar y restaurar después de un breve delay
+            scrollRestoreTimeout = setTimeout(() => {
+                const finalScrollY = window.pageYOffset || window.scrollY;
+                if (Math.abs(finalScrollY - lastScrollY) > 10 && !isUserScrolling) {
                     window.scrollTo({
                         top: lastScrollY,
-                        behavior: 'auto' // Sin animación
-                    });
-                    
-                    // Desbloquear después de un frame
-                    requestAnimationFrame(() => {
-                        scrollLocked = false;
-                        lastScrollY = window.pageYOffset || window.scrollY;
+                        behavior: 'auto'
                     });
                 }
-            });
+                restoreOpenSections();
+                viewportChangeDetected = false;
+            }, 100);
             
             lastViewportHeight = currentViewportHeight;
-        } else {
-            // Si no hay cambio significativo, solo actualizar la posición
-            lastScrollY = currentScrollY;
+        } else if (viewportDelta < 10) {
+            // Viewport estable, actualizar posición
+            if (!isUserScrolling) {
+                lastScrollY = currentScrollY;
+            }
         }
     }
     
-    // Monitorear cambios de viewport
+    // Monitorear cambios de viewport más frecuentemente
     let viewportCheckInterval = setInterval(() => {
         if (window.innerWidth < 768) {
             handleViewportChange();
         } else {
             clearInterval(viewportCheckInterval);
         }
-    }, 100);
+    }, 50); // Más frecuente
     
-    // También escuchar eventos de resize (más preciso)
+    // Escuchar eventos de resize
     let resizeTimeout;
     window.addEventListener('resize', function() {
         if (window.innerWidth < 768) {
             clearTimeout(resizeTimeout);
             resizeTimeout = setTimeout(() => {
                 handleViewportChange();
-            }, 50);
+            }, 10); // Más rápido
         }
     }, { passive: true });
     
-    // Actualizar última posición de scroll cuando el usuario hace scroll
+    // Detectar scroll del usuario vs scroll automático
+    let scrollTimeout;
+    let lastScrollTime = Date.now();
     window.addEventListener('scroll', function() {
-        if (!scrollLocked && window.innerWidth < 768) {
+        const now = Date.now();
+        const timeSinceLastScroll = now - lastScrollTime;
+        lastScrollTime = now;
+        
+        // Si el scroll es muy rápido (< 16ms), probablemente es automático
+        if (timeSinceLastScroll < 16) {
+            // Scroll automático detectado
+            if (viewportChangeDetected) {
+                // Restaurar posición
+                requestAnimationFrame(() => {
+                    window.scrollTo({
+                        top: lastScrollY,
+                        behavior: 'auto'
+                    });
+                });
+            }
+        } else {
+            // Scroll del usuario
+            isUserScrolling = true;
             lastScrollY = window.pageYOffset || window.scrollY;
+            saveOpenSections();
         }
+        
+        clearTimeout(scrollTimeout);
+        scrollTimeout = setTimeout(() => {
+            isUserScrolling = false;
+        }, 150);
     }, { passive: true });
     
-    // Prevenir que las secciones del acordeón se colapsen por cambios de viewport
+    // Protección agresiva de secciones del acordeón
     function setupAccordionProtection() {
         const accordionContents = document.querySelectorAll('.accordion-content');
         if (accordionContents.length === 0) return;
         
+        saveOpenSections();
+        
         accordionContents.forEach(function(section) {
-            // Guardar el estado de cada sección
-            let wasOpen = section.classList.contains('accordion-open');
-            
-            // Observar cambios en el estado de la sección
             const observer = new MutationObserver(function(mutations) {
-                if (scrollLocked) return;
-                
                 mutations.forEach(function(mutation) {
                     if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
-                        const isNowOpen = section.classList.contains('accordion-open');
-                        // Si estaba abierta y se cerró inesperadamente (sin interacción del usuario)
-                        if (wasOpen && !isNowOpen) {
-                            // Verificar si fue un cambio legítimo (click del usuario) o un bug del navegador
-                            // Si no hay scroll lock activo, podría ser un bug, restaurar
-                            requestAnimationFrame(() => {
-                                if (!scrollLocked && wasOpen) {
-                                    section.classList.add('accordion-open');
-                                }
-                            });
+                        const isOpen = section.classList.contains('accordion-open');
+                        
+                        // Si la sección estaba abierta y se cerró
+                        if (openSections.has(section) && !isOpen && !isUserScrolling) {
+                            // Restaurar inmediatamente
+                            section.classList.add('accordion-open');
+                        } else if (isOpen) {
+                            // Guardar que está abierta
+                            openSections.add(section);
+                        } else {
+                            // Remover de la lista si se cerró legítimamente
+                            openSections.delete(section);
                         }
-                        wasOpen = isNowOpen;
                     }
                 });
             });
@@ -466,6 +524,15 @@ if (document.readyState === 'loading') {
             });
         });
     }
+    
+    // Actualizar lista de secciones abiertas cuando el usuario hace click
+    document.addEventListener('click', function(e) {
+        if (e.target.closest('.accordion-header')) {
+            setTimeout(() => {
+                saveOpenSections();
+            }, 100);
+        }
+    }, true);
     
     // Configurar protección cuando el DOM esté listo
     if (document.readyState === 'loading') {
