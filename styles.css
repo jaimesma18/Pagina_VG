@@ -28,6 +28,9 @@
     --wedding-palm: #5d8a64;
     --wedding-cream: #fff8f0;
     
+    /* Navbar (evitar que el contenido escrollee bajo la barra) */
+    --navbar-height: 80px;
+
     /* Grays */
     --gray-800: #1f2937;
     --gray-700: #374151;
@@ -143,7 +146,14 @@ h1, h2, h3, h4 {
 
 /* ===== MAIN CONTENT ===== */
 .main-content {
-    /* Comportamiento normal en desktop */
+    /* Padding superior = altura del navbar para que el contenido no escrollee bajo la barra */
+    padding-top: var(--navbar-height);
+}
+
+/* Que los anchors no queden ocultos bajo el navbar al hacer scroll */
+.section-wrapper section,
+.hero {
+    scroll-margin-top: var(--navbar-height);
 }
 
 /* ===== SECTION WRAPPERS ===== */
@@ -208,9 +218,9 @@ h1, h2, h3, h4 {
     
     /* Ajustar el hero para que respete el navbar y no tenga espacio extra */
     .main-content .section-wrapper:first-child .hero {
-        min-height: calc(100vh - 80px);
+        min-height: calc(100vh - var(--navbar-height));
         height: auto;
-        padding-top: 80px;
+        padding-top: var(--navbar-height);
         padding-bottom: 1rem;
         display: flex;
         align-items: center;
@@ -219,7 +229,7 @@ h1, h2, h3, h4 {
     
     /* Ajustar padding de las secciones para que respeten el navbar */
     .main-content .section-wrapper.active .section {
-        padding-top: calc(80px + 2rem);
+        padding-top: calc(var(--navbar-height) + 2rem);
         padding-bottom: 1rem;
     }
     
@@ -396,6 +406,16 @@ h1, h2, h3, h4 {
     max-width: 600px;
     margin: 0 auto 3rem;
     line-height: 1.8;
+}
+
+.section-next {
+    text-align: center;
+    margin-top: 3rem;
+    padding-bottom: 1rem;
+}
+
+.section-next .btn {
+    min-width: 200px;
 }
 
 /* ===== SCHEDULE ===== */
@@ -1490,7 +1510,7 @@ h1, h2, h3, h4 {
 
     .navbar-menu {
         position: fixed;
-        top: 70px;
+        top: var(--navbar-height);
         left: -100%;
         flex-direction: column;
         background: white;
