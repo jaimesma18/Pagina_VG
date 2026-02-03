@@ -1529,7 +1529,14 @@ h1, h2, h3, h4 {
 /* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
     .flying-macaw {
-        display: none; /* Deshabilitar en móvil - causa repaint constante */
+        /* Habilitado en móvil */
+        width: 80px;
+        height: 80px;
+    }
+    
+    .macaw-extracted {
+        width: 80px;
+        height: 80px;
     }
 
     .navbar-menu {
