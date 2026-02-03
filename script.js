@@ -372,6 +372,7 @@ if (document.readyState === 'loading') {
     
     // Guardar estado de secciones abiertas
     const openSections = new Set();
+    let isUserClicking = false; // Bandera para detectar clicks del usuario
     
     function saveOpenSections() {
         openSections.clear();
@@ -381,11 +382,14 @@ if (document.readyState === 'loading') {
     }
     
     function restoreOpenSections() {
-        openSections.forEach(section => {
-            if (section && !section.classList.contains('accordion-open')) {
-                section.classList.add('accordion-open');
-            }
-        });
+        // Solo restaurar si NO es una acción del usuario
+        if (!isUserClicking && viewportChangeDetected) {
+            openSections.forEach(section => {
+                if (section && !section.classList.contains('accordion-open')) {
+                    section.classList.add('accordion-open');
+                }
+            });
+        }
     }
     
     // Detectar cambios en el viewport de forma más agresiva
@@ -499,19 +503,27 @@ if (document.readyState === 'loading') {
         
         accordionContents.forEach(function(section) {
             const observer = new MutationObserver(function(mutations) {
+                // Ignorar cambios cuando el usuario está haciendo click
+                if (isUserClicking) return;
+                
                 mutations.forEach(function(mutation) {
                     if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
                         const isOpen = section.classList.contains('accordion-open');
                         
-                        // Si la sección estaba abierta y se cerró
-                        if (openSections.has(section) && !isOpen && !isUserScrolling) {
-                            // Restaurar inmediatamente
+                        // Solo restaurar si:
+                        // 1. La sección estaba abierta
+                        // 2. Se cerró inesperadamente
+                        // 3. NO es scroll del usuario
+                        // 4. NO es un click del usuario
+                        // 5. Hay un cambio de viewport detectado
+                        if (openSections.has(section) && !isOpen && !isUserScrolling && viewportChangeDetected) {
+                            // Restaurar inmediatamente solo si fue por cambio de viewport
                             section.classList.add('accordion-open');
                         } else if (isOpen) {
                             // Guardar que está abierta
                             openSections.add(section);
-                        } else {
-                            // Remover de la lista si se cerró legítimamente
+                        } else if (!isOpen && !isUserClicking) {
+                            // Remover de la lista si se cerró (pero no por click del usuario)
                             openSections.delete(section);
                         }
                     }
@@ -525,12 +537,23 @@ if (document.readyState === 'loading') {
         });
     }
     
-    // Actualizar lista de secciones abiertas cuando el usuario hace click
+    // Detectar clicks del usuario en headers del acordeón
     document.addEventListener('click', function(e) {
         if (e.target.closest('.accordion-header')) {
+            // Marcar que el usuario está haciendo click
+            isUserClicking = true;
+            
+            // Guardar estado ANTES del cambio (para saber qué estaba abierto)
+            saveOpenSections();
+            
+            // Después de que el click se procese, actualizar el estado
             setTimeout(() => {
-                saveOpenSections();
-            }, 100);
+                saveOpenSections(); // Actualizar con el nuevo estado
+                // Permitir que el cambio se complete antes de desactivar la protección
+                setTimeout(() => {
+                    isUserClicking = false;
+                }, 200);
+            }, 50);
         }
     }, true);
     
