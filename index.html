@@ -42,7 +42,7 @@
     </div>
 
     <!-- Hero Section -->
-    <section id="inicio" class="hero">
+    <section id="inicio" class="hero section-bg-hero">
         <div class="hero-content">
             <img src="assets/logos/vicky_y_guido.png" alt="Vicky & Guido" class="hero-title-image">
             <div class="hero-divider"></div>
@@ -69,9 +69,9 @@
             </div>
 
             <div class="hero-buttons">
-                <a href="#rsvp" class="btn btn-primary">Confirmar Asistencia</a>
-                <a href="#itinerario" class="btn btn-secondary">Ver Itinerario</a>
+                <a href="#itinerario" class="btn btn-primary">Ver Itinerario</a>
             </div>
+            <p class="hero-note">Confirmación de asistencia por invitación (Greenvelope).</p>
 
             <a href="#itinerario" class="scroll-down" aria-label="Scroll down">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -82,7 +82,7 @@
     </section>
 
     <!-- Schedule Section -->
-    <section id="itinerario" class="section">
+    <section id="itinerario" class="section section-bg section-bg-itinerario">
         <div class="container">
             <h2 class="section-title">Itinerario</h2>
             <p class="section-subtitle">Aquí encontrarás todos los detalles de nuestra celebración. Te esperamos en cada momento especial.</p>
@@ -115,9 +115,9 @@
                                 </div>
                                 <div class="event-details">
                                     <p class="event-when"><strong>Cuándo:</strong> Viernes 15 de Mayo, 8:00 PM</p>
-                                    <p class="event-where"><strong>Dónde:</strong> Restaurante World Cafe</p>
-                                    <p class="event-dresscode"><strong>Dress Code:</strong> <span id="dresscode-shabat">[Texto del dress code pendiente]</span></p>
-                                    <a href="#" target="_blank" rel="noopener noreferrer" class="link-gold pinterest-link" id="pinterest-link-shabat" style="display: none;">Ver ejemplos en Pinterest →</a>
+                                    <p class="event-where"><strong>Dónde:</strong> [Ubicación por confirmar]</p>
+                                    <p class="event-dresscode"><strong>Dress Code:</strong> Ver ejemplos abajo.</p>
+                                    <a href="https://pin.it/C2wJRkTND" target="_blank" rel="noopener noreferrer" class="link-gold pinterest-link">Ver ejemplos en Pinterest →</a>
                                 </div>
                             </div>
                         </div>
@@ -139,8 +139,8 @@
                                 <div class="event-details">
                                     <p class="event-when"><strong>Cuándo:</strong> Sábado 16 de Mayo, 9:00 AM</p>
                                     <p class="event-where"><strong>Dónde:</strong> Salón Torres</p>
-                                    <p class="event-dresscode"><strong>Dress Code:</strong> <span id="dresscode-jatan">[Texto del dress code pendiente]</span></p>
-                                    <a href="#" target="_blank" rel="noopener noreferrer" class="link-gold pinterest-link" id="pinterest-link-jatan" style="display: none;">Ver ejemplos en Pinterest →</a>
+                                    <p class="event-dresscode"><strong>Dress Code:</strong> Ver ejemplos abajo.</p>
+                                    <a href="https://pin.it/C2wJRkTND" target="_blank" rel="noopener noreferrer" class="link-gold pinterest-link">Ver ejemplos en Pinterest →</a>
                                 </div>
                             </div>
                         </div>
@@ -175,8 +175,8 @@
                                 <div class="event-details">
                                     <p class="event-when"><strong>Cuándo:</strong> Domingo 17 de Mayo, 4:30 PM</p>
                                     <p class="event-where"><strong>Dónde:</strong> Jardín Alcázar</p>
-                                    <p class="event-dresscode"><strong>Dress Code:</strong> <span id="dresscode-jupa">[Texto del dress code pendiente]</span></p>
-                                    <a href="#" target="_blank" rel="noopener noreferrer" class="link-gold pinterest-link" id="pinterest-link-jupa" style="display: none;">Ver ejemplos en Pinterest →</a>
+                                    <p class="event-dresscode"><strong>Dress Code:</strong> Ver ejemplos abajo.</p>
+                                    <a href="https://pin.it/3y86JAYe7" target="_blank" rel="noopener noreferrer" class="link-gold pinterest-link">Ver ejemplos en Pinterest →</a>
                                 </div>
                             </div>
                         </div>
@@ -204,6 +204,13 @@
                             Ver en Google Maps →
                         </a>
                     </div>
+                    <h4 class="mt-4">Otras opciones recomendadas (cerca)</h4>
+                    <ul class="hotel-options-list">
+                        <li>Hotel Estelar Plaza Manzanillo</li>
+                        <li>Hotel Morros Zoe</li>
+                        <li>Apartamentos al lado del hotel, zona Karibana — contacto Paula Gómez: <a href="tel:+573132930269" class="link-gold">+57 313 293 0269</a></li>
+                        <li>Hotel Morros Eco</li>
+                    </ul>
                 </div>
                 
                 <div class="map-container-small">
@@ -223,14 +230,15 @@
     </section>
 
     <!-- Recommendations Section -->
-    <section id="cartagena" class="section">
+    <section id="cartagena" class="section section-bg section-bg-cartagena">
         <div class="container">
             <h2 class="section-title">Cartagena</h2>
             <p class="section-subtitle">Guía completa para disfrutar al máximo tu estancia en la Heroica. Hemos preparado recomendaciones basadas en nuestra experiencia.</p>
 
-            <!-- Qué Visitar - Cuadros Grandes -->
+            <!-- Qué Visitar -->
             <div class="places-to-visit-section">
                 <h3 class="places-section-title">Qué Visitar</h3>
+                <p class="section-note">Información de tours y actividades: la agencia Fanny nos la estará enviando para agregarla cuando esté lista.</p>
                 <div class="places-grid">
                     <div class="place-card">
                         <img src="https://images.unsplash.com/photo-1587330979470-3585a3e40a18?w=800&h=600&fit=crop" alt="Ciudad Amurallada" class="place-image">
@@ -238,14 +246,9 @@
                         <p>El corazón histórico de Cartagena. Pasea por sus calles coloridas, visita las plazas y disfruta de la arquitectura colonial.</p>
                     </div>
                     <div class="place-card">
-                        <img src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=800&h=600&fit=crop" alt="Getsemaní" class="place-image">
-                        <h4>Getsemaní</h4>
-                        <p>Barrio bohemio lleno de arte callejero, restaurantes y vida nocturna. Perfecto para explorar durante el día.</p>
-                    </div>
-                    <div class="place-card">
-                        <img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=800&h=600&fit=crop" alt="Castillo San Felipe" class="place-image">
-                        <h4>Castillo San Felipe</h4>
-                        <p>Fortaleza histórica con vistas impresionantes. Ideal para una visita temprano en la mañana.</p>
+                        <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&h=600&fit=crop" alt="Centro comercial La Serrezuela" class="place-image">
+                        <h4>Centro comercial La Serrezuela</h4>
+                        <p>Compras, restaurantes y entretenimiento en el centro histórico.</p>
                     </div>
                     <div class="place-card">
                         <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=800&h=600&fit=crop" alt="Islas del Rosario" class="place-image">
@@ -253,14 +256,9 @@
                         <p>Excursión de día completo a estas islas paradisíacas. Agua cristalina y playas de ensueño.</p>
                     </div>
                     <div class="place-card">
-                        <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&h=600&fit=crop" alt="Bocagrande" class="place-image">
-                        <h4>Bocagrande</h4>
-                        <p>Zona moderna con playas, hoteles y restaurantes. Perfecta para relajarse.</p>
-                    </div>
-                    <div class="place-card">
-                        <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop" alt="Café del Mar" class="place-image">
-                        <h4>Café del Mar</h4>
-                        <p>El mejor lugar para ver el atardecer con una bebida en la mano. Reserva con anticipación.</p>
+                        <img src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=800&h=600&fit=crop" alt="Getsemaní" class="place-image">
+                        <h4>Getsemaní</h4>
+                        <p>Barrio bohemio lleno de arte callejero, restaurantes y vida nocturna. Perfecto para explorar durante el día.</p>
                     </div>
                 </div>
             </div>
@@ -274,17 +272,43 @@
                     </div>
                     <div class="recommendation-content">
                         <div class="recommendation-item">
-                            <h4>Restaurantes en la Ciudad Amurallada</h4>
-                            <p>Carmen, La Vitrola, Don Juan, y Cande son excelentes opciones para una cena especial.</p>
+                            <h4>La Vitrola</h4>
+                            <p>Carrera 2 #33-66, Centro histórico.</p>
                         </div>
                         <div class="recommendation-item">
-                            <h4>Comida Local</h4>
-                            <p>Prueba los arepas, ceviche, y pescado frito en los puestos locales. El Mercado de Bazurto es una experiencia auténtica.</p>
+                            <h4>Harry Sasson</h4>
+                            <p>Hotel Charleston Santa Teresa, Carrera 3 #31-19.</p>
                         </div>
                         <div class="recommendation-item">
-                            <h4>Cafés y Helados</h4>
-                            <p>Epoca Espresso Bar y Gelateria Paradiso son perfectos para un descanso durante el día.</p>
+                            <h4>Niku</h4>
+                            <p>Centro histórico.</p>
                         </div>
+                        <div class="recommendation-item">
+                            <h4>Andrés Carne de Res</h4>
+                            <p>Carrera 11, Calle de la Serrezuela #39-21.</p>
+                        </div>
+                        <div class="recommendation-item">
+                            <h4>Restaurante Norma</h4>
+                            <p>Centro histórico, Calle del Baloco #2-14.</p>
+                        </div>
+                        <div class="recommendation-item">
+                            <h4>Restaurante Juan del Mar</h4>
+                            <p>Plaza de San Diego 8-12, San Diego.</p>
+                        </div>
+                        <div class="recommendation-item">
+                            <h4>Mar y Cielo</h4>
+                            <p>Carrera 5 #34-63, El Centro.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Shopping -->
+                <div class="recommendation-card">
+                    <div class="recommendation-header">
+                        <h3>Shopping</h3>
+                    </div>
+                    <div class="recommendation-content">
+                        <p>Agua Bendita, Maaji, Azulu, Silvia Tcherassi, Beatriz Camacho, St. Dom, Baobab, Centro comercial La Serrezuela.</p>
                     </div>
                 </div>
 
@@ -325,7 +349,7 @@
                         </div>
                         <div class="recommendation-item">
                             <h4>Transporte</h4>
-                            <p>Desde el aeropuerto: taxi oficial o transfer del hotel (más seguro). En la ciudad: caminar en la zona amurallada, Uber para distancias mayores.</p>
+                            <p>Desde el aeropuerto: taxi oficial o transfer del hotel (más seguro). En la ciudad: caminar en la zona amurallada, Uber para distancias mayores. Cómo manejaremos las llegadas y traslados desde el aeropuerto lo confirmaremos pronto y lo publicaremos aquí.</p>
                         </div>
                         <div class="recommendation-item">
                             <h4>Horarios</h4>
@@ -345,8 +369,8 @@
         </div>
     </section>
 
-    <!-- Story Section -->
-    <section id="historia" class="section bg-white">
+    <!-- Story Section (collage + overlay oscuro + texto claro) -->
+    <section id="historia" class="section section-bg section-bg-collage">
         <div class="container">
             <h2 class="section-title">Nuestra Historia</h2>
             <p class="section-subtitle">Cada historia de amor es única. Aquí compartimos la nuestra contigo.</p>
@@ -354,36 +378,17 @@
             <div class="story-container">
                 <div class="story-card">
                     <div class="story-placeholder">
-                        <div class="placeholder-badge">⚠️ PLACEHOLDER - CONTENIDO TEMPORAL</div>
-                        
-                        <h3>Cómo nos conocimos</h3>
                         <p class="story-text">
-                            [Este es un texto placeholder. Por favor, reemplaza este contenido con la historia real 
-                            de cómo se conocieron. Puedes incluir detalles sobre el primer encuentro, momentos especiales, 
-                            y lo que los llevó a este día tan importante.]
+                            Todo empezó un jueves 23 de mayo de 2024, cuando Vicky estaba de vacaciones en Panamá y fue a visitar a su prima en su casa… (iykyk who). En medio del chisme y el catch up, la prima suelta la bomba:<br><br>
+                            “Le mandé tu número a Guido. Sal con él.”<br><br>
+                            Y Vicky por dentro: hmmmm… Tipo: “cute, pero no es el momento, I'm not dating right now, gracias.” (Plot twist: sí era el momento)<br><br>
+                            Dos días después, al terminar Shabat, el sábado 25 de mayo 2024, Vicky recibe el primer mensaje de Guido: “Hola Vicky, ¿qué tal? Soy Guido. Dice tu prima que nos vamos a llevar increíble.”<br><br>
+                            Y dos días después… martes 27 de mayo 2024, se llevó a cabo la primera date en Café Sisu. Sí, el mismo lugar de la pedida de mano.<br><br>
+                            Después vino el plot twist tropical: un viaje a Tulum los terminó de conectar, gracias a la otra prima (que se casó ahí… IYKYK 👀).<br><br>
+                            El resto es historia… o bueno, se podría decir que Vicky se enamoró de la nobleza y bondad de Guido, y Guido se enamoró del monólogo de Vicky ese día… (iykyk no le paró la boca en todo el date)<br><br>
+                            Y bueno, hoy nos encontramos aquí para festejar su amor y unión. 🥂✨<br><br>
+                            #keepitcohen
                         </p>
-
-                        <div class="story-divider"></div>
-
-                        <h3>El momento de la propuesta</h3>
-                        <p class="story-text">
-                            [Aquí va la historia de la propuesta. Describe dónde fue, cómo sucedió, y los sentimientos 
-                            de ese momento especial. Este texto será reemplazado con la historia real.]
-                        </p>
-
-                        <div class="story-divider"></div>
-
-                        <h3>Por qué Cartagena</h3>
-                        <p class="story-text">
-                            [Explica por qué eligieron Cartagena como destino para su boda. Qué significa este lugar 
-                            para ustedes y por qué es el lugar perfecto para comenzar esta nueva etapa juntos.]
-                        </p>
-
-                        <div class="story-note">
-                            <strong>Nota para edición:</strong> Este bloque está claramente marcado como placeholder. 
-                            Cuando tengas la historia real lista, simplemente reemplaza todo el contenido dentro de este 
-                            bloque, manteniendo la estructura de títulos y subtítulos si lo deseas.
-                        </div>
                     </div>
                 </div>
             </div>
@@ -439,16 +444,6 @@
 
                 <div class="faq-item">
                     <button class="faq-question" onclick="toggleFAQ(this)">
-                        <span>¿Cuál es el dress code para la boda?</span>
-                        <span class="faq-icon">+</span>
-                    </button>
-                    <div class="faq-answer">
-                        <p>Elegante casual. Para hombres: guayabera o camisa elegante con pantalón. Para mujeres: vestido o conjunto elegante. Colores sugeridos: tonos claros, beige, blanco, pasteles. Evita negro completo. Zapatos cómodos pero elegantes (considera que puede haber caminar en áreas con adoquines).</p>
-                    </div>
-                </div>
-
-                <div class="faq-item">
-                    <button class="faq-question" onclick="toggleFAQ(this)">
                         <span>¿Necesito visa para viajar a Colombia?</span>
                         <span class="faq-icon">+</span>
                     </button>
@@ -479,11 +474,11 @@
 
                 <div class="faq-item">
                     <button class="faq-question" onclick="toggleFAQ(this)">
-                        <span>¿Hay algún código de vestimenta para otros eventos?</span>
+                        <span>¿Habrá buses de cortesía?</span>
                         <span class="faq-icon">+</span>
                     </button>
                     <div class="faq-answer">
-                        <p>Pool Party (viernes AM): traje de baño y ropa cómoda de playa. Cena de Shabat (viernes PM): elegante casual, similar a la boda pero un poco más relajado. Boda (sábado): elegante casual como se describió anteriormente.</p>
+                        <p>Lo confirmaremos pronto y lo publicaremos aquí.</p>
                     </div>
                 </div>
 
@@ -493,7 +488,7 @@
                         <span class="faq-icon">+</span>
                     </button>
                     <div class="faq-answer">
-                        <p>Puedes contactar a nuestro wedding planner o escribirnos directamente. Los detalles de contacto están en el footer de esta página. Estamos aquí para ayudarte con cualquier duda que tengas.</p>
+                        <p>Fanny Grossman: <a href="tel:+50767816347" class="link-gold">507 6781-6347</a>. También puedes escribirnos directamente; estamos aquí para ayudarte con cualquier duda.</p>
                     </div>
                 </div>
             </div>
@@ -504,74 +499,7 @@
     <section id="regalos" class="section bg-white">
         <div class="container">
             <h2 class="section-title">Mesa de Regalos</h2>
-            <p class="section-subtitle">Tu presencia es el mejor regalo, pero si deseas celebrar con nosotros de otra manera, aquí encontrarás nuestras opciones de mesa de regalos.</p>
-
-            <div class="gift-registry-container">
-                <div class="gift-registry-card">
-                    <div class="gift-registry-header">
-                        <span class="gift-icon">🎁</span>
-                        <h3>Tiendas Asociadas</h3>
-                    </div>
-                    <div class="gift-registry-content">
-                        <p class="gift-description">
-                            Hemos seleccionado algunas tiendas donde puedes encontrar regalos para nuestra nueva vida juntos. 
-                            Puedes buscar nuestra lista de bodas en cualquiera de estas tiendas.
-                        </p>
-                        
-                        <div class="gift-stores">
-                            <div class="gift-store-item">
-                                <h4>Liverpool</h4>
-                                <p>Lista de bodas: <strong>Vicky & Guido</strong></p>
-                                <p>Número de evento: <strong>[Número por confirmar]</strong></p>
-                                <a href="https://www.liverpool.com.mx" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-small">
-                                    Ver Lista
-                                </a>
-                            </div>
-                            
-                            <div class="gift-store-item">
-                                <h4>Palacio de Hierro</h4>
-                                <p>Lista de bodas: <strong>Vicky & Guido</strong></p>
-                                <p>Número de evento: <strong>[Número por confirmar]</strong></p>
-                                <a href="https://www.palaciodehierro.com" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-small">
-                                    Ver Lista
-                                </a>
-                            </div>
-                            
-                            <div class="gift-store-item">
-                                <h4>Amazon</h4>
-                                <p>Lista de deseos: <strong>Vicky & Guido Wedding</strong></p>
-                                <a href="#" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-small">
-                                    Ver Lista
-                                </a>
-                            </div>
-                        </div>
-
-                        <div class="gift-note">
-                            <p><strong>Nota:</strong> Los números de evento y enlaces se actualizarán próximamente. Si tienes dudas, contáctanos directamente.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="gift-registry-card">
-                    <div class="gift-registry-header">
-                        <span class="gift-icon">💝</span>
-                        <h3>Fondo de Luna de Miel</h3>
-                    </div>
-                    <div class="gift-registry-content">
-                        <p class="gift-description">
-                            Si prefieres contribuir a nuestra luna de miel, también puedes hacerlo a través de nuestro fondo especial.
-                        </p>
-                        <div class="gift-account">
-                            <p><strong>Cuenta:</strong> [Información por confirmar]</p>
-                            <p><strong>Banco:</strong> [Banco por confirmar]</p>
-                            <p><strong>CLABE:</strong> [CLABE por confirmar]</p>
-                        </div>
-                        <p class="text-sm text-gray-500 mt-4">
-                            * La información bancaria se actualizará próximamente. Contáctanos si necesitas más detalles.
-                        </p>
-                    </div>
-                </div>
-            </div>
+            <p class="section-subtitle">Tu presencia es el mejor regalo. Cuando tengamos la cuenta y el link los agregaremos aquí.</p>
         </div>
     </section>
 
@@ -643,8 +571,7 @@
                         </div>
 
                         <div class="makeup-note">
-                            <p><strong>Nota:</strong> Los contactos y enlaces se actualizarán con la información real de los maquillistas confirmados. 
-                            Si necesitas ayuda para contactar a alguno, escríbenos y te ayudamos.</p>
+                            <p><strong>Nota:</strong> La opción del hotel y otra más nos las confirmará Fanny esta semana. En cuanto tengamos la información la publicaremos aquí.</p>
                         </div>
                     </div>
                 </div>
@@ -653,15 +580,11 @@
     </section>
 
     <!-- RSVP Section -->
-    <section id="rsvp" class="section bg-white">
+    <section id="rsvp" class="section bg-white section-bg section-bg-rsvp">
         <div class="container">
             <div class="rsvp-container">
-                <h2 class="section-title">Confirma tu Asistencia</h2>
-                <p class="section-subtitle">Tu presencia es el mejor regalo. Por favor, confirma tu asistencia antes del 1 de abril de 2026.</p>
-                <button class="btn btn-primary" onclick="openRSVPModal()">RSVP</button>
-                <p class="text-sm text-gray-500 mt-4">
-                    O contáctanos directamente: <a href="mailto:wedding@example.com" class="link-gold">wedding@example.com</a>
-                </p>
+                <h2 class="section-title">Confirmación de Asistencia</h2>
+                <p class="section-subtitle">La confirmación se realiza a través de la invitación (Greenvelope). Cualquier duda: Fanny Grossman <a href="tel:+50767816347" class="link-gold">507 6781-6347</a>.</p>
             </div>
         </div>
     </section>
@@ -677,11 +600,7 @@
                 <div class="footer-column">
                     <h3>Contacto</h3>
                     <p>
-                        <a href="mailto:wedding@example.com">wedding@example.com</a><br>
-                        <a href="tel:+573001234567">+57 300 123 4567</a>
-                    </p>
-                    <p class="text-sm text-gray-400 mt-2">
-                        * Reemplaza estos datos de contacto con la información real
+                        Fanny Grossman (wedding planner): <a href="tel:+50767816347">507 6781-6347</a>
                     </p>
                 </div>
                 <div class="footer-column">

@@ -174,6 +174,28 @@ h1, h2, h3, h4 {
     text-align: center;
 }
 
+/* Hero con foto de fondo (estilo Michelle & Tonye) */
+.hero.section-bg-hero {
+    position: relative;
+    background-image: url("assets/photos/PCR54177.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.hero.section-bg-hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(250, 250, 248, 0.72);
+    z-index: 0;
+}
+
+.hero.section-bg-hero .hero-content {
+    position: relative;
+    z-index: 1;
+}
+
 .hero-content {
     max-width: 560px;
 }
@@ -245,6 +267,12 @@ h1, h2, h3, h4 {
     margin-top: 2rem;
 }
 
+.hero-note {
+    font-size: 0.9rem;
+    color: var(--text-soft);
+    margin-top: 1rem;
+}
+
 .scroll-down {
     display: inline-block;
     margin-top: 2.5rem;
@@ -303,11 +331,94 @@ h1, h2, h3, h4 {
 
 /* ===== SECTIONS ===== */
 .section {
-    padding: 5rem 1.5rem;
+    padding: 7rem 1.5rem;
 }
 
 .section.bg-white {
-    background: var(--bg-section);
+    background-color: transparent;
+}
+
+/* Secciones con foto de fondo (estilo Michelle & Tonye) */
+.section.section-bg {
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.section.section-bg::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(250, 250, 248, 0.82);
+    z-index: 0;
+}
+
+.section.section-bg .container {
+    position: relative;
+    z-index: 1;
+}
+
+.section-bg-itinerario {
+    background-image: url("assets/photos/PCR54110.jpg");
+}
+
+.section-bg-historia {
+    background-image: url("assets/photos/PCR54313.jpg");
+}
+
+.section-bg-cartagena {
+    background-image: url("assets/photos/PCR54325.jpg");
+}
+
+.section-bg-rsvp {
+    background-image: url("assets/photos/PCR54748.jpg");
+}
+
+/* Collage de fotos + overlay oscuro + texto claro (estilo Michelle & Tonye) */
+.section.section-bg-collage {
+    background-image:
+        url("assets/photos/PCR54313.jpg"),
+        url("assets/photos/PCR54325.jpg"),
+        url("assets/photos/PCR54188.jpg"),
+        url("assets/photos/PCR54347.jpg");
+    background-size: 55% 45%, 50% 55%, 45% 50%, 60% 50%;
+    background-position: 0% 0%, 100% 0%, 0% 100%, 100% 100%;
+    background-repeat: no-repeat;
+}
+
+.section.section-bg-collage::before {
+    background: rgba(45, 42, 38, 0.78);
+}
+
+.section.section-bg-collage .section-title,
+.section.section-bg-collage .section-subtitle,
+.section.section-bg-collage .story-text,
+.section.section-bg-collage .story-placeholder h3,
+.section.section-bg-collage .story-note,
+.section.section-bg-collage .story-note strong,
+.section.section-bg-collage .placeholder-badge {
+    color: rgba(255, 255, 255, 0.95);
+}
+
+.section.section-bg-collage .section-subtitle,
+.section.section-bg-collage .story-text,
+.section.section-bg-collage .story-note {
+    color: rgba(255, 255, 255, 0.88);
+}
+
+.section.section-bg-collage .story-divider {
+    background: rgba(255, 255, 255, 0.4);
+}
+
+.section.section-bg-collage .placeholder-badge {
+    border-bottom-color: rgba(255, 255, 255, 0.35);
+}
+
+.section.section-bg-collage .story-card,
+.section.section-bg-collage .story-container {
+    background: transparent;
+    border: none;
 }
 
 .container {
@@ -342,16 +453,25 @@ h1, h2, h3, h4 {
 }
 
 .schedule-card {
-    background: var(--bg-section);
-    border: 1px solid var(--border);
-    border-radius: 6px;
+    background: transparent;
+    border: none;
+    border-radius: 0;
     padding: 0;
-    overflow: hidden;
+    overflow: visible;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 2rem;
+    margin-bottom: 2rem;
+}
+
+.schedule-card:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+    margin-bottom: 0;
 }
 
 .schedule-header {
-    padding: 1.25rem 1.5rem;
-    border-bottom: 1px solid var(--border);
+    padding: 1.25rem 0;
+    border-bottom: none;
     text-align: center;
 }
 
@@ -436,9 +556,8 @@ a.link-gold {
 
 .hotel-discount {
     padding: 1.5rem 0;
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    padding: 1.5rem;
+    border: none;
+    border-radius: 0;
 }
 
 .hotel-discount h4 {
@@ -452,11 +571,32 @@ a.link-gold {
     margin-bottom: 1rem;
 }
 
+.hotel-options-list {
+    list-style: disc;
+    padding-left: 1.5rem;
+    margin-top: 0.75rem;
+}
+
+.hotel-options-list li {
+    color: var(--text-soft);
+    font-size: 0.95rem;
+    margin-bottom: 0.5rem;
+}
+
+.hotel-options-list a {
+    color: var(--accent);
+    text-decoration: none;
+}
+
+.hotel-options-list a:hover {
+    text-decoration: underline;
+}
+
 .map-container-small {
     border-radius: 6px;
     overflow: hidden;
     height: 320px;
-    border: 1px solid var(--border);
+    border: none;
 }
 
 .map-container-small iframe {
@@ -480,6 +620,13 @@ a.link-gold {
     color: var(--text);
 }
 
+.section-note {
+    font-size: 0.9rem;
+    color: var(--text-soft);
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
 .places-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -488,15 +635,14 @@ a.link-gold {
 }
 
 .place-card {
-    background: var(--bg-section);
-    border: 1px solid var(--border);
-    border-radius: 6px;
+    background: transparent;
+    border: none;
+    border-radius: 0;
     overflow: hidden;
-    transition: border-color 0.2s ease;
 }
 
 .place-card:hover {
-    border-color: var(--accent-soft);
+    opacity: 0.95;
 }
 
 .place-image {
@@ -529,10 +675,10 @@ a.link-gold {
 }
 
 .recommendation-card {
-    background: var(--bg-section);
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    padding: 1.5rem;
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    padding: 1.5rem 0;
 }
 
 .recommendation-header h3 {
@@ -567,10 +713,10 @@ a.link-gold {
 }
 
 .story-card {
-    background: var(--bg-section);
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    padding: 2rem;
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    padding: 2rem 0;
 }
 
 .story-placeholder {
@@ -579,13 +725,14 @@ a.link-gold {
 
 .placeholder-badge {
     display: inline-block;
-    background: var(--border);
+    background: transparent;
     color: var(--text-soft);
-    padding: 0.4rem 0.75rem;
-    border-radius: 4px;
+    padding: 0.4rem 0;
+    border-radius: 0;
     font-size: 0.8rem;
     margin-bottom: 1.5rem;
     font-weight: 500;
+    border-bottom: 1px solid var(--border);
 }
 
 .story-placeholder h3 {
@@ -608,10 +755,10 @@ a.link-gold {
 }
 
 .story-note {
-    background: var(--bg);
-    border: 1px solid var(--border);
-    padding: 1rem;
-    border-radius: 4px;
+    background: transparent;
+    border: none;
+    border-top: 1px solid var(--border);
+    padding: 1rem 0;
     margin-top: 1.5rem;
     font-size: 0.85rem;
     color: var(--text-soft);
@@ -649,7 +796,8 @@ a.link-gold {
 }
 
 .faq-question:hover {
-    background: var(--bg);
+    background: transparent;
+    opacity: 0.9;
 }
 
 .faq-icon {
@@ -722,10 +870,11 @@ a.link-gold {
 }
 
 .gift-store-item {
-    padding: 1rem;
-    background: var(--bg);
-    border-radius: 4px;
+    padding: 1rem 0;
+    background: transparent;
+    border-radius: 0;
     border-left: 3px solid var(--accent-soft);
+    padding-left: 1rem;
 }
 
 .gift-store-item h4 {
@@ -754,10 +903,10 @@ a.link-gold {
 }
 
 .gift-note {
-    background: var(--bg);
-    border: 1px solid var(--border);
-    padding: 0.75rem;
-    border-radius: 4px;
+    background: transparent;
+    border: none;
+    border-top: 1px solid var(--border);
+    padding: 0.75rem 0;
     margin-top: 1rem;
 }
 
@@ -773,10 +922,10 @@ a.link-gold {
 }
 
 .makeup-artist-card {
-    background: var(--bg-section);
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    padding: 1.5rem;
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    padding: 1.5rem 0;
 }
 
 .makeup-artist-header h3 {
@@ -827,11 +976,11 @@ a.link-gold {
 }
 
 .makeup-tips {
-    background: var(--bg);
-    padding: 1rem;
-    border-radius: 4px;
+    background: transparent;
+    padding: 1rem 0;
     margin-top: 1.5rem;
-    border: 1px solid var(--border);
+    border: none;
+    border-top: 1px solid var(--border);
 }
 
 .makeup-tips h4 {
@@ -974,7 +1123,7 @@ a.link-gold {
 
 /* ===== FOOTER ===== */
 .footer {
-    background: var(--bg-section);
+    background: transparent;
     color: var(--text-soft);
     padding: 3rem 1.5rem 2rem;
     border-top: 1px solid var(--border);
@@ -1104,7 +1253,7 @@ a.link-gold {
     }
 
     .section {
-        padding: 3.5rem 1rem;
+        padding: 5rem 1rem;
     }
 
     .section-title {
