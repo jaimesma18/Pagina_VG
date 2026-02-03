@@ -90,7 +90,9 @@ h1, h2, h3, h4 {
     transition: background-color 0.3s ease, box-shadow 0.3s ease;
     padding: 1rem 0;
     /* Prevenir que la navbar cause layout recalculations en móvil */
-    will-change: transform;
+    /* Usar contain para aislar del resto del layout */
+    contain: layout style;
+    overflow-anchor: none !important;
     -webkit-backdrop-filter: blur(0);
     backdrop-filter: blur(0);
 }
@@ -227,8 +229,10 @@ h1, h2, h3, h4 {
     /* Aislar el countdown del resto del layout para prevenir scroll anchoring */
     contain: layout style paint;
     overflow-anchor: none !important;
-    /* Forzar que los cambios en el countdown no afecten el scroll */
-    will-change: contents;
+    /* Prevenir que cambios en el countdown causen recálculos del layout */
+    isolation: isolate;
+    /* Usar transform para forzar GPU acceleration sin afectar layout */
+    transform: translateZ(0);
 }
 
 .countdown-item {
@@ -1302,6 +1306,11 @@ h1, h2, h3, h4 {
     opacity: 0.85;
     will-change: transform;
     background: transparent;
+    /* Aislar del layout para prevenir recálculos */
+    contain: layout style paint;
+    overflow-anchor: none !important;
+    /* Usar transform y opacity solo (no afectan layout) */
+    transform: translateZ(0); /* Force GPU acceleration */
 }
 
 /* Macaw image */
@@ -1313,6 +1322,9 @@ h1, h2, h3, h4 {
     filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.25));
     animation: wingFlap 0.5s ease-in-out infinite;
     background: transparent;
+    /* Aislar del layout */
+    contain: layout style paint;
+    transform: translateZ(0); /* Force GPU acceleration */
 }
 
 @keyframes wingFlap {

@@ -73,14 +73,50 @@ function startCountdown() {
 startCountdown();
 
 // ===== NAVBAR SCROLL EFFECT =====
-window.addEventListener('scroll', function() {
+// Optimizado para prevenir recálculos innecesarios en móvil
+(function() {
     const navbar = document.getElementById('navbar');
-    if (window.scrollY > 50) {
-        navbar.classList.add('scrolled');
-    } else {
-        navbar.classList.remove('scrolled');
+    if (!navbar) return;
+    
+    let isScrolled = false;
+    let scrollTimeout = null;
+    
+    // Throttle para reducir recálculos en móvil
+    function handleScroll() {
+        if (window.innerWidth < 768) {
+            // En móvil, usar throttling más agresivo
+            if (scrollTimeout) return;
+            scrollTimeout = setTimeout(() => {
+                const shouldBeScrolled = window.scrollY > 50;
+                if (shouldBeScrolled !== isScrolled) {
+                    isScrolled = shouldBeScrolled;
+                    // Usar requestAnimationFrame para sincronizar con el ciclo de rendering
+                    requestAnimationFrame(() => {
+                        if (shouldBeScrolled) {
+                            navbar.classList.add('scrolled');
+                        } else {
+                            navbar.classList.remove('scrolled');
+                        }
+                    });
+                }
+                scrollTimeout = null;
+            }, 100); // Throttle a 100ms en móvil
+        } else {
+            // En desktop, comportamiento normal
+            const shouldBeScrolled = window.scrollY > 50;
+            if (shouldBeScrolled !== isScrolled) {
+                isScrolled = shouldBeScrolled;
+                if (shouldBeScrolled) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+            }
+        }
     }
-});
+    
+    window.addEventListener('scroll', handleScroll, { passive: true });
+})();
 
 // ===== MOBILE MENU =====
 function setupMobileMenu() {
