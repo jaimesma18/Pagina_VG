@@ -53,6 +53,18 @@ navLinks.forEach(link => {
     });
 });
 
+// ===== FLECHA INICIO: IR A LA SIGUIENTE SECCIÓN =====
+const scrollDownArrow = document.getElementById('scrollDownArrow');
+if (scrollDownArrow) {
+    scrollDownArrow.addEventListener('click', function(e) {
+        e.preventDefault();
+        const hero = document.getElementById('inicio');
+        const nextSection = hero && hero.nextElementSibling;
+        if (nextSection) {
+            nextSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+    });
+}
 
 // ===== FAQ TOGGLE =====
 function toggleFAQ(button) {

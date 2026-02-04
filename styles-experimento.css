@@ -10,8 +10,8 @@
 :root {
     --bg: #fafaf8;
     --bg-section: #fff;
-    --text: #3d3d3d;
-    --text-soft: #6b6b6b;
+    --text: #2d2d8c;
+    --text-soft: #4a4a9e;
     --accent: #8b7355;
     --accent-soft: #c4b5a0;
     --border: #e8e6e3;
@@ -113,6 +113,7 @@ h1, h2, h3, h4 {
 
 /* ===== FLYING MACAW ===== */
 .flying-macaw {
+    display: none !important;
     position: fixed;
     z-index: 9999;
     pointer-events: none;
@@ -627,6 +628,70 @@ a.link-gold {
     margin-bottom: 1.5rem;
 }
 
+.google-form-embed {
+    max-width: 640px;
+    margin: 1.5rem auto 2rem;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+}
+.google-form-embed iframe {
+    display: block;
+    min-height: 600px;
+}
+
+.transport-mailto-btn {
+    display: inline-block;
+    margin: 1rem 0;
+}
+
+.transport-email-data {
+    max-width: 560px;
+    margin: 0 auto;
+    text-align: left;
+}
+
+.transport-email-cta {
+    margin-bottom: 0.75rem;
+    color: var(--text-soft);
+    font-size: 0.95rem;
+}
+
+.transport-email-fallback {
+    margin-top: 2rem;
+    padding: 1.25rem;
+    background: rgba(0, 0, 0, 0.03);
+    border-radius: 8px;
+    border: 1px solid var(--border);
+}
+
+.transport-email-fallback h4 {
+    font-size: 1rem;
+    margin-bottom: 0.75rem;
+    color: var(--text);
+}
+
+.transport-email-fallback p {
+    margin-bottom: 0.5rem;
+    font-size: 0.95rem;
+    color: var(--text-soft);
+}
+
+.transport-email-fallback p:last-of-type {
+    margin-top: 0.75rem;
+}
+
+.transport-fields-list {
+    margin: 0.5rem 0 0 1.25rem;
+    padding: 0;
+    color: var(--text-soft);
+    font-size: 0.95rem;
+}
+
+.transport-fields-list li {
+    margin-bottom: 0.25rem;
+}
+
 .places-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -704,6 +769,17 @@ a.link-gold {
 
 .recommendation-item:last-child p {
     margin-bottom: 0;
+}
+
+.shopping-list {
+    list-style: decimal;
+    padding-left: 1.5rem;
+    margin: 0;
+}
+.shopping-list li {
+    margin-bottom: 0.35rem;
+    color: var(--text-soft);
+    font-size: 0.95rem;
 }
 
 /* ===== STORY ===== */
@@ -1161,6 +1237,16 @@ a.link-gold {
 .social-links {
     display: flex;
     gap: 1rem;
+}
+
+.social-links .social-icon-insta {
+    display: inline-flex;
+    color: var(--text);
+    text-decoration: none;
+}
+.social-links .social-icon-insta:hover {
+    color: var(--accent);
+    text-decoration: none;
 }
 
 .footer-bottom {
