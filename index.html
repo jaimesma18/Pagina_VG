@@ -28,7 +28,6 @@
                 <li><a href="#ubicacion">Ubicación</a></li>
                 <li><a href="#transporte">Transporte</a></li>
                 <li><a href="#cartagena">Cartagena</a></li>
-                <li><a href="#maquillistas">Belleza</a></li>
                 <li><a href="#regalos">Mesa de Regalos</a></li>
                 <li><a href="#faq">FAQ</a></li>
             </ul>
@@ -77,7 +76,7 @@
     </section>
 
     <!-- Story Section -->
-    <section id="historia" class="section section-bg section-bg-collage">
+    <section id="historia" class="section section-bg section-bg-historia">
         <div class="container">
             <h2 class="section-title">Nuestra Historia</h2>
             <p class="section-subtitle">Cada historia de amor es única. Aquí compartimos la nuestra contigo.</p>
@@ -204,7 +203,7 @@
     </section>
 
     <!-- Ubicación -->
-    <section id="ubicacion" class="section">
+    <section id="ubicacion" class="section section-bg section-bg-ubicacion">
         <div class="container">
             <h2 class="section-title">Ubicación</h2>
             <p class="section-subtitle">Los eventos de la boda se realizan en <strong>Dreams Karibana Cartagena Golf & Spa Resort</strong>.</p>
@@ -240,7 +239,7 @@
     </section>
 
     <!-- Transporte de cortesía -->
-    <section id="transporte" class="section">
+    <section id="transporte" class="section section-bg section-bg-transporte">
         <div class="container">
             <h2 class="section-title">Transporte de cortesía</h2>
             <p class="section-subtitle">Transporte del aeropuerto al hotel Dreams Karibana. Si lo necesitas, envía un correo con tus datos y se te confirmará.</p>
@@ -419,14 +418,6 @@
         </div>
     </section>
 
-    <!-- Salones de belleza (solo opción hotel) -->
-    <section id="maquillistas" class="section">
-        <div class="container">
-            <h2 class="section-title">Salones de belleza</h2>
-            <p class="section-subtitle">Para maquillaje y peinado el día de la boda solo podremos usar la opción del hotel (Dreams Karibana). Reserva con el hotel con anticipación.</p>
-        </div>
-    </section>
-
     <!-- Mesa de Regalos Section -->
     <section id="regalos" class="section bg-white">
         <div class="container">
@@ -436,7 +427,7 @@
     </section>
 
     <!-- FAQ Section -->
-    <section id="faq" class="section">
+    <section id="faq" class="section section-bg section-bg-faq">
         <div class="container">
             <h2 class="section-title">Preguntas Frecuentes</h2>
             <p class="section-subtitle">Resolvemos las dudas más comunes para que puedas prepararte sin preocupaciones.</p>
@@ -474,6 +465,16 @@
 
                 <div class="faq-item">
                     <button class="faq-question" onclick="toggleFAQ(this)">
+                        <span>¿Dónde puedo reservar maquillaje y peinado?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>En el hotel Dreams Karibana hay salón de belleza. Puedes reservar por correo: <a href="mailto:susana.perez@dreamsresorts.com" class="link-gold">susana.perez@dreamsresorts.com</a>, <a href="mailto:rosa.carrasquilla@dreamsresorts.com" class="link-gold">rosa.carrasquilla@dreamsresorts.com</a>, o por WhatsApp: <a href="https://wa.me/573008230389" target="_blank" rel="noopener noreferrer" class="link-gold">+57 300 823 0389</a>.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFAQ(this)">
                         <span>¿Cómo me muevo por Cartagena?</span>
                         <span class="faq-icon">+</span>
                     </button>
@@ -488,7 +489,7 @@
                         <span class="faq-icon">+</span>
                     </button>
                     <div class="faq-answer">
-                        <p>Depende de tu nacionalidad. Ciudadanos de muchos países (incluyendo USA, Canadá, UE, y varios países latinoamericanos) no necesitan visa para estancias turísticas de hasta 90 días. Verifica con la embajada colombiana en tu país para estar seguro.</p>
+                        <p>Depende de tu nacionalidad. Ciudadanos de muchos países (incluyendo USA, Canadá, UE, y varios países latinoamericanos) no necesitan visa para estancias turísticas de hasta 90 días.<br>Los ciudadanos israelíes, desde mediados de 2025, sí requieren visa.<br>Verifica con la embajada colombiana en tu país para estar seguro.</p>
                     </div>
                 </div>
 
@@ -518,7 +519,7 @@
                         <span class="faq-icon">+</span>
                     </button>
                     <div class="faq-answer">
-                        <p>Lo confirmaremos pronto y lo publicaremos aquí.</p>
+                        <p>Sí, del aeropuerto al hotel. Lo confirmaremos pronto y lo publicaremos aquí.</p>
                     </div>
                 </div>
 
@@ -528,7 +529,7 @@
                         <span class="faq-icon">+</span>
                     </button>
                     <div class="faq-answer">
-                        <p>Ante dudas: Fanny Grossman <a href="https://wa.me/50767816347" target="_blank" rel="noopener noreferrer" class="link-gold">+507 6781-6347</a>.</p>
+                        <p>Fanny Grossman por WhatsApp <a href="https://wa.me/50767816347" target="_blank" rel="noopener noreferrer" class="link-gold">+507 6781-6347</a>.</p>
                     </div>
                 </div>
             </div>
@@ -546,18 +547,19 @@
                 <div class="footer-column">
                     <h3>Contacto</h3>
                     <p>
-                        Fanny Grossman (wedding planner): <a href="tel:+50767816347">+507 6781-6347</a>
+                        Fanny Grossman (wedding planner), WhatsApp: <a href="https://wa.me/50767816347" target="_blank" rel="noopener noreferrer">+507 6781-6347</a>
                     </p>
                 </div>
                 <div class="footer-column">
                     <h3>Síguenos</h3>
                     <div class="social-links">
-                        <a href="#" aria-label="Instagram" class="social-icon-insta">
+                        <a href="http://instagram.com/explore/tags/keepitcohen" target="_blank" rel="noopener noreferrer" aria-label="Instagram #keepitcohen" class="social-icon-insta">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                                 <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
                                 <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
                                 <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
                             </svg>
+                            #keepitcohen
                         </a>
                     </div>
                 </div>

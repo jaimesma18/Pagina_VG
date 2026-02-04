@@ -339,7 +339,7 @@ h1, h2, h3, h4 {
     background-color: transparent;
 }
 
-/* Secciones con foto de fondo (estilo Michelle & Tonye) */
+/* Secciones con foto de fondo */
 .section.section-bg {
     position: relative;
     background-size: cover;
@@ -360,66 +360,37 @@ h1, h2, h3, h4 {
     z-index: 1;
 }
 
-.section-bg-itinerario {
-    background-image: url("assets/photos/PCR54110.jpg");
+.section-bg-historia {
+    background-image: url("assets/photos/PCR54188.jpg");
 }
 
-.section-bg-historia {
-    background-image: url("assets/photos/PCR54313.jpg");
+.section-bg-itinerario {
+    background-image: url("assets/photos/PCR54110.jpg");
+    background-position: 0% center;
+}
+
+.section-bg-ubicacion {
+    background-image: url("assets/photos/PCR53765.jpg");
+}
+
+.section-bg-transporte {
+    background-image: url("assets/photos/PCR53793.jpg");
 }
 
 .section-bg-cartagena {
-    background-image: url("assets/photos/PCR54325.jpg");
+    background-image: url("assets/photos/PCR54355.jpg");
 }
 
-.section-bg-rsvp {
-    background-image: url("assets/photos/PCR54748.jpg");
+.section-bg-maquillistas {
+    background-image: url("assets/photos/PCR54352.jpg");
 }
 
-/* Collage de fotos + overlay oscuro + texto claro (estilo Michelle & Tonye) */
-.section.section-bg-collage {
-    background-image:
-        url("assets/photos/PCR54313.jpg"),
-        url("assets/photos/PCR54325.jpg"),
-        url("assets/photos/PCR54188.jpg"),
-        url("assets/photos/PCR54347.jpg");
-    background-size: 55% 45%, 50% 55%, 45% 50%, 60% 50%;
-    background-position: 0% 0%, 100% 0%, 0% 100%, 100% 100%;
-    background-repeat: no-repeat;
+.section-bg-regalos {
+    background-image: url("assets/photos/PCR54355.jpg");
 }
 
-.section.section-bg-collage::before {
-    background: rgba(45, 42, 38, 0.78);
-}
-
-.section.section-bg-collage .section-title,
-.section.section-bg-collage .section-subtitle,
-.section.section-bg-collage .story-text,
-.section.section-bg-collage .story-placeholder h3,
-.section.section-bg-collage .story-note,
-.section.section-bg-collage .story-note strong,
-.section.section-bg-collage .placeholder-badge {
-    color: rgba(255, 255, 255, 0.95);
-}
-
-.section.section-bg-collage .section-subtitle,
-.section.section-bg-collage .story-text,
-.section.section-bg-collage .story-note {
-    color: rgba(255, 255, 255, 0.88);
-}
-
-.section.section-bg-collage .story-divider {
-    background: rgba(255, 255, 255, 0.4);
-}
-
-.section.section-bg-collage .placeholder-badge {
-    border-bottom-color: rgba(255, 255, 255, 0.35);
-}
-
-.section.section-bg-collage .story-card,
-.section.section-bg-collage .story-container {
-    background: transparent;
-    border: none;
+.section-bg-faq {
+    background-image: url("assets/photos/PCR54498.jpg");
 }
 
 .container {
@@ -459,13 +430,11 @@ h1, h2, h3, h4 {
     border-radius: 0;
     padding: 0;
     overflow: visible;
-    border-bottom: 1px solid var(--border);
     padding-bottom: 2rem;
     margin-bottom: 2rem;
 }
 
 .schedule-card:last-child {
-    border-bottom: none;
     padding-bottom: 0;
     margin-bottom: 0;
 }
@@ -495,13 +464,13 @@ h1, h2, h3, h4 {
 }
 
 .event-item {
-    padding-bottom: 1.25rem;
-    border-bottom: 1px solid var(--border);
+    padding-bottom: 1.5rem;
+    margin-bottom: 1.5rem;
 }
 
 .event-item:last-child {
     padding-bottom: 0;
-    border-bottom: none;
+    margin-bottom: 0;
 }
 
 .event-content h4 {
@@ -1241,6 +1210,8 @@ a.link-gold {
 
 .social-links .social-icon-insta {
     display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
     color: var(--text);
     text-decoration: none;
 }
