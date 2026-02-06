@@ -27,6 +27,21 @@ function updateCountdown() {
 setInterval(updateCountdown, 1000);
 updateCountdown();
 
+// ===== GUACAMAYA: globo de texto en loop (aparece, 5s visible, se oculta, espera, repite) =====
+const macawSpeech = document.getElementById('macawSpeech');
+if (macawSpeech) {
+    const macawPhrases = ['no me quites :(', 'yo si te quiero'];
+    function showMacawSpeech() {
+        macawSpeech.textContent = macawPhrases[Math.floor(Math.random() * macawPhrases.length)];
+        macawSpeech.classList.remove('macaw-speech--hidden');
+        setTimeout(function() {
+            macawSpeech.classList.add('macaw-speech--hidden');
+            setTimeout(showMacawSpeech, 6000);
+        }, 5000);
+    }
+    setTimeout(showMacawSpeech, 2000);
+}
+
 // ===== NAVBAR SCROLL EFFECT =====
 window.addEventListener('scroll', function() {
     const navbar = document.getElementById('navbar');
