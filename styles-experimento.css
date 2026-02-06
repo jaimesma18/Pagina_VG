@@ -810,13 +810,13 @@ a.link-gold {
 }
 
 .story-screenshot {
-    float: left;
+    float: right;
     max-width: 170px;
-    margin: 0 1rem 0.75rem 0;
+    margin: 1rem 0 0.75rem 1rem;
 }
 
 .story-placeholder.version-chismosos .story-screenshot {
-    margin-top: 1.25rem;
+    margin-top: 1.5rem;
 }
 
 .story-screenshot img {
@@ -843,7 +843,7 @@ a.link-gold {
 @media (max-width: 480px) {
     .story-screenshot {
         max-width: 140px;
-        margin-right: 0.75rem;
+        margin-left: 0.75rem;
     }
 }
 
@@ -860,7 +860,8 @@ a.link-gold {
 }
 
 .btn-chismosos {
-    display: inline-block;
+    clear: both;
+    display: block;
     margin-top: 0;
     margin-bottom: 1.25rem;
     padding: 0.5rem 1rem;
