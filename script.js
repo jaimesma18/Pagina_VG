@@ -27,19 +27,7 @@ function updateCountdown() {
 setInterval(updateCountdown, 1000);
 updateCountdown();
 
-// ===== GUACAMAYA: globo de texto en loop (aparece, 5s visible, se oculta, espera, repite) =====
-const macawSpeech = document.getElementById('macawSpeech');
-if (macawSpeech) {
-    function showMacawSpeech() {
-        macawSpeech.textContent = 'no me quites :(';
-        macawSpeech.classList.remove('macaw-speech--hidden');
-        setTimeout(function() {
-            macawSpeech.classList.add('macaw-speech--hidden');
-            setTimeout(showMacawSpeech, 6000);
-        }, 5000);
-    }
-    setTimeout(showMacawSpeech, 2000);
-}
+// ===== GUACAMAYA: globo de texto desactivado =====
 
 // ===== NAVBAR SCROLL EFFECT =====
 window.addEventListener('scroll', function() {

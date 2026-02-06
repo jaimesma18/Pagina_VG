@@ -113,7 +113,7 @@ h1, h2, h3, h4 {
 
 /* ===== FLYING MACAW ===== */
 .flying-macaw {
-    display: block;
+    display: none;
     position: fixed;
     z-index: 9999;
     pointer-events: none;
@@ -131,6 +131,7 @@ h1, h2, h3, h4 {
     left: 50%;
     transform: translateX(-50%) translateY(-8px);
     padding: 0.5rem 0.75rem;
+    min-width: 8ch;
     background: #fff;
     border: 1px solid var(--border);
     border-radius: 12px;
