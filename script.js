@@ -30,9 +30,8 @@ updateCountdown();
 // ===== GUACAMAYA: globo de texto en loop (aparece, 5s visible, se oculta, espera, repite) =====
 const macawSpeech = document.getElementById('macawSpeech');
 if (macawSpeech) {
-    const macawPhrases = ['no me quites :(', 'yo si te quiero'];
     function showMacawSpeech() {
-        macawSpeech.textContent = macawPhrases[Math.floor(Math.random() * macawPhrases.length)];
+        macawSpeech.textContent = 'no me quites :(';
         macawSpeech.classList.remove('macaw-speech--hidden');
         setTimeout(function() {
             macawSpeech.classList.add('macaw-speech--hidden');
