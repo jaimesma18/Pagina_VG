@@ -27,6 +27,8 @@ function updateCountdown() {
 setInterval(updateCountdown, 1000);
 updateCountdown();
 
+// ===== GUACAMAYA: globo de texto desactivado =====
+
 // ===== NAVBAR SCROLL EFFECT =====
 window.addEventListener('scroll', function() {
     const navbar = document.getElementById('navbar');
