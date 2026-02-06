@@ -53,6 +53,38 @@ navLinks.forEach(link => {
     });
 });
 
+// ===== FLECHA INICIO: IR A LA SIGUIENTE SECCIÓN =====
+const scrollDownArrow = document.getElementById('scrollDownArrow');
+if (scrollDownArrow) {
+    scrollDownArrow.addEventListener('click', function(e) {
+        e.preventDefault();
+        const hero = document.getElementById('inicio');
+        const nextSection = hero && hero.nextElementSibling;
+        if (nextSection) {
+            nextSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+    });
+}
+
+// ===== VERSIÓN PARA MÁS CHISMOSOS =====
+const btnChismosos = document.getElementById('btnChismosos');
+const storyShort = document.getElementById('storyShort');
+const storyShortRest = document.getElementById('storyShortRest');
+const storyScreenshot = document.getElementById('storyScreenshot');
+const storyLong = document.getElementById('storyLong');
+const storyPlaceholder = document.querySelector('.story-placeholder');
+if (btnChismosos && storyShort && storyLong) {
+    btnChismosos.addEventListener('click', function() {
+        const isExpanded = storyLong.hidden === false;
+        storyShort.hidden = !isExpanded;
+        if (storyShortRest) storyShortRest.hidden = !isExpanded;
+        if (storyScreenshot) storyScreenshot.hidden = !isExpanded;
+        storyLong.hidden = isExpanded;
+        if (storyPlaceholder) storyPlaceholder.classList.toggle('version-chismosos', !isExpanded);
+        btnChismosos.setAttribute('aria-expanded', !isExpanded);
+        btnChismosos.textContent = isExpanded ? 'Versión para más chismosos' : 'Ver versión corta';
+    });
+}
 
 // ===== FAQ TOGGLE =====
 function toggleFAQ(button) {
