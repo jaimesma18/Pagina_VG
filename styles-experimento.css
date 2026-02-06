@@ -809,6 +809,76 @@ a.link-gold {
     color: var(--text-soft);
 }
 
+.story-screenshot {
+    float: left;
+    max-width: 200px;
+    margin: 0 1rem 0.75rem 0;
+}
+
+.story-screenshot img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+}
+
+.story-screenshot figcaption {
+    margin-top: 0.4rem;
+    font-size: 0.8rem;
+    color: var(--text-soft);
+    font-style: italic;
+}
+
+.story-placeholder::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+@media (max-width: 480px) {
+    .story-screenshot {
+        float: none;
+        max-width: 220px;
+        margin: 1rem auto;
+        display: block;
+    }
+}
+
+.story-text-long {
+    margin-top: 1rem;
+}
+
+.story-text-long p {
+    margin-bottom: 1rem;
+}
+
+.story-text-long p:last-child {
+    margin-bottom: 0;
+}
+
+.btn-chismosos {
+    display: inline-block;
+    margin-top: 0;
+    margin-bottom: 1.25rem;
+    padding: 0.5rem 1rem;
+    font-family: inherit;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--gold, #c9a962);
+    background: transparent;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    cursor: pointer;
+    transition: color 0.2s, border-color 0.2s, background 0.2s;
+}
+
+.btn-chismosos:hover {
+    color: var(--text-soft);
+    border-color: var(--gold, #c9a962);
+    background: rgba(201, 169, 98, 0.08);
+}
+
 /* ===== FAQ ===== */
 .faq-container {
     max-width: 560px;
@@ -870,6 +940,43 @@ a.link-gold {
     color: var(--text-soft);
     font-size: 0.95rem;
     line-height: 1.7;
+}
+
+/* ===== GLOSARIO ===== */
+.glossary {
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border);
+}
+
+.glossary-title {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+    color: var(--text-soft);
+}
+
+.glossary-list {
+    margin: 0;
+}
+
+.glossary-list dt {
+    font-weight: 600;
+    color: var(--text-soft);
+    font-size: 0.95rem;
+    margin-top: 0.5rem;
+}
+
+.glossary-list dt:first-child {
+    margin-top: 0;
+}
+
+.glossary-list dd {
+    margin: 0.25rem 0 0 0;
+    padding-left: 0;
+    color: var(--text-soft);
+    font-size: 0.9rem;
+    line-height: 1.6;
 }
 
 /* ===== MESA DE REGALOS ===== */
