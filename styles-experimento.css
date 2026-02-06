@@ -515,6 +515,14 @@ a.link-gold {
     color: var(--text);
 }
 
+.belleza-contact {
+    font-size: 0.95rem;
+    color: var(--text-soft);
+    max-width: 520px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 /* ===== HOTEL ===== */
 .hotel-info-container {
     display: grid;
@@ -528,6 +536,7 @@ a.link-gold {
     padding: 1.5rem 0;
     border: none;
     border-radius: 0;
+    text-align: center;
 }
 
 .hotel-discount h4 {
@@ -708,6 +717,25 @@ a.link-gold {
     margin: 0 auto;
 }
 
+.cartagena-tours {
+    max-width: 560px;
+    margin: 2.5rem auto 0;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border);
+}
+
+.tours-contact-name {
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: var(--text-soft);
+}
+
+.tours-contact-item {
+    color: var(--text-soft);
+    font-size: 0.95rem;
+    margin-bottom: 0.35rem;
+}
+
 .recommendation-card {
     background: transparent;
     border: none;
@@ -721,6 +749,7 @@ a.link-gold {
     margin-bottom: 0.75rem;
     padding-bottom: 0.75rem;
     border-bottom: 1px solid var(--border);
+    text-align: center;
 }
 
 .recommendation-item h4 {
@@ -741,8 +770,8 @@ a.link-gold {
 }
 
 .shopping-list {
-    list-style: decimal;
-    padding-left: 1.5rem;
+    list-style: none;
+    padding-left: 0;
     margin: 0;
 }
 .shopping-list li {
