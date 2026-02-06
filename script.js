@@ -70,6 +70,7 @@ if (scrollDownArrow) {
 const btnChismosos = document.getElementById('btnChismosos');
 const storyShort = document.getElementById('storyShort');
 const storyShortRest = document.getElementById('storyShortRest');
+const storyScreenshot = document.getElementById('storyScreenshot');
 const storyLong = document.getElementById('storyLong');
 const storyPlaceholder = document.querySelector('.story-placeholder');
 if (btnChismosos && storyShort && storyLong) {
@@ -77,6 +78,7 @@ if (btnChismosos && storyShort && storyLong) {
         const isExpanded = storyLong.hidden === false;
         storyShort.hidden = !isExpanded;
         if (storyShortRest) storyShortRest.hidden = !isExpanded;
+        if (storyScreenshot) storyScreenshot.hidden = !isExpanded;
         storyLong.hidden = isExpanded;
         if (storyPlaceholder) storyPlaceholder.classList.toggle('version-chismosos', !isExpanded);
         btnChismosos.setAttribute('aria-expanded', !isExpanded);
