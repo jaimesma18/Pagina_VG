@@ -71,12 +71,14 @@ const btnChismosos = document.getElementById('btnChismosos');
 const storyShort = document.getElementById('storyShort');
 const storyShortRest = document.getElementById('storyShortRest');
 const storyLong = document.getElementById('storyLong');
+const storyPlaceholder = document.querySelector('.story-placeholder');
 if (btnChismosos && storyShort && storyLong) {
     btnChismosos.addEventListener('click', function() {
         const isExpanded = storyLong.hidden === false;
         storyShort.hidden = !isExpanded;
         if (storyShortRest) storyShortRest.hidden = !isExpanded;
         storyLong.hidden = isExpanded;
+        if (storyPlaceholder) storyPlaceholder.classList.toggle('version-chismosos', !isExpanded);
         btnChismosos.setAttribute('aria-expanded', !isExpanded);
         btnChismosos.textContent = isExpanded ? 'Versión para más chismosos' : 'Ver versión corta';
     });

@@ -815,6 +815,10 @@ a.link-gold {
     margin: 0 1rem 0.75rem 0;
 }
 
+.story-placeholder.version-chismosos .story-screenshot {
+    margin-top: 1.25rem;
+}
+
 .story-screenshot img {
     width: 100%;
     height: auto;
@@ -942,12 +946,15 @@ a.link-gold {
 
 /* ===== GLOSARIO ===== */
 .glossary {
+    clear: both;
+    display: block;
     margin-top: 2rem;
     padding-top: 1.5rem;
     border-top: 1px solid var(--border);
 }
 
 .glossary-title {
+    display: block;
     font-size: 1rem;
     font-weight: 600;
     margin-bottom: 0.75rem;
@@ -958,23 +965,22 @@ a.link-gold {
     margin: 0;
 }
 
+.glossary-list dt,
+.glossary-list dd {
+    display: inline;
+    margin: 0;
+    padding: 0;
+    font-size: 0.9rem;
+    color: var(--text-soft);
+    line-height: 1.6;
+}
+
 .glossary-list dt {
     font-weight: 600;
-    color: var(--text-soft);
-    font-size: 0.95rem;
-    margin-top: 0.5rem;
 }
 
-.glossary-list dt:first-child {
-    margin-top: 0;
-}
-
-.glossary-list dd {
-    margin: 0.25rem 0 0 0;
-    padding-left: 0;
-    color: var(--text-soft);
-    font-size: 0.9rem;
-    line-height: 1.6;
+.glossary-list dd::before {
+    content: " ";
 }
 
 /* ===== MESA DE REGALOS ===== */
