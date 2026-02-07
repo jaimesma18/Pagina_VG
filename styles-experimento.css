@@ -220,7 +220,7 @@ h1, h2, h3, h4 {
     content: "";
     position: absolute;
     inset: 0;
-    background: rgba(250, 250, 248, 0.6);
+    background: rgba(250, 250, 248, 0.7);
     z-index: 0;
 }
 
@@ -383,7 +383,7 @@ h1, h2, h3, h4 {
     content: "";
     position: absolute;
     inset: 0;
-    background: rgba(250, 250, 248, 0.6);
+    background: rgba(250, 250, 248, 0.7);
     z-index: 0;
 }
 
@@ -393,7 +393,7 @@ h1, h2, h3, h4 {
 }
 
 .section-bg-historia {
-    background-image: url("assets/photos/PCR54188.jpg");
+    background-image: url("assets/photos/PCR54194.jpg");
 }
 
 .section-bg-itinerario {
@@ -973,13 +973,13 @@ a.link-gold {
 .btn-chismosos {
     clear: both;
     display: block;
-    margin-top: 0;
-    margin-bottom: 1.25rem;
+    margin-top: -2.5rem;
+    margin-bottom: 7.25rem;
     padding: 0.5rem 1rem;
     font-family: inherit;
     font-size: 0.9rem;
     font-weight: 500;
-    color: var(--gold, #c9a962);
+    color: #9a7d3d;
     background: transparent;
     border: 1px solid var(--border);
     border-radius: 4px;
@@ -989,8 +989,8 @@ a.link-gold {
 
 .btn-chismosos:hover {
     color: var(--text-soft);
-    border-color: var(--gold, #c9a962);
-    background: rgba(201, 169, 98, 0.08);
+    border-color: #9a7d3d;
+    background: rgba(154, 125, 61, 0.12);
 }
 
 /* ===== FAQ ===== */
@@ -1479,6 +1479,18 @@ a.link-gold {
 
 /* ===== MOBILE ===== */
 @media (max-width: 768px) {
+    .hero.section-bg-hero {
+        background-position: 30% center;
+    }
+    .section.section-bg {
+        background-position: 30% center;
+    }
+    .section.section-bg-cartagena {
+        background-position: 30% 65%;
+    }
+    .section.section-bg-itinerario {
+        background-position: 0% center;
+    }
     .flying-macaw {
         width: 80px;
         height: 80px;
