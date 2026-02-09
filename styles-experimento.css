@@ -1486,6 +1486,12 @@ a.link-gold {
     background-repeat: no-repeat;
 }
 
+@media (min-width: 769px) {
+    .bottom-bg-image {
+        min-height: 75vh;
+    }
+}
+
 .footer {
     background: transparent;
     color: var(--text-soft);
