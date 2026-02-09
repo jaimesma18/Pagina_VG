@@ -368,7 +368,8 @@ h1, h2, h3, h4 {
 }
 
 .section.bg-white {
-    background-color: transparent;
+    background-color: #f2f1ef !important;
+    background-image: none !important;
 }
 
 /* Secciones con foto de fondo */
