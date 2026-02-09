@@ -182,3 +182,31 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         }
     });
 });
+
+// ===== INSTAGRAM: intentar abrir app, fallback a web =====
+(function() {
+    const link = document.getElementById('instagramHashtagLink');
+    if (!link) return;
+    const webUrl = 'https://www.instagram.com/explore/tags/keepitcohen/';
+    const appUrl = 'instagram://explore/tags/keepitcohen';
+    link.addEventListener('click', function(e) {
+        e.preventDefault();
+        var fallbackTimer;
+        function cancelFallback() {
+            clearTimeout(fallbackTimer);
+            document.removeEventListener('visibilitychange', cancelFallback);
+            window.removeEventListener('blur', cancelFallback);
+        }
+        fallbackTimer = setTimeout(function() {
+            cancelFallback();
+            window.open(webUrl, '_blank', 'noopener,noreferrer');
+        }, 1500);
+        document.addEventListener('visibilitychange', cancelFallback);
+        window.addEventListener('blur', cancelFallback);
+        var iframe = document.createElement('iframe');
+        iframe.style.cssText = 'position:absolute;width:0;height:0;border:0;';
+        iframe.src = appUrl;
+        document.body.appendChild(iframe);
+        setTimeout(function() { if (iframe.parentNode) document.body.removeChild(iframe); }, 500);
+    });
+})();
