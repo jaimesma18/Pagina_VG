@@ -426,6 +426,11 @@ h1, h2, h3, h4 {
     background-image: url("assets/photos/PCR54498.jpg");
 }
 
+/* Solo el hero muestra foto de fondo; el resto sin imagen */
+.section.section-bg {
+    background-image: none !important;
+}
+
 .container {
     max-width: 680px;
     margin: 0 auto;
@@ -923,6 +928,10 @@ a.link-gold {
     color: var(--text-soft);
 }
 
+/* Ocultar screenshot en versión corta; en versión larga se ve el de .story-text-long */
+.story-placeholder > .story-screenshot {
+    display: none;
+}
 .story-screenshot {
     float: right;
     max-width: 170px;
