@@ -448,6 +448,12 @@ h1, h2, h3, h4 {
     background-image: none;
 }
 
+/* Cartagena: una sola sección con fondo liso (sin textura de cuadritos) */
+.section-cartagena {
+    background-color: #f2f1ef !important;
+    background-image: none !important;
+}
+
 .container {
     max-width: 680px;
     margin: 0 auto;
