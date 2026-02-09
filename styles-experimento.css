@@ -426,13 +426,26 @@ h1, h2, h3, h4 {
     background-image: url("assets/photos/PCR54498.jpg");
 }
 
-/* Solo el hero muestra foto de fondo; el resto: gris claro con textura sutil */
+/* Solo el hero muestra foto de fondo; el resto: alternancia gris / blanco roto */
 .section.section-bg {
     background-color: #d4d2ce;
     background-image:
         repeating-linear-gradient(0deg, transparent 0, transparent 2px, rgba(255,255,255,.5) 2px, rgba(255,255,255,.5) 4px),
         repeating-linear-gradient(90deg, transparent 0, transparent 2px, rgba(0,0,0,.04) 2px, rgba(0,0,0,.04) 4px);
     background-size: 4px 4px;
+}
+
+/* Alternar fondo: secciones pares (2ª, 4ª…) gris; impares (3ª, 5ª…) blanco roto */
+.main-content > section:nth-of-type(even) {
+    background-color: #d4d2ce;
+    background-image:
+        repeating-linear-gradient(0deg, transparent 0, transparent 2px, rgba(255,255,255,.5) 2px, rgba(255,255,255,.5) 4px),
+        repeating-linear-gradient(90deg, transparent 0, transparent 2px, rgba(0,0,0,.04) 2px, rgba(0,0,0,.04) 4px);
+    background-size: 4px 4px;
+}
+.main-content > section:nth-of-type(odd):not(.hero) {
+    background-color: #f2f1ef;
+    background-image: none;
 }
 
 .container {
@@ -986,8 +999,8 @@ a.link-gold {
 .btn-chismosos {
     clear: both;
     display: block;
-    margin-top: -2.5rem;
-    margin-bottom: 7.25rem;
+    margin-top: -1rem;
+    margin-bottom: 1rem;
     padding: 0.5rem 1rem;
     font-family: inherit;
     font-size: 0.9rem;
