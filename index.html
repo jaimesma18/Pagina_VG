@@ -305,22 +305,31 @@ Guido le escribe por primera vez y empiezan a hablar.
                 </div>
             </div>
 
-            <!-- Tours -->
-            <div class="cartagena-tours">
-                <h3 class="places-section-title">Tours</h3>
-                <p class="tours-contact-name">Karen Teheran</p>
-                <p class="tours-contact-item">Teléfono: <a href="https://wa.me/573182431434" target="_blank" rel="noopener noreferrer" class="link-gold">+57 318 2431434</a></p>
-                <p class="tours-contact-item">Correo: <a href="mailto:gemamanzanillo@gematurs.com" class="link-gold">gemamanzanillo@gematurs.com</a></p>
+            <!-- Tours (colapsable) -->
+            <div class="cartagena-collapse-item">
+                <button type="button" class="cartagena-collapse-btn" onclick="toggleCartagenaCollapse(this)" aria-expanded="false">
+                    <span>Tours</span>
+                    <span class="cartagena-collapse-icon">+</span>
+                </button>
+                <div class="cartagena-collapse-content">
+                    <div class="cartagena-tours">
+                        <p class="tours-contact-name">Karen Teheran</p>
+                        <p class="tours-contact-item">Teléfono: <a href="https://wa.me/573182431434" target="_blank" rel="noopener noreferrer" class="link-gold">+57 318 2431434</a></p>
+                        <p class="tours-contact-item">Correo: <a href="mailto:gemamanzanillo@gematurs.com" class="link-gold">gemamanzanillo@gematurs.com</a></p>
+                    </div>
+                </div>
             </div>
 
             <div class="recommendations-grid">
 
-                <!-- Dónde Comer -->
-                <div class="recommendation-card">
-                    <div class="recommendation-header">
-                        <h3>Restaurantes</h3>
-                    </div>
-                    <div class="recommendation-content">
+                <!-- Restaurantes (colapsable) -->
+                <div class="cartagena-collapse-item">
+                    <button type="button" class="cartagena-collapse-btn" onclick="toggleCartagenaCollapse(this)" aria-expanded="false">
+                        <span>Restaurantes</span>
+                        <span class="cartagena-collapse-icon">+</span>
+                    </button>
+                    <div class="cartagena-collapse-content">
+                        <div class="recommendation-content">
                         <div class="recommendation-item">
                             <h4>La Vitrola</h4>
                             <p>Cocina caribeña y colombiana.<br>Carrera 2 #33-66, Centro histórico.</p>
@@ -349,15 +358,18 @@ Guido le escribe por primera vez y empiezan a hablar.
                             <h4>Mar y Zielo</h4>
                             <p>Cocina de autor colombiana.<br>Carrera 5 #34-63, El Centro.</p>
                         </div>
+                        </div>
                     </div>
                 </div>
 
-                <!-- Shopping -->
-                <div class="recommendation-card">
-                    <div class="recommendation-header">
-                        <h3>Shopping</h3>
-                    </div>
-                    <div class="recommendation-content">
+                <!-- Shopping (colapsable) -->
+                <div class="cartagena-collapse-item">
+                    <button type="button" class="cartagena-collapse-btn" onclick="toggleCartagenaCollapse(this)" aria-expanded="false">
+                        <span>Shopping</span>
+                        <span class="cartagena-collapse-icon">+</span>
+                    </button>
+                    <div class="cartagena-collapse-content">
+                        <div class="recommendation-content">
                         <ul class="shopping-list">
                             <li>Agua Bendita</li>
                             <li>Maaji</li>
@@ -368,15 +380,18 @@ Guido le escribe por primera vez y empiezan a hablar.
                             <li>Baobab</li>
                             <li>Centro comercial La Serrezuela</li>
                         </ul>
+                        </div>
                     </div>
                 </div>
 
-                <!-- Seguridad -->
-                <div class="recommendation-card">
-                    <div class="recommendation-header">
-                        <h3>Seguridad</h3>
-                    </div>
-                    <div class="recommendation-content">
+                <!-- Seguridad (colapsable) -->
+                <div class="cartagena-collapse-item">
+                    <button type="button" class="cartagena-collapse-btn" onclick="toggleCartagenaCollapse(this)" aria-expanded="false">
+                        <span>Seguridad</span>
+                        <span class="cartagena-collapse-icon">+</span>
+                    </button>
+                    <div class="cartagena-collapse-content">
+                        <div class="recommendation-content">
                         <div class="recommendation-item">
                             <h4>Movilidad</h4>
                             <p>Muévete en grupo, especialmente de noche. Usa aplicaciones confiables como Uber o taxis oficiales del hotel. Evita taxis en la calle sin confirmar precio.</p>
@@ -389,15 +404,18 @@ Guido le escribe por primera vez y empiezan a hablar.
                             <h4>Zonas Seguras</h4>
                             <p>La Ciudad Amurallada y Getsemaní son generalmente seguras durante el día. Evita zonas desconocidas de noche y siempre pregunta en el hotel sobre áreas a evitar.</p>
                         </div>
+                        </div>
                     </div>
                 </div>
 
-                <!-- Tips Prácticos -->
-                <div class="recommendation-card">
-                    <div class="recommendation-header">
-                        <h3>Tips Prácticos</h3>
-                    </div>
-                    <div class="recommendation-content">
+                <!-- Tips Prácticos (colapsable) -->
+                <div class="cartagena-collapse-item">
+                    <button type="button" class="cartagena-collapse-btn" onclick="toggleCartagenaCollapse(this)" aria-expanded="false">
+                        <span>Tips Prácticos</span>
+                        <span class="cartagena-collapse-icon">+</span>
+                    </button>
+                    <div class="cartagena-collapse-content">
+                        <div class="recommendation-content">
                         <div class="recommendation-item">
                             <h4>Moneda</h4>
                             <p>La moneda es el Peso Colombiano (COP). Muchos lugares aceptan tarjetas, pero te recomendamos llevar efectivo para taxis, propinas y mercados; los taxis suelen preferir o solo aceptar efectivo. Cambia dinero en casas de cambio oficiales.</p>
@@ -421,6 +439,7 @@ Guido le escribe por primera vez y empiezan a hablar.
                         <div class="recommendation-item">
                             <h4>Electricidad</h4>
                             <p>110V, enchufes tipo A y B (como en USA). Trae adaptador si es necesario.</p>
+                        </div>
                         </div>
                     </div>
                 </div>
