@@ -426,9 +426,13 @@ h1, h2, h3, h4 {
     background-image: url("assets/photos/PCR54498.jpg");
 }
 
-/* Solo el hero muestra foto de fondo; el resto sin imagen */
+/* Solo el hero muestra foto de fondo; el resto: gris claro con textura sutil */
 .section.section-bg {
-    background-image: none !important;
+    background-color: #d4d2ce;
+    background-image:
+        repeating-linear-gradient(0deg, transparent 0, transparent 2px, rgba(255,255,255,.5) 2px, rgba(255,255,255,.5) 4px),
+        repeating-linear-gradient(90deg, transparent 0, transparent 2px, rgba(0,0,0,.04) 2px, rgba(0,0,0,.04) 4px);
+    background-size: 4px 4px;
 }
 
 .container {
@@ -1399,6 +1403,15 @@ a.link-gold {
 .text-xs { font-size: 0.8rem; }
 
 /* ===== FOOTER ===== */
+/* Imagen PCR53793 visible hasta abajo (antes del footer) */
+.bottom-bg-image {
+    min-height: 55vh;
+    background-image: url("assets/photos/PCR53793.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
 .footer {
     background: transparent;
     color: var(--text-soft);
