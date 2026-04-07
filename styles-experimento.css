@@ -220,7 +220,7 @@ h1, h2, h3, h4 {
     content: "";
     position: absolute;
     inset: 0;
-    background: rgba(250, 250, 248, 0.7);
+    background: rgba(250, 250, 248, 0.6);
     z-index: 0;
 }
 
@@ -368,7 +368,8 @@ h1, h2, h3, h4 {
 }
 
 .section.bg-white {
-    background-color: transparent;
+    background-color: #f2f1ef !important;
+    background-image: none !important;
 }
 
 /* Secciones con foto de fondo */
@@ -424,6 +425,34 @@ h1, h2, h3, h4 {
 
 .section-bg-faq {
     background-image: url("assets/photos/PCR54498.jpg");
+}
+
+/* Solo el hero muestra foto de fondo; el resto: alternancia gris / blanco roto */
+.section.section-bg {
+    background-color: #d4d2ce;
+    background-image:
+        repeating-linear-gradient(0deg, transparent 0, transparent 2px, rgba(255,255,255,.5) 2px, rgba(255,255,255,.5) 4px),
+        repeating-linear-gradient(90deg, transparent 0, transparent 2px, rgba(0,0,0,.04) 2px, rgba(0,0,0,.04) 4px);
+    background-size: 4px 4px;
+}
+
+/* Alternar fondo: secciones pares (2ª, 4ª…) gris; impares (3ª, 5ª…) blanco roto */
+.main-content > section:nth-of-type(even) {
+    background-color: #d4d2ce;
+    background-image:
+        repeating-linear-gradient(0deg, transparent 0, transparent 2px, rgba(255,255,255,.5) 2px, rgba(255,255,255,.5) 4px),
+        repeating-linear-gradient(90deg, transparent 0, transparent 2px, rgba(0,0,0,.04) 2px, rgba(0,0,0,.04) 4px);
+    background-size: 4px 4px;
+}
+.main-content > section:nth-of-type(odd):not(.hero) {
+    background-color: #f2f1ef;
+    background-image: none;
+}
+
+/* Cartagena: una sola sección con fondo liso (sin textura de cuadritos) */
+.section-cartagena {
+    background-color: #f2f1ef !important;
+    background-image: none !important;
 }
 
 .container {
@@ -613,6 +642,7 @@ a.link-gold {
     max-width: 520px;
     margin-left: auto;
     margin-right: auto;
+    margin-top: 1.75rem;
 }
 
 /* ===== HOTEL ===== */
@@ -806,7 +836,60 @@ a.link-gold {
     display: grid;
     gap: 2rem;
     max-width: 560px;
-    margin: 0 auto;
+    margin: 2rem auto 0;
+}
+
+/* Cartagena: subsecciones colapsables */
+.cartagena-collapse-item {
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    overflow: hidden;
+    background: transparent;
+}
+.cartagena-collapse-btn {
+    width: 100%;
+    padding: 1rem 1.25rem;
+    background: none;
+    border: none;
+    text-align: left;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--text);
+    font-family: inherit;
+    transition: background 0.2s ease;
+}
+.cartagena-collapse-btn:hover {
+    background: rgba(0, 0, 0, 0.03);
+}
+.cartagena-collapse-icon {
+    font-size: 1.25rem;
+    color: var(--text-soft);
+    transition: transform 0.2s ease;
+}
+.cartagena-collapse-item.active .cartagena-collapse-icon {
+    transform: rotate(45deg);
+}
+.cartagena-collapse-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+}
+.cartagena-collapse-item.active .cartagena-collapse-content {
+    max-height: 2000px;
+}
+.cartagena-collapse-content .recommendation-content,
+.cartagena-collapse-content .cartagena-tours {
+    padding: 0 1.25rem 1.25rem 1.25rem;
+    border-top: 1px solid var(--border);
+}
+.cartagena-collapse-content .cartagena-tours {
+    margin-top: 0;
+    padding-top: 1.25rem;
+    border-top: none;
 }
 
 .cartagena-tours {
@@ -846,7 +929,7 @@ a.link-gold {
 
 .recommendation-item h4 {
     font-size: 1rem;
-    font-weight: 500;
+    font-weight: 600;
     margin-bottom: 0.35rem;
 }
 
@@ -930,6 +1013,10 @@ a.link-gold {
     color: var(--text-soft);
 }
 
+/* Ocultar screenshot en versión corta; en versión larga se ve el de .story-text-long */
+.story-placeholder > .story-screenshot {
+    display: none;
+}
 .story-screenshot {
     float: right;
     max-width: 170px;
@@ -980,8 +1067,8 @@ a.link-gold {
 .btn-chismosos {
     clear: both;
     display: block;
-    margin-top: -2.5rem;
-    margin-bottom: 7.25rem;
+    margin-top: -1rem;
+    margin-bottom: 1rem;
     padding: 0.5rem 1rem;
     font-family: inherit;
     font-size: 0.9rem;
@@ -1397,6 +1484,21 @@ a.link-gold {
 .text-xs { font-size: 0.8rem; }
 
 /* ===== FOOTER ===== */
+/* Imagen PCR53793 visible hasta abajo (antes del footer) */
+.bottom-bg-image {
+    min-height: 55vh;
+    background-image: url("assets/photos/PCR53793.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+@media (min-width: 769px) {
+    .bottom-bg-image {
+        min-height: 130vh;
+    }
+}
+
 .footer {
     background: transparent;
     color: var(--text-soft);

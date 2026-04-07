@@ -104,6 +104,15 @@ function toggleFAQ(button) {
     }
 }
 
+// ===== CARTAGENA SUBSECCIONES COLAPSABLES =====
+function toggleCartagenaCollapse(button) {
+    const item = button.closest('.cartagena-collapse-item');
+    if (!item) return;
+    const isActive = item.classList.contains('active');
+    item.classList.toggle('active', !isActive);
+    button.setAttribute('aria-expanded', !isActive);
+}
+
 // ===== RSVP MODAL (solo si existe en la página) =====
 function openRSVPModal() {
     const modal = document.getElementById('rsvpModal');

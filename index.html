@@ -28,6 +28,7 @@
                 <li><a href="#ubicacion">Ubicación</a></li>
                 <li><a href="#transporte">Transporte</a></li>
                 <li><a href="#cartagena">Cartagena</a></li>
+                <li><a href="#belleza">Salón de belleza</a></li>
                 <li><a href="#regalos">Mesa de Regalos</a></li>
                 <li><a href="#faq">FAQ</a></li>
             </ul>
@@ -273,7 +274,7 @@ Guido le escribe por primera vez y empiezan a hablar.
     </section>
 
     <!-- Recommendations Section -->
-    <section id="cartagena" class="section">
+    <section id="cartagena" class="section section-cartagena">
         <div class="container">
             <h2 class="section-title">Cartagena</h2>
             <p class="section-subtitle">Guía para disfrutar al máximo tu estancia en Cartagena.</p>
@@ -305,27 +306,31 @@ Guido le escribe por primera vez y empiezan a hablar.
                 </div>
             </div>
 
-            <!-- Tours -->
-            <div class="cartagena-tours">
-                <h3 class="places-section-title">Tours</h3>
-                <p class="tours-contact-name">Karen Teheran</p>
-                <p class="tours-contact-item">Teléfono: <a href="https://wa.me/573182431434" target="_blank" rel="noopener noreferrer" class="link-gold">+57 318 2431434</a></p>
-                <p class="tours-contact-item">Correo: <a href="mailto:gemamanzanillo@gematurs.com" class="link-gold">gemamanzanillo@gematurs.com</a></p>
+            <!-- Tours (colapsable) -->
+            <div class="cartagena-collapse-item">
+                <button type="button" class="cartagena-collapse-btn" onclick="toggleCartagenaCollapse(this)" aria-expanded="false">
+                    <span>Tours</span>
+                    <span class="cartagena-collapse-icon">+</span>
+                </button>
+                <div class="cartagena-collapse-content">
+                    <div class="cartagena-tours">
+                        <p class="tours-contact-name">Karen Teheran</p>
+                        <p class="tours-contact-item">Teléfono: <a href="https://wa.me/573182431434" target="_blank" rel="noopener noreferrer" class="link-gold">+57 318 2431434</a></p>
+                        <p class="tours-contact-item">Correo: <a href="mailto:gemamanzanillo@gematurs.com" class="link-gold">gemamanzanillo@gematurs.com</a></p>
+                    </div>
+                </div>
             </div>
-        </div>
-    </section>
 
-    <!-- Cartagena recomendaciones (con foto de fondo desde aquí) -->
-    <section class="section section-bg section-bg-cartagena" aria-label="Recomendaciones Cartagena">
-        <div class="container">
             <div class="recommendations-grid">
 
-                <!-- Dónde Comer -->
-                <div class="recommendation-card">
-                    <div class="recommendation-header">
-                        <h3>Restaurantes</h3>
-                    </div>
-                    <div class="recommendation-content">
+                <!-- Restaurantes (colapsable) -->
+                <div class="cartagena-collapse-item">
+                    <button type="button" class="cartagena-collapse-btn" onclick="toggleCartagenaCollapse(this)" aria-expanded="false">
+                        <span>Restaurantes</span>
+                        <span class="cartagena-collapse-icon">+</span>
+                    </button>
+                    <div class="cartagena-collapse-content">
+                        <div class="recommendation-content">
                         <div class="recommendation-item">
                             <h4>La Vitrola</h4>
                             <p>Cocina caribeña y colombiana.<br>Carrera 2 #33-66, Centro histórico.</p>
@@ -335,8 +340,8 @@ Guido le escribe por primera vez y empiezan a hablar.
                             <p>Alta cocina colombiana e internacional.<br>Hotel Charleston Santa Teresa, Carrera 3 #31-19.</p>
                         </div>
                         <div class="recommendation-item">
-                            <h4>Niku</h4>
-                            <p>Japonés.<br>Centro histórico.</p>
+                            <h4>Restaurante Niku</h4>
+                            <p>Japonés.<br>Centro histórico, C31 Cl. de San Juan de Dios #3-39.</p>
                         </div>
                         <div class="recommendation-item">
                             <h4>Andrés Carne de Res</h4>
@@ -344,25 +349,28 @@ Guido le escribe por primera vez y empiezan a hablar.
                         </div>
                         <div class="recommendation-item">
                             <h4>Restaurante Norma</h4>
-                            <p>Comida colombiana y mariscos.<br>Centro histórico, Calle del Baloco #2-14.</p>
+                            <p>Cocina italiana y mediterránea.<br>Centro histórico, Calle del Baloco #2-14.</p>
                         </div>
                         <div class="recommendation-item">
                             <h4>Restaurante Juan del Mar</h4>
-                            <p>Mariscos y pescados.<br>Plaza de San Diego 8-12, San Diego.</p>
+                            <p>Pescados y pizzas gourmet.<br>Plaza de San Diego 8-12, San Diego.</p>
                         </div>
                         <div class="recommendation-item">
-                            <h4>Mar y Cielo</h4>
-                            <p>Mariscos y cocina de mar.<br>Carrera 5 #34-63, El Centro.</p>
+                            <h4>Mar y Zielo</h4>
+                            <p>Cocina de autor colombiana.<br>Carrera 5 #34-63, El Centro.</p>
+                        </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Shopping -->
-                <div class="recommendation-card">
-                    <div class="recommendation-header">
-                        <h3>Shopping</h3>
-                    </div>
-                    <div class="recommendation-content">
+                <!-- Shopping (colapsable) -->
+                <div class="cartagena-collapse-item">
+                    <button type="button" class="cartagena-collapse-btn" onclick="toggleCartagenaCollapse(this)" aria-expanded="false">
+                        <span>Shopping</span>
+                        <span class="cartagena-collapse-icon">+</span>
+                    </button>
+                    <div class="cartagena-collapse-content">
+                        <div class="recommendation-content">
                         <ul class="shopping-list">
                             <li>Agua Bendita</li>
                             <li>Maaji</li>
@@ -373,15 +381,18 @@ Guido le escribe por primera vez y empiezan a hablar.
                             <li>Baobab</li>
                             <li>Centro comercial La Serrezuela</li>
                         </ul>
+                        </div>
                     </div>
                 </div>
 
-                <!-- Seguridad -->
-                <div class="recommendation-card">
-                    <div class="recommendation-header">
-                        <h3>Seguridad</h3>
-                    </div>
-                    <div class="recommendation-content">
+                <!-- Seguridad (colapsable) -->
+                <div class="cartagena-collapse-item">
+                    <button type="button" class="cartagena-collapse-btn" onclick="toggleCartagenaCollapse(this)" aria-expanded="false">
+                        <span>Seguridad</span>
+                        <span class="cartagena-collapse-icon">+</span>
+                    </button>
+                    <div class="cartagena-collapse-content">
+                        <div class="recommendation-content">
                         <div class="recommendation-item">
                             <h4>Movilidad</h4>
                             <p>Muévete en grupo, especialmente de noche. Usa aplicaciones confiables como Uber o taxis oficiales del hotel. Evita taxis en la calle sin confirmar precio.</p>
@@ -394,15 +405,18 @@ Guido le escribe por primera vez y empiezan a hablar.
                             <h4>Zonas Seguras</h4>
                             <p>La Ciudad Amurallada y Getsemaní son generalmente seguras durante el día. Evita zonas desconocidas de noche y siempre pregunta en el hotel sobre áreas a evitar.</p>
                         </div>
+                        </div>
                     </div>
                 </div>
 
-                <!-- Tips Prácticos -->
-                <div class="recommendation-card">
-                    <div class="recommendation-header">
-                        <h3>Tips Prácticos</h3>
-                    </div>
-                    <div class="recommendation-content">
+                <!-- Tips Prácticos (colapsable) -->
+                <div class="cartagena-collapse-item">
+                    <button type="button" class="cartagena-collapse-btn" onclick="toggleCartagenaCollapse(this)" aria-expanded="false">
+                        <span>Tips Prácticos</span>
+                        <span class="cartagena-collapse-icon">+</span>
+                    </button>
+                    <div class="cartagena-collapse-content">
+                        <div class="recommendation-content">
                         <div class="recommendation-item">
                             <h4>Moneda</h4>
                             <p>La moneda es el Peso Colombiano (COP). Muchos lugares aceptan tarjetas, pero te recomendamos llevar efectivo para taxis, propinas y mercados; los taxis suelen preferir o solo aceptar efectivo. Cambia dinero en casas de cambio oficiales.</p>
@@ -413,7 +427,7 @@ Guido le escribe por primera vez y empiezan a hablar.
                         </div>
                         <div class="recommendation-item">
                             <h4>Transporte</h4>
-                            <p>Desde el aeropuerto: taxi oficial o transfer del hotel (más seguro). En la ciudad: caminar en la zona amurallada, Uber para distancias mayores. Cómo manejaremos las llegadas y traslados desde el aeropuerto lo confirmaremos pronto y lo publicaremos aquí.</p>
+                            <p>Desde el aeropuerto: taxi oficial o transfer del hotel (más seguro). En la ciudad: caminar en la zona amurallada, Uber para distancias mayores.</p>
                         </div>
                         <div class="recommendation-item">
                             <h4>Horarios</h4>
@@ -427,6 +441,7 @@ Guido le escribe por primera vez y empiezan a hablar.
                             <h4>Electricidad</h4>
                             <p>110V, enchufes tipo A y B (como en USA). Trae adaptador si es necesario.</p>
                         </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -437,9 +452,9 @@ Guido le escribe por primera vez y empiezan a hablar.
     <section id="belleza" class="section section-bg section-bg-faq">
         <div class="container">
             <h2 class="section-title">Salón de belleza</h2>
-            <p class="section-subtitle">Por si lo necesitas: información del spa del hotel para maquillaje y peinado.</p>
+            <p class="section-subtitle">Maquillaje y peinado.</p>
             <p class="text-center mt-4">
-                <a href="support_files/spa_hotel.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">Ver folleto</a>
+                <a href="support_files/spa_hotel.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">Información del spa del hotel</a>
             </p>
             <p class="belleza-contact text-center mt-3">Pueden reservar por correo: <a href="mailto:susana.perez@dreamsresorts.com" class="link-gold">susana.perez@dreamsresorts.com</a>, <a href="mailto:rosa.carrasquilla@dreamsresorts.com" class="link-gold">rosa.carrasquilla@dreamsresorts.com</a>, o por WhatsApp: <a href="https://wa.me/573008230389" target="_blank" rel="noopener noreferrer" class="link-gold">+57 300 823 0389</a>.</p>
         </div>
@@ -477,7 +492,7 @@ Guido le escribe por primera vez y empiezan a hablar.
             <p class="section-subtitle">Resolvemos las dudas más comunes para que puedas prepararte sin preocupaciones.</p>
 
             <div class="faq-container">
-                <div class="faq-item">
+                <div class="faq-item" style="display: none;">
                     <button class="faq-question" onclick="toggleFAQ(this)">
                         <span>¿Cómo es el clima en Cartagena en mayo?</span>
                         <span class="faq-icon">+</span>
@@ -493,7 +508,7 @@ Guido le escribe por primera vez y empiezan a hablar.
                         <span class="faq-icon">+</span>
                     </button>
                     <div class="faq-answer">
-                        <p>El aeropuerto internacional Rafael Núñez (CTG) recibe vuelos desde varias ciudades. Desde el aeropuerto al hotel, te recomendamos usar taxi oficial del aeropuerto o coordinar un transfer con el hotel. El trayecto es aproximadamente 15-20 minutos.</p>
+                        <p>El aeropuerto internacional Rafael Núñez (CTG) recibe vuelos desde varias ciudades.</p>
                     </div>
                 </div>
 
@@ -527,7 +542,7 @@ Guido le escribe por primera vez y empiezan a hablar.
                     </div>
                 </div>
 
-                <div class="faq-item">
+                <div class="faq-item" style="display: none;">
                     <button class="faq-question" onclick="toggleFAQ(this)">
                         <span>¿Cómo me muevo por Cartagena?</span>
                         <span class="faq-icon">+</span>
@@ -547,7 +562,7 @@ Guido le escribe por primera vez y empiezan a hablar.
                     </div>
                 </div>
 
-                <div class="faq-item">
+                <div class="faq-item" style="display: none;">
                     <button class="faq-question" onclick="toggleFAQ(this)">
                         <span>¿Qué moneda se usa?</span>
                         <span class="faq-icon">+</span>
@@ -557,17 +572,18 @@ Guido le escribe por primera vez y empiezan a hablar.
                     </div>
                 </div>
 
-                <div class="faq-item">
+                <div class="faq-item" style="display: none;">
                     <button class="faq-question" onclick="toggleFAQ(this)">
                         <span>¿Es seguro Cartagena?</span>
                         <span class="faq-icon">+</span>
                     </button>
                     <div class="faq-answer">
-                        <p>Las zonas turísticas de Cartagena son generalmente seguras. Como en cualquier destino turístico, usa sentido común: no muestres objetos de valor, muévete en grupo de noche, usa aplicaciones confiables para transporte, y guarda documentos importantes en el hotel. La Ciudad Amurallada y Getsemaní son seguras durante el día.</p>
+                        <p>Cartagena es uno de los destinos turísticos más visitados de Colombia. La Ciudad Amurallada y Getsemaní son seguras durante el día y muy transitadas por visitantes.</p>
+                        <p>Como en cualquier destino turístico, recomendamos usar sentido común: no exhibir objetos de valor, moverse en grupo por la noche, utilizar aplicaciones confiables para transporte y guardar documentos importantes en el hotel.</p>
                     </div>
                 </div>
 
-                <div class="faq-item">
+                <div class="faq-item" style="display: none;">
                     <button class="faq-question" onclick="toggleFAQ(this)">
                         <span>¿Habrá buses de cortesía?</span>
                         <span class="faq-icon">+</span>
@@ -589,6 +605,9 @@ Guido le escribe por primera vez y empiezan a hablar.
             </div>
         </div>
     </section>
+
+    <!-- Imagen de cierre (PCR53793) visible hasta abajo -->
+    <div class="bottom-bg-image" role="presentation" aria-hidden="true"></div>
 
     <!-- Footer -->
     <footer class="footer">
