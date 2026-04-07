@@ -113,59 +113,57 @@ function toggleCartagenaCollapse(button) {
     button.setAttribute('aria-expanded', !isActive);
 }
 
-// ===== RSVP MODAL =====
+// ===== RSVP MODAL (solo si existe en la página) =====
 function openRSVPModal() {
     const modal = document.getElementById('rsvpModal');
+    if (!modal) return;
     modal.classList.add('active');
     document.body.style.overflow = 'hidden';
 }
 
 function closeRSVPModal() {
     const modal = document.getElementById('rsvpModal');
+    if (!modal) return;
     modal.classList.remove('active');
     document.body.style.overflow = '';
 }
 
-// Cerrar modal al hacer clic fuera
-document.getElementById('rsvpModal').addEventListener('click', function(e) {
-    if (e.target === this) {
-        closeRSVPModal();
-    }
-});
-
-// Cerrar modal con ESC
-document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') {
-        const modal = document.getElementById('rsvpModal');
-        if (modal.classList.contains('active')) {
+const rsvpModalEl = document.getElementById('rsvpModal');
+if (rsvpModalEl) {
+    rsvpModalEl.addEventListener('click', function(e) {
+        if (e.target === this) {
             closeRSVPModal();
         }
+    });
+}
+
+document.addEventListener('keydown', function(e) {
+    if (e.key !== 'Escape') return;
+    const modal = document.getElementById('rsvpModal');
+    if (modal && modal.classList.contains('active')) {
+        closeRSVPModal();
     }
 });
 
 // ===== RSVP FORM SUBMIT =====
 function handleRSVPSubmit(event) {
     event.preventDefault();
-    
+    const form = document.getElementById('rsvpForm');
+    if (!form) return;
+
     const formData = {
-        name: document.getElementById('rsvpName').value,
-        email: document.getElementById('rsvpEmail').value,
-        guests: document.getElementById('rsvpGuests').value,
-        message: document.getElementById('rsvpMessage').value
+        name: document.getElementById('rsvpName')?.value,
+        email: document.getElementById('rsvpEmail')?.value,
+        guests: document.getElementById('rsvpGuests')?.value,
+        message: document.getElementById('rsvpMessage')?.value
     };
-    
-    // Aquí iría la lógica para enviar el formulario
-    // Por ejemplo: EmailJS, Formspree, o una API propia
+
     console.log('RSVP Data:', formData);
-    
+
     alert('¡Gracias por tu confirmación! Te contactaremos pronto con más detalles.');
-    
-    // Limpiar formulario
-    document.getElementById('rsvpForm').reset();
+
+    form.reset();
     closeRSVPModal();
-    
-    // NOTA: Conecta este formulario con tu servicio de email preferido
-    // Opciones: EmailJS, Formspree, o crear una API route en tu backend
 }
 
 // ===== SMOOTH SCROLL =====
