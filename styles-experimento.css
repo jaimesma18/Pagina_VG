@@ -448,6 +448,13 @@ h1, h2, h3, h4 {
     line-height: 1.75;
 }
 
+#eventos .section-subtitle--eventos-lugar {
+    margin-top: -1.5rem;
+    margin-bottom: 2.25rem;
+    max-width: 560px;
+    font-size: 0.95rem;
+}
+
 /* ===== SCHEDULE / TIMELINE ===== */
 .timeline {
     position: relative;
